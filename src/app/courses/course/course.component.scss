@@ -1,0 +1,53 @@
+.view {
+  padding: 20px;
+}
+
+.course {
+  display: flex;
+  padding: 20px;
+
+  .course__basics {
+    margin-left: 20px;
+    flex: 3;
+  }
+
+  .course__image-container {
+    width: 45%;
+    height: 400px;
+    flex: 2;
+
+    .course__image {
+      width: 100%;
+      max-height: 400px;
+    }
+  }
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  .rating-star {
+    color: #ebeb2b;
+  }
+}
+
+.action-buttons {
+  margin-bottom: 20px;
+}
+
+.purchase-btn,
+.tip-btn {
+  margin-right: 20px;
+}
+
+.tip-icon {
+  color: #ff3d3d
+}
+
+.purchase-btn {
+  color: #009688;
+}
+
+.lock-icon {
+  color: #673ab7;
+}

@@ -1,0 +1,31 @@
+<section class="group-locked-prize-dialog">
+  <h1 mat-dialog-title>Lock prize for the group</h1>
+  <mat-divider></mat-divider>
+  <div mat-dialog-content class="group-locked-prize-dialog__content">
+    <p class="group-locked-prize-dialog__decription"></p>
+    <p>Your current tokens balance: <span class="bolder">131</span></p>
+    <p>Type: <span class="bolder">{{ data.type }}</span></p>
+    <p>Title: <span class="bolder">{{ data.title }}</span></p>
+    <mat-radio-group class="group-source">
+      <label class="group-source__label">From:</label>
+      <mat-radio-button class="group-source__radio" value="saved" checked="true">Saved</mat-radio-button>
+      <mat-radio-button class="group-source__radio" value="public">Public space</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field appearance="fill" class="group-select">
+      <mat-label>Choose the group</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let group of groups" [value]="group.name">{{ group.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Prize amount</mat-label>
+      <input type="number" step="1" min="0" matInput autocomplete="off">
+    </mat-form-field>
+  </div>
+  <mat-divider></mat-divider>
+  <div mat-dialog-actions>
+    <button mat-button (click)="confirm()" color="primary" cdkFocusInitial>Confirm</button>
+    <button mat-button (click)="discard()">Discard</button>
+  </div>
+</section>

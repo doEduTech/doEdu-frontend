@@ -1,0 +1,24 @@
+.group-locked-prize-dialog {
+  width: 400px;
+
+  .group-locked-prize-dialog__content {
+    padding: 25px;
+    font-size: 18px;
+  }
+
+  .group-locked-prize-dialog__decription {
+    color: #6c757d;
+  }
+}
+
+.bolder {
+  font-weight: 500;
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+mat-form-field {
+  display: block;
+}

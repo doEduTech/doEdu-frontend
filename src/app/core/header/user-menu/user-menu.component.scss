@@ -1,0 +1,17 @@
+
+.user-toolbar {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin: 0;
+
+    .user-toolbar__name {
+      margin-right: 10px;
+      font-size: 18px;
+    }
+
+    .user-toolbar__icon {
+      height: 30px;
+      width: 30px;
+    }
+}

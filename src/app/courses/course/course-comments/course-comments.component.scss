@@ -1,0 +1,12 @@
+.view {
+  margin-top: 20px;
+}
+
+.comment {
+  margin-bottom: 20px;
+
+  .comment__header {
+    display: flex;
+    justify-content: space-between;
+  }
+}

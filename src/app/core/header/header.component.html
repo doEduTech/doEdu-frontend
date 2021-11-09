@@ -1,0 +1,38 @@
+<mat-toolbar class="toolbar">
+  <div class="toolbar__links">
+    <a class="link toolbar__logo-container" routerLink="/"><img class="toolbar__logo" src="/assets/images/white_logo.png"></a>
+    <a class="link"
+      routerLink="/dashboard"
+      [routerLinkActive]="['link--activated']">
+      <button mat-button>Dashboard</button>
+    </a>
+    <a class="link"
+      routerLink="/courses"
+      [routerLinkActive]="['link--activated']">
+      <button mat-button>Courses</button></a>
+    <a class="link"
+      routerLink="/lessons"
+      [routerLinkActive]="['link--activated']">
+      <button mat-button>Lessons</button></a>
+    <a class="link"
+      routerLink="/classes"
+      [routerLinkActive]="['link--activated']">
+      <button mat-button>Classes</button></a>
+    <a class="link"
+      routerLink="/educational-pools"
+      [routerLinkActive]="['link--activated']">
+      <button mat-button>Educational pools</button></a>
+    <a class="link"
+      routerLink="/tests-and-quizzes"
+      [routerLinkActive]="['link--activated']">
+      <button mat-button>Tests and quizzes</button>
+      </a>
+  </div>
+  <div class="toolbar__user">
+    <div class="toolbar__user-tokens-balance" matTooltip="Your token balance">
+      <mat-icon class="preview-mode__edit-icon">generating_tokens</mat-icon>
+      <span>131</span>
+    </div>
+    <app-user-menu></app-user-menu>
+  </div>
+</mat-toolbar>

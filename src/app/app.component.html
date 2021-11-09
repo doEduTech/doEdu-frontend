@@ -1,0 +1,14 @@
+<section class="app">
+  <app-header></app-header>
+  <section class="app__body">
+    <mat-drawer-container>
+      <mat-drawer mode="side" class="side-nav" opened>
+        <app-side-menu></app-side-menu>
+      </mat-drawer>
+      <mat-drawer-content>
+        <router-outlet></router-outlet>
+      </mat-drawer-content>
+    </mat-drawer-container>
+  </section>
+  <!-- <app-footer></app-footer> -->
+</section>

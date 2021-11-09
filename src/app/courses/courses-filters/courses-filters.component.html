@@ -1,0 +1,39 @@
+<section class="form-container">
+  <p>FILTER BY</p>
+  <form>
+    <mat-form-field class="form-control" appearance="fill">
+      <mat-label>Category</mat-label>
+      <mat-select>
+        <mat-option value="option">Option</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-control">
+      <mat-label>Target audience</mat-label>
+      <mat-select>
+        <mat-option value="option">Option</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="form-control">
+      <mat-label>Minimum price</mat-label>
+      <input type="number" step="1" min="0" matInput formControlName="minPrice" autocomplete="off">
+    </mat-form-field>
+
+    <mat-form-field class="form-control">
+      <mat-label>Maximum price</mat-label>
+      <input type="number" step="1" min="0" matInput formControlName="maxPrice" autocomplete="off">
+    </mat-form-field>
+
+    <mat-checkbox class="form-control" formControlName="isFree">Free</mat-checkbox>
+
+    <mat-form-field appearance="fill" class="form-control">
+      <mat-label>Sort by</mat-label>
+      <mat-select>
+        <mat-option value="option">Option</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button class="clearing-btn" mat-button color="basic">Clear filters</button>
+  </form>
+</section>
