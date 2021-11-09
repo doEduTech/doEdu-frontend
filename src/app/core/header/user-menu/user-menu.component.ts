@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['user-menu.component.scss'],
 })
 export class UserMenuComponent implements OnInit {
-  public username = 'Username';
+  public user = {
+    name: 'John Doe',
+    id: 1,
+  };
   public isUserAuthenticated = true;
 
   constructor(private router: Router) {}

@@ -1,17 +1,26 @@
-
 .user-toolbar {
+  display: flex;
+  cursor: pointer;
+
+  .user-toolbar__notifications {
+    margin-right: 10px;
     display: flex;
     align-items: center;
-    cursor: pointer;
-    margin: 0;
+  }
 
-    .user-toolbar__name {
-      margin-right: 10px;
-      font-size: 18px;
-    }
+  .user-toolbar__menu-trigger {
+      display: flex;
+      align-items: center;
+      margin: 0;
 
-    .user-toolbar__icon {
-      height: 30px;
-      width: 30px;
-    }
+      .user-toolbar__name {
+        margin-right: 10px;
+        font-size: 18px;
+      }
+
+      .user-toolbar__icon {
+        height: 30px;
+        width: 30px;
+      }
+  }
 }

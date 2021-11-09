@@ -11,10 +11,8 @@ import { CourseCommentsComponent } from './course/course-comments/course-comment
 @NgModule({
   declarations: [
     CoursesComponent,
+    CourseComponent,
     CoursesFiltersComponent,
-    CourseComponent,
-    CourseComponent,
-    CourseCommentsComponent,
     CourseCommentsComponent,
   ],
   imports: [CommonModule, MaterialModule, CoursesRoutingModule],

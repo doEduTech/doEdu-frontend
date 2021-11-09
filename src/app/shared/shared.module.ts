@@ -8,6 +8,7 @@ import { GroupLockedPrizeDialogComponent } from './group-locked-prize-dialog/gro
 import { PersonalLockedPrizeDialogComponent } from './personal-locked-prize-dialog/personal-locked-prize-modal.component';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { PurchaseDialogComponent } from './purchase-dialog/purchase-dialog.component';
+import { SnackBarComponent } from './snack-bar/snack-bar.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { PurchaseDialogComponent } from './purchase-dialog/purchase-dialog.compo
     PersonalLockedPrizeDialogComponent,
     ConfirmationDialogComponent,
     PurchaseDialogComponent,
+    SnackBarComponent,
   ],
   exports: [
     TippingDialogComponent,
