@@ -1,6 +1,9 @@
 <section class="user-toolbar">
-  <div class="user-toolbar"class="user-toolbar__notifications" matTooltip="Notifications">
-    <mat-icon>notifications</mat-icon>
+  <div class="user-toolbar__notifications" matTooltip="Notifications">
+    <mat-icon matBadge="7" matBadgeColor="warn">notifications</mat-icon>
+  </div>
+  <div class="user-toolbar__messages" matTooltip="Messages">
+    <mat-icon matBadge="2" matBadgeColor="warn">mail_outline</mat-icon>
   </div>
   <div class="user-toolbar__menu-trigger" [matMenuTriggerFor]="menu">
     <ng-container *ngIf="isUserAuthenticated; else welcomeMessage">

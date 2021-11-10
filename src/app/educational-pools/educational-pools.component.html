@@ -1,0 +1,14 @@
+<section class="view">
+  <h2>Educational pools</h2>
+  <div class="pools">
+    <div *ngFor="let pool of educationalPools" class="pools__circle">
+      <div class="pool__content">
+        <h3 class="pool__title">{{ pool.title }}</h3>
+        <p>Votes: {{ pool.votesNumber }}</p>
+        <p>Available funds: {{ pool.availableFunds }}</p>
+        <p>Total funds: {{ pool.totalFunds }}</p>
+        <button mat-stroked-button color="primary">Vote</button>
+      </div>
+    </div>
+  </div>
+</section>
