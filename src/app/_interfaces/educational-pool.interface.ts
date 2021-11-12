@@ -7,3 +7,8 @@ export interface IEducationalPool {
   totalFunds: number;
   availableFunds: number;
 }
+
+export interface IEducationalPoolFundsDialogConfig {
+  id: string;
+  title: string;
+}

@@ -5,12 +5,14 @@
 
 .pools {
   display: flex;
-  gap: 20px;
+  padding: 20px;
+  gap: 45px;
 
   .pools__circle {
-    width: 228px;
-    height: 228px;
-    border-radius: 164px;
+    cursor: pointer;
+    width: 268px;
+    height: 268px;
+    border-radius: 204px;
     border: 2px solid #3f51b5;
     display: flex;
     justify-content: center;
@@ -18,17 +20,15 @@
 
     .pool__content {
       color: rgba(0, 0, 0, 0.87);
-      // transform: translate(-25%, -25%);
-      // position:relative;
-      // width: 90px;
-      // height: 90px;
-      // left: 19px;
-      // top: 19px;
       text-align:center;
     }
 
     .pool__title {
       font-weight: 500;
+    }
+
+    .pool__vote-btn {
+      margin-right: 10px;
     }
   }
 }

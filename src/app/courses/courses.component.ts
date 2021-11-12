@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ICourse } from '../_interfaces/course.interface';
+import { CoursesService } from '@services/api/courses.service';
+import { ICourse } from '@interfaces/course.interface';
 
 @Component({
   selector: 'app-courses',
@@ -8,46 +9,15 @@ import { ICourse } from '../_interfaces/course.interface';
   styleUrls: ['./courses.component.scss'],
 })
 export class CoursesComponent implements OnInit {
-  public courses: ICourse[] = [
-    {
-      id: '1',
-      title: 'Astronomy',
-      description:
-        'This course is for anyone who wants to learn more about astronomy events, cosmology, planets, galaxies, asteroids, astrophotography, the Big Bang, celestial objects and phenomena.',
-      imgSrc: '/assets/images/astronomy.jpg',
-      author: 'Kaira Rankin',
-      price: 0,
-    },
-    {
-      id: '2',
-      title: 'JavaScript',
-      description:
-        'JavaScript is the most popular programming language that let you do almost everything. This course is for anyone who wants to start the journey with the most promising coding area.',
-      imgSrc: '/assets/images/js.webp',
-      author: 'Niyah Fitzpatrick',
-      price: 20,
-    },
-    {
-      id: '3',
-      title: 'Ancient history',
-      description:
-        'Learn about past events from the beginning of writing and recorded human history and extending as far as post-classical history.',
-      imgSrc: '/assets/images/ancient.webp',
-      author: 'Niyah Fitzpatrick',
-      price: 0,
-    },
-    {
-      id: '4',
-      title: 'Startup enterpreneur',
-      description:
-        'Learn how to seek, develop, and validate a scalable business model and rise a profitable company.',
-      imgSrc: '/assets/images/startup.jpeg',
-      author: 'Dillan Oneill',
-      price: 0,
-    },
-  ];
+  public courses: ICourse[] = [];
 
-  constructor() {}
+  constructor(private coursesService: CoursesService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getCourses();
+  }
+
+  private getCourses(): void {
+    this.coursesService.getAll().subscribe((val) => (this.courses = val));
+  }
 }

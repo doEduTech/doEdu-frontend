@@ -1,0 +1,17 @@
+<section class="educational-pool-funds-dialog">
+  <h1 mat-dialog-title>Fund the pool</h1>
+  <mat-divider></mat-divider>
+  <div mat-dialog-content class="educational-pool-funds-dialog__content">
+    <p>Your current tokens balance: <span class="bolder">131</span></p>
+    <p>Educational pool: <span class="bolder">{{ data.title }}</span></p>
+    <mat-form-field class="form-control">
+      <mat-label>Set funds amount</mat-label>
+      <input type="number" step="1" min="0" matInput autocomplete="off">
+    </mat-form-field>
+  </div>
+  <mat-divider></mat-divider>
+  <div mat-dialog-actions>
+    <button mat-button (click)="confirm()" color="primary" cdkFocusInitial>Confirm</button>
+    <button mat-button (click)="discard()">Discard</button>
+  </div>
+</section>

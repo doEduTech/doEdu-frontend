@@ -4,7 +4,7 @@
     {{ data.content }}
   </div>
   <div mat-dialog-actions>
-    <button mat-button (click)="confirm()" color="warn" cdkFocusInitial>{{ data.confirmationButtonText }}</button>
-    <button mat-button (click)="discard()">{{ data.discardButtonText }}</button>
+    <button mat-button (click)="confirm()" color="primary" cdkFocusInitial>{{ data.confirmationButtonText || 'Confirm' }}</button>
+    <button mat-button (click)="discard()">{{ data.discardButtonText || 'Discard' }}</button>
   </div>
 </section>

@@ -9,8 +9,8 @@ export interface ILockedPrizeDialogConfig {
 }
 
 export interface IConfirmationDialogConfig {
-  confirmationButtonText: string;
-  discardButtonText: string;
+  confirmationButtonText?: string;
+  discardButtonText?: string;
   title?: string;
   content?: string;
 }
