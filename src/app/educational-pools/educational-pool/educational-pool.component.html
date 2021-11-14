@@ -1,1 +1,23 @@
-<p>educational-pool works!</p>
+<section class="view">
+  <div class="educational-pool mat-elevation-z2">
+    <ng-container *ngIf="educationalPool">
+      <h1 class="educational-pool__title">{{ educationalPool.title }}</h1>
+      <p>Votes: {{ educationalPool.votesNumber }}</p>
+      <p>Available funds: {{ educationalPool.availableFunds }}</p>
+      <p>Total funds: {{ educationalPool.totalFunds }}</p>
+      <button
+        class="educational-pool__vote-btn modal-launcher-btn"
+        mat-stroked-button
+        color="primary"
+        matTooltip="Vote if you think it is important or interesting"
+        (click)="openVoteDialog(educationalPool)">Vote</button>
+      <button
+        class="modal-launcher-btn"
+        mat-stroked-button
+        color="primary"
+        matTooltip="Sponsor this pool"
+        (click)="openFundsDialog(educationalPool)"
+        >Fund</button>
+    </ng-container>
+  </div>
+</section>

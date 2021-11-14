@@ -12,3 +12,10 @@ export interface IEducationalPoolFundsDialogConfig {
   id: string;
   title: string;
 }
+
+export interface IEducationalPoolMaterial {
+  id: string;
+  type: string; // TODO further: type -> course / test or quiz / lesson / etc.
+  title: string;
+  poolId: string;
+}

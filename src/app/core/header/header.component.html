@@ -29,9 +29,9 @@
       </a>
   </div>
   <div class="toolbar__user">
-    <div class="toolbar__user-tokens-balance" matTooltip="Your token balance">
+    <div class="toolbar__user-tokens-balance" matTooltip="Token balance">
+      <span class="toolbar__user-tokens-balance-value">{{ tokenBalanceService.tokenBalance$ | async }}</span>
       <mat-icon class="preview-mode__edit-icon">generating_tokens</mat-icon>
-      <span>131</span>
     </div>
     <app-user-menu></app-user-menu>
   </div>

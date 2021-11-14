@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
 
-import { IEducationalPool } from 'src/app/_interfaces/educational-pool.interface';
+import {
+  IEducationalPool,
+  IEducationalPoolMaterial,
+} from 'src/app/_interfaces/educational-pool.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -38,7 +41,28 @@ export class EducationalPoolsService {
     },
   ];
 
-  getAll(): Observable<IEducationalPool[]> {
+  public educationalPoolsMaterials: IEducationalPoolMaterial[] = [
+    {
+      id: '1',
+      type: 'course',
+      title: 'Astronomy',
+      poolId: '3',
+    },
+  ];
+
+  getMainPools(): Observable<IEducationalPool[]> {
     return of(this.educationalPools);
+  }
+
+  getOne(id: string): Observable<IEducationalPool | undefined> {
+    const result = this.educationalPools.find((pool) => pool.id === id);
+    return of(result);
+  }
+
+  getPoolMaterials(poolId: string): Observable<IEducationalPoolMaterial[]> {
+    const result = this.educationalPoolsMaterials.filter(
+      (material) => material.poolId === poolId
+    );
+    return of(result);
   }
 }

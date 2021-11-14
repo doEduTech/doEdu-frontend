@@ -1,8 +1,13 @@
 import { EventEmitter } from '@angular/core';
 import { Component, Inject, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { ILockedPrizeDialogConfig } from 'src/app/_interfaces/shared-dialogs.interface';
+import { TokenBalanceService } from '@services/token-balance.service';
+import {
+  ILockedPrizeDialogConfig,
+  IBalanceSubtractEvent,
+} from '@interfaces/shared-dialogs.interface';
 
 @Component({
   selector: 'app-group-locked-prize-dialog',
@@ -10,6 +15,12 @@ import { ILockedPrizeDialogConfig } from 'src/app/_interfaces/shared-dialogs.int
   styleUrls: ['./group-locked-prize-dialog.component.scss'],
 })
 export class GroupLockedPrizeDialogComponent {
+  @Output()
+  confirmAction: EventEmitter<IBalanceSubtractEvent> = new EventEmitter();
+
+  public form = new FormGroup({
+    amount: new FormControl('', Validators.required),
+  });
   public groups = [
     {
       name: 'Michigan High Music School',
@@ -21,19 +32,26 @@ export class GroupLockedPrizeDialogComponent {
       name: 'Berlin botany research club',
     },
   ];
-  @Output() confirmAction: EventEmitter<boolean> = new EventEmitter();
+
   constructor(
+    public tokenBalanceService: TokenBalanceService,
     public dialogRef: MatDialogRef<GroupLockedPrizeDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ILockedPrizeDialogConfig
   ) {}
 
-  confirm(): void {
-    this.confirmAction.emit(true);
+  public confirm(): void {
+    this.confirmAction.emit({
+      confirmed: true,
+      amount: this.form.value.amount,
+    });
     this.dialogRef.close();
   }
 
-  discard(): void {
-    this.confirmAction.emit(false);
+  public discard(): void {
+    this.confirmAction.emit({
+      confirmed: false,
+      amount: null,
+    });
     this.dialogRef.close();
   }
 }

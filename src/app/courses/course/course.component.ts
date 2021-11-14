@@ -1,13 +1,16 @@
-import { PurchaseDialogService } from './../../_services/shared/purchase-dialog.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { ICourse } from 'src/app/_interfaces/course.interface';
-import { CoursesService } from 'src/app/_services/api/courses.service';
-import { ConfirmationDialogService } from 'src/app/_services/shared/confirmation-dialog.service';
-import { GroupLockedPrizeService } from 'src/app/_services/shared/group-locked-prize-dialog.service';
-import { PersonalLockedPrizeService } from 'src/app/_services/shared/personal-locked-prize-dialog.service';
-import { TippingModalService } from 'src/app/_services/shared/tipping-dialog.service';
+import { filter } from 'rxjs/operators';
+
+import { PurchaseDialogService } from '@services/shared/purchase-dialog.service';
+import { ICourse } from '@interfaces/course.interface';
+import { CoursesService } from '@services/api/courses.service';
+import { GroupLockedPrizeService } from '@services/shared/group-locked-prize-dialog.service';
+import { PersonalLockedPrizeService } from '@services/shared/personal-locked-prize-dialog.service';
+import { TippingModalService } from '@services/shared/tipping-dialog.service';
+import { TokenBalanceService } from '@services/token-balance.service';
+import { SnackBarService } from '@services/shared/snack-bar.service';
 
 @Component({
   selector: 'app-course',
@@ -27,7 +30,9 @@ export class CourseComponent implements OnInit {
     private tippingModalService: TippingModalService,
     private groupLockedPrizeService: GroupLockedPrizeService,
     private personalLockedPrizeService: PersonalLockedPrizeService,
-    private purchaseDialogService: PurchaseDialogService
+    private purchaseDialogService: PurchaseDialogService,
+    private tokenBalanceService: TokenBalanceService,
+    private snackBarService: SnackBarService
   ) {}
 
   ngOnInit(): void {
@@ -36,7 +41,13 @@ export class CourseComponent implements OnInit {
 
   public openTippingDialog(): void {
     const recipient = this.course?.author || '';
-    this.tippingModalService.openDialog({ recipient }).subscribe();
+    this.tippingModalService
+      .openDialog({ recipient })
+      .pipe(filter((val) => val.confirmed && !!val.amount))
+      .subscribe((val) => {
+        this.tokenBalanceService.subtract(<number>val.amount);
+        this.snackBarService.openSnackBar('Tip given', 'success');
+      });
   }
 
   public openPesonalLockedPrizeDialog() {
@@ -46,7 +57,11 @@ export class CourseComponent implements OnInit {
         id: this.courseId,
         title: this.course?.title || '',
       })
-      .subscribe();
+      .pipe(filter((val) => val.confirmed && !!val.amount))
+      .subscribe((val) => {
+        this.tokenBalanceService.subtract(<number>val.amount);
+        this.snackBarService.openSnackBar('Personal prize locked', 'success');
+      });
   }
 
   public openGroupLockedPrizeDialog() {
@@ -56,7 +71,11 @@ export class CourseComponent implements OnInit {
         id: this.courseId,
         title: this.course?.title || '',
       })
-      .subscribe();
+      .pipe(filter((val) => val.confirmed && !!val.amount))
+      .subscribe((val) => {
+        this.tokenBalanceService.subtract(<number>val.amount);
+        this.snackBarService.openSnackBar('Group prize locked', 'success');
+      });
   }
 
   public openPurchaseDialog() {
@@ -67,7 +86,11 @@ export class CourseComponent implements OnInit {
         title: this.course?.title || '',
         price: this.course?.price,
       })
-      .subscribe();
+      .pipe(filter((val) => val.confirmed && !!val.amount))
+      .subscribe((val) => {
+        this.tokenBalanceService.subtract(<number>val.amount);
+        this.snackBarService.openSnackBar('Course purchased', 'success');
+      });
   }
 
   private getCourse(): void {

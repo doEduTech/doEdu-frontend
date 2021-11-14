@@ -2,7 +2,7 @@
   <h1 mat-dialog-title>Purchase</h1>
   <mat-divider></mat-divider>
   <div mat-dialog-content class="purchase-dialog__content">
-    <p>Your current tokens balance: <span class="bolder">131</span></p>
+    <p>Your current tokens balance: <span class="bolder">{{ tokenBalanceService.tokenBalance$ | async }}</span></p>
     <p>Type: <span class="bolder">{{ data.type }}</span></p>
     <p>Title: <span class="bolder">{{ data.title }}</span></p>
     <p>Price: <span class="bolder">{{ data.price }}</span></p>

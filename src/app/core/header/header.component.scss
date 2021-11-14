@@ -40,6 +40,10 @@
       display: flex;
       align-items: center;
       cursor: pointer;
+
+      .toolbar__user-tokens-balance-value {
+        margin-right: 5px;
+      }
     }
   }
 }

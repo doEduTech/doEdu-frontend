@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -13,6 +14,11 @@ import { EducationalPoolFundsDialogComponent } from './educational-pool-funds-di
     EducationalPoolComponent,
     EducationalPoolFundsDialogComponent,
   ],
-  imports: [CommonModule, MaterialModule, EducationalPoolsRoutingModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MaterialModule,
+    EducationalPoolsRoutingModule,
+  ],
 })
 export class EducationalPoolsModule {}

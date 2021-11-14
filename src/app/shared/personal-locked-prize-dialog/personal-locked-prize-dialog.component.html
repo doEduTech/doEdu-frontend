@@ -1,9 +1,9 @@
 <section class="group-locked-prize-dialog">
   <h1 mat-dialog-title>Lock prize for the person</h1>
   <mat-divider></mat-divider>
-  <div mat-dialog-content class="group-locked-prize-dialog__content">
+  <form [formGroup]="form" class="group-locked-prize-dialog__content">
     <p class="group-locked-prize-dialog__decription"></p>
-    <p>Your current tokens balance: <span class="bolder">131</span></p>
+    <p>Your current tokens balance: <span class="bolder">{{ tokenBalanceService.tokenBalance$ | async }}</span></p>
     <p>Type: <span class="bolder">{{ data.type }}</span></p>
     <p>Title: <span class="bolder">{{ data.title }}</span></p>
 
@@ -15,9 +15,9 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>Prize amount</mat-label>
-      <input type="number" step="1" min="0" matInput autocomplete="off">
+      <input type="number" step="1" min="0" matInput autocomplete="off" formControlName="amount">
     </mat-form-field>
-  </div>
+  </form>
   <mat-divider></mat-divider>
   <div mat-dialog-actions>
     <button mat-button (click)="confirm()" color="primary" cdkFocusInitial>Confirm</button>

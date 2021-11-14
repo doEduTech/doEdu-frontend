@@ -8,6 +8,11 @@ export interface ILockedPrizeDialogConfig {
   title: string;
 }
 
+export interface IBalanceSubtractEvent {
+  confirmed: boolean;
+  amount: number | null;
+}
+
 export interface IConfirmationDialogConfig {
   confirmationButtonText?: string;
   discardButtonText?: string;

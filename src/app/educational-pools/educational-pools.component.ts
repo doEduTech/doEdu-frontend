@@ -1,10 +1,14 @@
+import { TokenBalanceService } from './../_services/token-balance.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { EducationalPoolFundsService } from '@app/_services/educational-pools/educational-pool-funds.service';
-import { ConfirmationDialogService } from '@app/_services/shared/confirmation-dialog.service';
 
+import { filter } from 'rxjs/operators';
+
+import { EducationalPoolFundsService } from '@services/educational-pools/educational-pool-funds.service';
+import { ConfirmationDialogService } from '@services/shared/confirmation-dialog.service';
 import { IEducationalPool } from '@interfaces/educational-pool.interface';
 import { EducationalPoolsService } from '@services/api/educational-pools.service';
+import { SnackBarService } from '@services/shared/snack-bar.service';
 
 @Component({
   selector: 'app-educational-pools',
@@ -18,7 +22,9 @@ export class EducationalPoolsComponent implements OnInit {
     private router: Router,
     private educationalPoolsService: EducationalPoolsService,
     private educationalPoolFundsService: EducationalPoolFundsService,
-    private confirmationDialogService: ConfirmationDialogService
+    private confirmationDialogService: ConfirmationDialogService,
+    private snackBarService: SnackBarService,
+    private tokenBalanceService: TokenBalanceService
   ) {}
 
   ngOnInit(): void {
@@ -38,7 +44,7 @@ export class EducationalPoolsComponent implements OnInit {
 
   private getEducationalPools(): void {
     this.educationalPoolsService
-      .getAll()
+      .getMainPools()
       .subscribe((val) => (this.educationalPools = val));
   }
 
@@ -48,7 +54,20 @@ export class EducationalPoolsComponent implements OnInit {
         title: 'Vote on the pool',
         content: `Are you sure that you would like to vote that the educational pool "${pool.title}" is interesting / important?`,
       })
-      .subscribe();
+      .pipe(filter((val) => !!val))
+      .subscribe(
+        // TODO: below is a temporary vote recaunting mockup mechanism
+        () => {
+          const targetPool = this.educationalPools.find(
+            (p) => p.id === pool.id
+          );
+          targetPool && targetPool.votesNumber && targetPool.votesNumber++;
+          this.snackBarService.openSnackBar(
+            'The vote has been cast',
+            'success'
+          );
+        }
+      );
   }
 
   public openFundsDialog(pool: IEducationalPool): void {
@@ -57,6 +76,16 @@ export class EducationalPoolsComponent implements OnInit {
         id: pool.id,
         title: pool.title,
       })
-      .subscribe();
+      .pipe(filter((val) => val.confirmed && !!val.amount))
+      .subscribe((val) => {
+        const targetPool = this.educationalPools.find((p) => p.id === pool.id);
+        if (targetPool) {
+          targetPool.totalFunds = targetPool.totalFunds + <number>val.amount;
+          targetPool.availableFunds =
+            targetPool.availableFunds + <number>val.amount;
+        }
+        this.tokenBalanceService.subtract(<number>val.amount);
+        this.snackBarService.openSnackBar('Educational pool funded', 'success');
+      });
   }
 }
