@@ -18,7 +18,14 @@
         <div class="action-buttons">
           <button *ngIf="course && !course.price; else purchaseButton" mat-stroked-button color="primary" class="tip-btn" (click)="openTippingDialog()">Tip <mat-icon class="tip-icon">favorite</mat-icon></button>
           <ng-template #purchaseButton>
-            <button mat-stroked-button color="primary" class="purchase-btn" (click)="openPurchaseDialog()">Purchase <mat-icon class="purchase-icon">shopping_basket</mat-icon></button>
+            <button mat-stroked-button color="primary" class="purchase-btn" [matMenuTriggerFor]="purchaseMenu">
+              Purchase <mat-icon class="purchase-icon">shopping_basket</mat-icon>
+              <mat-menu #purchaseMenu="matMenu">
+                <button mat-menu-item (click)="openPurchaseForSelfDialog()">For me</button>
+                <button mat-menu-item (click)="openPurchaseForPersonDialog()">For the mentee</button>
+                <button mat-menu-item (click)="openPurchaseForGroupDialog()">For the group</button>
+            </mat-menu>
+            </button>
           </ng-template>
           <button mat-stroked-button color="primary" [matMenuTriggerFor]="lockedPrizeMenu">
             Lock prize	<mat-icon class="lock-icon">lock</mat-icon>

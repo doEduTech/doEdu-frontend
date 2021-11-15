@@ -6,6 +6,8 @@ export interface IEducationalPool {
   parentPoolTitle: string | null;
   totalFunds: number;
   availableFunds: number;
+  description: string;
+  imgSrc: string;
 }
 
 export interface IEducationalPoolFundsDialogConfig {
@@ -17,5 +19,10 @@ export interface IEducationalPoolMaterial {
   id: string;
   type: string; // TODO further: type -> course / test or quiz / lesson / etc.
   title: string;
+  author: string;
   poolId: string;
+  imgSrc: string;
+  created: string;
+  gatheredFunds: number | null;
+  votes: number | null;
 }

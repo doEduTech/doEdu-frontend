@@ -7,12 +7,14 @@ import { EducationalPoolsRoutingModule } from './educational-pools-routing.modul
 import { EducationalPoolsComponent } from './educational-pools.component';
 import { EducationalPoolComponent } from './educational-pool/educational-pool.component';
 import { EducationalPoolFundsDialogComponent } from './educational-pool-funds-dialog/educational-pool-funds-dialog.component';
+import { EducationalPoolMaterialsComponent } from './educational-pool/educational-pool-materials/educational-pool-materials.component';
 
 @NgModule({
   declarations: [
     EducationalPoolsComponent,
     EducationalPoolComponent,
     EducationalPoolFundsDialogComponent,
+    EducationalPoolMaterialsComponent,
   ],
   imports: [
     CommonModule,

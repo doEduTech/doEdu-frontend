@@ -1,0 +1,24 @@
+<section class="purchase-for-person-dialog">
+  <h1 mat-dialog-title>Purchase for the person</h1>
+  <mat-divider></mat-divider>
+  <div class="purchase-for-person-dialog__content">
+    <p>Your current tokens balance: <span class="bolder">{{ tokenBalanceService.tokenBalance$ | async }}</span></p>
+    <p>Type: <span class="bolder">{{ data.type }}</span></p>
+    <p>Title: <span class="bolder">{{ data.title }}</span></p>
+    <p>Price: <span class="bolder">{{ data.price }}</span></p>
+
+    <mat-form-field appearance="fill" class="group-select">
+      <mat-label>Choose the mentee</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let group of groups" [value]="group.name">{{ group.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </div>
+  <mat-divider></mat-divider>
+  <div mat-dialog-actions>
+    <button mat-button (click)="confirm()" color="primary" cdkFocusInitial>Confirm</button>
+    <button mat-button (click)="discard()">Discard</button>
+  </div>
+</section>
+

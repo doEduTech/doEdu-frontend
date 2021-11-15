@@ -1,0 +1,24 @@
+.purchase-for-person-dialog {
+  width: 400px;
+
+  .purchase-for-person-dialog__content {
+    padding: 25px 0;
+    font-size: 18px;
+  }
+
+  .purchase-for-person-dialog__decription {
+    color: #6c757d;
+  }
+}
+
+.bolder {
+  font-weight: 500;
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+mat-form-field {
+  display: block;
+}

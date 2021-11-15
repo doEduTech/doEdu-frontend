@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { SnackBarService } from './../../_services/shared/snack-bar.service';
-import { IAchievement } from 'src/app/_interfaces/achievement.interface';
-import { AchievementsService } from 'src/app/_services/api/achievements.service';
+import { SnackBarService } from '@services/shared/snack-bar.service';
+import { IAchievement } from '@interfaces/achievement.interface';
+import { AchievementsService } from '@services/api/achievements.service';
 
 @Component({
   selector: 'app-user-achievements',

@@ -9,24 +9,36 @@ import {
 } from '@interfaces/shared-dialogs.interface';
 
 @Component({
-  selector: 'app-purchase-dialog',
-  templateUrl: './purchase-dialog.component.html',
-  styleUrls: ['./purchase-dialog.component.scss'],
+  selector: 'app-purchase-for-group-dialog',
+  templateUrl: './purchase-for-group-dialog.component.html',
+  styleUrls: ['./purchase-for-group-dialog.component.scss'],
 })
-export class PurchaseDialogComponent {
+export class PurchaseForGroupDialogComponent {
   @Output()
   confirmAction: EventEmitter<IBalanceSubtractEvent> = new EventEmitter();
 
+  public groups = [
+    {
+      name: 'Michigan High Music School (10 persons)',
+    },
+    {
+      name: 'Stars hunters club (10 persons)',
+    },
+    {
+      name: 'Berlin botany research club (10 persons)',
+    },
+  ];
+
   constructor(
     public tokenBalanceService: TokenBalanceService,
-    public dialogRef: MatDialogRef<PurchaseDialogComponent>,
+    public dialogRef: MatDialogRef<PurchaseForGroupDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: IPurchaseDialogConfig
   ) {}
 
   confirm(): void {
     this.confirmAction.emit({
       confirmed: true,
-      amount: <number>this.data.price,
+      amount: <number>this.data.price * 10,
     });
     this.dialogRef.close();
   }

@@ -1,23 +1,30 @@
 <section class="view">
   <div class="educational-pool mat-elevation-z2">
     <ng-container *ngIf="educationalPool">
-      <h1 class="educational-pool__title">{{ educationalPool.title }}</h1>
-      <p>Votes: {{ educationalPool.votesNumber }}</p>
-      <p>Available funds: {{ educationalPool.availableFunds }}</p>
-      <p>Total funds: {{ educationalPool.totalFunds }}</p>
-      <button
-        class="educational-pool__vote-btn modal-launcher-btn"
-        mat-stroked-button
-        color="primary"
-        matTooltip="Vote if you think it is important or interesting"
-        (click)="openVoteDialog(educationalPool)">Vote</button>
-      <button
-        class="modal-launcher-btn"
-        mat-stroked-button
-        color="primary"
-        matTooltip="Sponsor this pool"
-        (click)="openFundsDialog(educationalPool)"
-        >Fund</button>
+      <div  class="educational-pool__image-container">
+        <img class="educational-pool__image" [src]="educationalPool.imgSrc">
+      </div>
+      <div class="educational-pool__basics">
+        <h1 class="educational-pool__title">{{ educationalPool.title }}</h1>
+        <p>{{ educationalPool.description }}</p>
+        <h3 class="educational-pool__property">Votes: {{ educationalPool.votesNumber }}</h3>
+        <h3 class="educational-pool__property">Available funds: {{ educationalPool.availableFunds }}</h3>
+        <h3 class="educational-pool__property">Total funds: {{ educationalPool.totalFunds }}</h3>
+        <button
+          class="educational-pool__vote-btn modal-launcher-btn"
+          mat-stroked-button
+          color="primary"
+          matTooltip="Vote if you think it is important or interesting"
+          (click)="openVoteDialog(educationalPool)">Vote</button>
+        <button
+          class="modal-launcher-btn"
+          mat-stroked-button
+          color="primary"
+          matTooltip="Sponsor this pool"
+          (click)="openFundsDialog(educationalPool)"
+          >Fund</button>
+      </div>
     </ng-container>
   </div>
+  <app-educational-pool-materials></app-educational-pool-materials>
 </section>

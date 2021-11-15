@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { filter } from 'rxjs/operators';
 
-import { PurchaseDialogService } from '@services/shared/purchase-dialog.service';
+import { PurchaseForSelfDialogService } from '@services/shared/purchase-for-self-dialog.service';
 import { ICourse } from '@interfaces/course.interface';
 import { CoursesService } from '@services/api/courses.service';
 import { GroupLockedPrizeService } from '@services/shared/group-locked-prize-dialog.service';
@@ -11,6 +11,8 @@ import { PersonalLockedPrizeService } from '@services/shared/personal-locked-pri
 import { TippingModalService } from '@services/shared/tipping-dialog.service';
 import { TokenBalanceService } from '@services/token-balance.service';
 import { SnackBarService } from '@services/shared/snack-bar.service';
+import { PurchaseForPersonDialogService } from '@services/shared/purchase-for-person-dialog.service';
+import { PurchaseForGroupDialogService } from '@services/shared/purchase-for-group-dialog.service';
 
 @Component({
   selector: 'app-course',
@@ -30,7 +32,9 @@ export class CourseComponent implements OnInit {
     private tippingModalService: TippingModalService,
     private groupLockedPrizeService: GroupLockedPrizeService,
     private personalLockedPrizeService: PersonalLockedPrizeService,
-    private purchaseDialogService: PurchaseDialogService,
+    private purchaseForSelfDialogService: PurchaseForSelfDialogService,
+    private purchaseForPersonDialogService: PurchaseForPersonDialogService,
+    private purchaseForGroupDialogService: PurchaseForGroupDialogService,
     private tokenBalanceService: TokenBalanceService,
     private snackBarService: SnackBarService
   ) {}
@@ -78,8 +82,8 @@ export class CourseComponent implements OnInit {
       });
   }
 
-  public openPurchaseDialog() {
-    this.purchaseDialogService
+  public openPurchaseForSelfDialog() {
+    this.purchaseForSelfDialogService
       .openDialog({
         type: 'course',
         id: this.courseId,
@@ -88,9 +92,41 @@ export class CourseComponent implements OnInit {
       })
       .pipe(filter((val) => val.confirmed && !!val.amount))
       .subscribe((val) => {
-        this.tokenBalanceService.subtract(<number>val.amount);
-        this.snackBarService.openSnackBar('Course purchased', 'success');
+        this.handlePurchaseSuccess(<number>val.amount);
       });
+  }
+
+  public openPurchaseForPersonDialog(): void {
+    this.purchaseForPersonDialogService
+      .openDialog({
+        type: 'course',
+        id: this.courseId,
+        title: this.course?.title || '',
+        price: this.course?.price,
+      })
+      .pipe(filter((val) => val.confirmed && !!val.amount))
+      .subscribe((val) => {
+        this.handlePurchaseSuccess(<number>val.amount);
+      });
+  }
+
+  public openPurchaseForGroupDialog(): void {
+    this.purchaseForGroupDialogService
+      .openDialog({
+        type: 'course',
+        id: this.courseId,
+        title: this.course?.title || '',
+        price: this.course?.price,
+      })
+      .pipe(filter((val) => val.confirmed && !!val.amount))
+      .subscribe((val) => {
+        this.handlePurchaseSuccess(<number>val.amount);
+      });
+  }
+
+  private handlePurchaseSuccess(price: number): void {
+    this.tokenBalanceService.subtract(price);
+    this.snackBarService.openSnackBar('Course purchased', 'success');
   }
 
   private getCourse(): void {
