@@ -20,6 +20,11 @@
 
 <mat-menu #menu="matMenu">
   <ng-container *ngIf="isUserAuthenticated; else anonymousUserMenu">
+    <button mat-menu-item [routerLink]="['/user', user.id, 'earnings']">
+      <mat-icon>attach_money</mat-icon>
+      <a>Earnings</a>
+    </button>
+
     <button mat-menu-item [routerLink]="['/user', user.id, 'achievements']">
       <mat-icon>whatshot</mat-icon>
       <a>Achievements</a>

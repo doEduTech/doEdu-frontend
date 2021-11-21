@@ -1,4 +1,4 @@
-export interface IAchievement {
+export interface IUserAchievement {
   id: string;
   type: string;
   title: string;
