@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { filter } from 'rxjs/operators';
 
 import { IEducationalPoolMaterial } from '@interfaces/educational-pool.interface';
-import { EducationalPoolsService } from '@services/api/educational-pools.service';
+import { EducationalPoolsService } from '@app/_services/learner/api/educational-pools.service';
 import { SnackBarService } from '@services/shared/snack-bar.service';
 import { ConfirmationDialogService } from '@services/shared/confirmation-dialog.service';
 

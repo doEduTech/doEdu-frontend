@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CoursesComponent } from './courses.component';
-import { MaterialModule } from './../material.module';
+import { MaterialModule } from '../../material.module';
 import { CoursesFiltersComponent } from './courses-filters/courses-filters.component';
 import { CoursesRoutingModule } from './courses-routing.module';
 import { CourseComponent } from './course/course.component';

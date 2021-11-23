@@ -1,14 +1,14 @@
-import { TokenBalanceService } from './../_services/token-balance.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { filter } from 'rxjs/operators';
 
-import { EducationalPoolFundsService } from '@services/educational-pools/educational-pool-funds.service';
+import { TokenBalanceService } from '@services/token-balance.service';
 import { ConfirmationDialogService } from '@services/shared/confirmation-dialog.service';
 import { IEducationalPool } from '@interfaces/educational-pool.interface';
-import { EducationalPoolsService } from '@services/api/educational-pools.service';
+import { EducationalPoolsService } from '@services/learner/api/educational-pools.service';
 import { SnackBarService } from '@services/shared/snack-bar.service';
+import { EducationalPoolFundsService } from '@services/learner/educational-pool-funds.service';
 
 @Component({
   selector: 'app-educational-pools',
