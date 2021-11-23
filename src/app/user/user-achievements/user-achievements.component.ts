@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { SnackBarService } from '@services/shared/snack-bar.service';
-import { IAchievement } from '@interfaces/achievement.interface';
-import { AchievementsService } from '@services/api/achievements.service';
+import { IUserAchievement } from '@app/_interfaces/user-achievement.interface';
+import { UserAchievementsService } from '@services/api/user-achievements.service';
 
 @Component({
   selector: 'app-user-achievements',
@@ -10,10 +10,10 @@ import { AchievementsService } from '@services/api/achievements.service';
   styleUrls: ['./user-achievements.component.scss'],
 })
 export class UserAchievementsComponent implements OnInit {
-  public achievements: IAchievement[] = [];
+  public achievements: IUserAchievement[] = [];
 
   constructor(
-    private achievementsService: AchievementsService,
+    private achievementsService: UserAchievementsService,
     private snackBarService: SnackBarService
   ) {}
 

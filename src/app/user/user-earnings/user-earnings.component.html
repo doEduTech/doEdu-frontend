@@ -1,0 +1,18 @@
+<section class="view">
+  <h2>Earnings</h2>
+  <ng-container *ngIf="earnings && earnings.length;">
+    <mat-card class="earning mat-elevation-z2" *ngFor="let earning of earnings">
+      <mat-card-content>
+        <div class="earning__details">
+          <mat-icon class="money-icon"> attach_money</mat-icon>
+          <div class="earning__description">
+            You earn <span class="bolder">{{ earning.amount }} DOEDU tokens</span> by {{ earning.service | earning }} for {{ earning.sourceType }} with title <span class="bolder">"{{ earning.sourceTitle }}"</span> on {{ earning.timestamp }}
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+  <ng-container *ngIf="earnings && !earnings.length">
+    <p>There are no earnings yet. Create and popularize something and start to earn! :)</p>
+  </ng-container>
+</section>

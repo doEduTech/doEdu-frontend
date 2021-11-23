@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
 
-import { IAchievement } from 'src/app/_interfaces/achievement.interface';
+import { IUserAchievement } from '@app/_interfaces/user-achievement.interface';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AchievementsService {
-  private achievements = [
+export class UserAchievementsService {
+  private achievements: IUserAchievement[] = [
     {
       id: '1',
       type: 'course',
@@ -39,7 +39,7 @@ export class AchievementsService {
   ];
   constructor() {}
 
-  getAll(): Observable<IAchievement[]> {
+  getAll(): Observable<IUserAchievement[]> {
     return of(this.achievements);
   }
 }

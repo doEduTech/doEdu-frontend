@@ -91,6 +91,15 @@ export class CoursesService {
       author: 'Dillan Oneill',
       price: 0,
     },
+    {
+      id: '5',
+      title: 'How to survive blockchain apocalypse',
+      description:
+        'A blockchain is a growing list of records, called blocks, that are linked together using cryptography. Each block contains a cryptographic hash of the previous block, a timestamp, and transaction data.',
+      imgSrc: '/assets/images/blockchain.jpg',
+      author: 'John Doe',
+      price: 0,
+    },
   ];
 
   constructor() {}
