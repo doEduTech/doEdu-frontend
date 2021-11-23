@@ -5,7 +5,7 @@ import { filter } from 'rxjs/operators';
 
 import { TokenBalanceService } from '@services/token-balance.service';
 import { ConfirmationDialogService } from '@services/shared/confirmation-dialog.service';
-import { IEducationalPool } from '@interfaces/educational-pool.interface';
+import { IEducationalPool } from '@app/_interfaces/learner/educational-pool.interface';
 import { EducationalPoolsService } from '@services/learner/api/educational-pools.service';
 import { SnackBarService } from '@services/shared/snack-bar.service';
 import { EducationalPoolFundsService } from '@services/learner/educational-pool-funds.service';

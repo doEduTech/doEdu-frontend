@@ -8,7 +8,7 @@ import { EducationalPoolsService } from '@services/learner/api/educational-pools
 import {
   IEducationalPool,
   IEducationalPoolMaterial,
-} from '@interfaces/educational-pool.interface';
+} from '@app/_interfaces/learner/educational-pool.interface';
 import { EducationalPoolFundsService } from '@services/learner/educational-pool-funds.service';
 import { SnackBarService } from '@services/shared/snack-bar.service';
 import { TokenBalanceService } from '@services/token-balance.service';

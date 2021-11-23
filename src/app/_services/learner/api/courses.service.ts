@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
 
-import { ICourseComment } from '@interfaces/course.interface';
-import { ICourse } from '@interfaces/course.interface';
+import { ICourseComment } from '@app/_interfaces/learner/course.interface';
+import { ICourse } from '@app/_interfaces/learner/course.interface';
 
 @Injectable({
   providedIn: 'root',

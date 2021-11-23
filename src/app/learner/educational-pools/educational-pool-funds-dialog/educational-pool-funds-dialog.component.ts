@@ -5,7 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { TokenBalanceService } from '@services/token-balance.service';
 import { IBalanceSubtractEvent } from '@interfaces/shared-dialogs.interface';
-import { IEducationalPoolFundsDialogConfig } from '@interfaces/educational-pool.interface';
+import { IEducationalPoolFundsDialogConfig } from '@app/_interfaces/learner/educational-pool.interface';
 
 @Component({
   selector: 'app-educational-pool-funds-dialog',

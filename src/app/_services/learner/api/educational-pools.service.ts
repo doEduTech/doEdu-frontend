@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import {
   IEducationalPool,
   IEducationalPoolMaterial,
-} from '@interfaces/educational-pool.interface';
+} from '@app/_interfaces/learner/educational-pool.interface';
 
 @Injectable({
   providedIn: 'root',

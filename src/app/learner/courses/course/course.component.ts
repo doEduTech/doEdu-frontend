@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 import { PurchaseForSelfDialogService } from '@services/shared/purchase-for-self-dialog.service';
-import { ICourse } from '@interfaces/course.interface';
+import { ICourse } from '@app/_interfaces/learner/course.interface';
 import { CoursesService } from '@services/learner/api/courses.service';
 import { GroupLockedPrizeService } from '@services/shared/group-locked-prize-dialog.service';
 import { PersonalLockedPrizeService } from '@services/shared/personal-locked-prize-dialog.service';
