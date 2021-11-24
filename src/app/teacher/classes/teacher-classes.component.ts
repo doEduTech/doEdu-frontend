@@ -4,11 +4,11 @@ import { TeacherClassesService } from '@services/teacher/api/teacher-classes.ser
 import { ITeacherClass } from '@interfaces/teacher/teacher-class.interface';
 
 @Component({
-  selector: 'app-classes',
-  templateUrl: './classes.component.html',
-  styleUrls: ['./classes.component.scss'],
+  selector: 'app-teacher-classes',
+  templateUrl: './teacher-classes.component.html',
+  styleUrls: ['./teacher-classes.component.scss'],
 })
-export class ClassesComponent implements OnInit {
+export class TeacherClassesComponent implements OnInit {
   public teachingClasses: ITeacherClass[] | undefined;
 
   constructor(private teacherClassesService: TeacherClassesService) {}

@@ -1,0 +1,31 @@
+.view {
+  padding: 20px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.teachingClass {
+  display: flex;
+  margin-bottom: 20px;
+
+  .teaching-class__image-container {
+    flex: 1;
+    .teaching-class__image {
+      width: 100%;
+      max-height: 400px;
+    }
+  }
+  .teaching-class__basics {
+    flex: 1;
+    padding: 20px;
+  }
+}
+
+mat-accordion {
+  display: block;
+  margin-bottom: 20px;
+
+  mat-panel-title {
+    width: 30%;
+  }
+}

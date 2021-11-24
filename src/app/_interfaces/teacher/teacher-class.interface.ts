@@ -3,12 +3,15 @@ export interface ITeacherClass {
   title: string;
   membersNumber: number;
   imgSrc?: string;
-  materials: ITeacherClassMaterials;
+  materialsCount: ITeacherClassMaterialsCount;
+  materials?: ITeacherClassMaterials;
 }
 
-export interface ITeacherClassMaterials {
+export interface ITeacherClassMaterialsCount {
   videos: number;
   homeAssignments: number;
   lessons: number;
   texts: number;
 }
+
+export interface ITeacherClassMaterials {}

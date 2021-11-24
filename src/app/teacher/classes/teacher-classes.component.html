@@ -4,6 +4,7 @@
     <mat-card
       class="teaching-class"
       *ngFor="let teachingClass of teachingClasses"
+      [routerLink]="teachingClass.id"
     >
       <mat-card-header class="teaching-class__header">
         <mat-card-title>{{ teachingClass.title }}</mat-card-title>
@@ -12,14 +13,14 @@
       <mat-card-content class="teaching-class__content">
         <div class="teaching-class__property">
           <p><span class="bolder">Class size:</span> {{ teachingClass.membersNumber }}</p>
-          <p><span class="bolder">Home assignments:</span> {{ teachingClass.materials.homeAssignments }}</p>
+          <p><span class="bolder">Home assignments:</span> {{ teachingClass.materialsCount.homeAssignments }}</p>
         </div>
         <div class="teaching-class__property">
-          <p><span class="bolder">Lessons:</span> {{ teachingClass.materials.lessons }}</p>
-          <p><span class="bolder">Texts:</span> {{ teachingClass.materials.texts }}</p>
+          <p><span class="bolder">Lessons:</span> {{ teachingClass.materialsCount.lessons }}</p>
+          <p><span class="bolder">Texts:</span> {{ teachingClass.materialsCount.texts }}</p>
         </div>
         <div class="teaching-class__property">
-          <p><span class="bolder">Videos:</span> {{ teachingClass.materials.videos }}</p>
+          <p><span class="bolder">Videos:</span> {{ teachingClass.materialsCount.videos }}</p>
         </div>
       </mat-card-content>
       <mat-card-actions>
