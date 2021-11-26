@@ -1,0 +1,30 @@
+<section class="view">
+  <h1>My classes</h1>
+  <div class="teaching-classes">
+    <mat-card
+      class="teaching-class"
+      *ngFor="let teachingClass of teachingClasses"
+      [routerLink]="teachingClass.id"
+    >
+      <mat-card-header class="teaching-class__header">
+        <mat-card-title>{{ teachingClass.title }}</mat-card-title>
+        <img mat-card-avatar class="teaching-class__image" [src]="teachingClass.imgSrc">
+      </mat-card-header>
+      <mat-card-content class="teaching-class__content">
+        <div class="teaching-class__property">
+          <p><span class="bolder">Class size:</span> {{ teachingClass.membersNumber }}</p>
+          <p><span class="bolder">Home assignments:</span> {{ teachingClass.materialsCount.homeAssignments }}</p>
+        </div>
+        <div class="teaching-class__property">
+          <p><span class="bolder">Lessons:</span> {{ teachingClass.materialsCount.lessons }}</p>
+          <p><span class="bolder">Texts:</span> {{ teachingClass.materialsCount.texts }}</p>
+        </div>
+        <div class="teaching-class__property">
+          <p><span class="bolder">Videos:</span> {{ teachingClass.materialsCount.videos }}</p>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</section>

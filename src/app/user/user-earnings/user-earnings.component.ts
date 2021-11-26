@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { IUserEarning } from '@interfaces/user-earning.interface';
-import { UserEarningsService } from '@services/api/user-earnings.service';
+import { UserEarningsService } from '@app/_services/learner/api/user-earnings.service';
 
 @Component({
   selector: 'app-user-earnings',

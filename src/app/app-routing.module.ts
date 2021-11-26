@@ -5,7 +5,7 @@ const routes: Routes = [
   {
     path: 'courses',
     loadChildren: () =>
-      import('./courses/courses.module').then((m) => m.CoursesModule),
+      import('./learner/courses/courses.module').then((m) => m.CoursesModule),
   },
   {
     path: 'user',
@@ -14,8 +14,15 @@ const routes: Routes = [
   {
     path: 'educational-pools',
     loadChildren: () =>
-      import('./educational-pools/educational-pools.module').then(
+      import('./learner/educational-pools/educational-pools.module').then(
         (m) => m.EducationalPoolsModule
+      ),
+  },
+  {
+    path: 'classes',
+    loadChildren: () =>
+      import('./teacher/classes/teacher-classes.module').then(
+        (m) => m.TeacherClassesModule
       ),
   },
 ];

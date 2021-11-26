@@ -1,0 +1,29 @@
+<section class="view">
+  <h2>Educational pools</h2>
+  <button class="new-pool-btn" mat-raised-button color="primary">Create new (cost: 10 DEDU tokens)</button>
+  <div class="pools mat-elevation-z2">
+    <div *ngFor="let pool of educationalPools"
+      class="pools__circle mat-elevation-z8"
+      (click)="navigateToPool($event, pool.id)">
+      <div class="pool__content">
+        <h3 class="pool__title">{{ pool.title }}</h3>
+        <p>Votes: {{ pool.votesNumber }}</p>
+        <p>Available funds: {{ pool.availableFunds }}</p>
+        <p>Total funds: {{ pool.totalFunds }}</p>
+        <button
+          class="pool__vote-btn modal-launcher-btn"
+          mat-stroked-button
+          color="primary"
+          matTooltip="Vote if you think it is important or interesting"
+          (click)="openVoteDialog(pool)">Vote</button>
+        <button
+          class="modal-launcher-btn"
+          mat-stroked-button
+          color="primary"
+          matTooltip="Sponsor this pool"
+          (click)="openFundsDialog(pool)"
+          >Fund</button>
+      </div>
+    </div>
+  </div>
+</section>
