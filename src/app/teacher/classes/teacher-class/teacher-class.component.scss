@@ -18,6 +18,15 @@
   .teaching-class__basics {
     flex: 1;
     padding: 20px;
+    flex-direction: column;
+  }
+
+  .teaching-class__sponsor-btn {
+    display: block;
+    margin: 20px 0;
+    .teaching-class__sponsor-icon {
+      color: #ff3d3d
+    }
   }
 }
 

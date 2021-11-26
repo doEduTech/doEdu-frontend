@@ -15,7 +15,7 @@ export class UserAchievementsService {
       title: 'JavaScript',
       created: '09 Nov 2021',
       imgSrc: '/assets/images/js.webp',
-      nftTokenId: 'lsk234fpsidajfpoihvckpoi2349807dsfijakldjlkfdsjapkl',
+      nftTokenId: 'dedu234fpsidajfpoihvckpoi2349807dsfijakldjlkfdsjapkl',
       certificateUrl: 'assets/certificate.pdf',
     },
     {
@@ -24,7 +24,7 @@ export class UserAchievementsService {
       title: 'Astronomy',
       created: '15 Aug 2021',
       imgSrc: '/assets/images/astronomy.jpg',
-      nftTokenId: 'lsk234kl4dsf2jskh9fhjkshdfjkhdsajkf9uh2fhkjshfu9042',
+      nftTokenId: 'dedu234kl4dsf2jskh9fhjkshdfjkhdsajkf9uh2fhkjshfu9042',
       certificateUrl: 'assets/certificate.pdf',
     },
     {
@@ -33,7 +33,7 @@ export class UserAchievementsService {
       title: 'Ancient history',
       created: '11 Jun 2021',
       imgSrc: '/assets/images/ancient.webp',
-      nftTokenId: 'lsk234kljfsd20fn82yusdjkhfd89asdhfjkhsjlkfklsjdfklj',
+      nftTokenId: 'dedu234kljfsd20fn82yusdjkhfd89asdhfjkhsjlkfklsjdfklj',
       certificateUrl: 'assets/certificate.pdf',
     },
   ];

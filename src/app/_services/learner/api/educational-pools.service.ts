@@ -61,6 +61,35 @@ export class EducationalPoolsService {
         Physics is one of the most fundamental scientific disciplines,
         and its main goal is to understand how the universe behaves.`,
     },
+    {
+      id: '4',
+      title: 'History',
+      votesNumber: 264,
+      parentPoolId: null,
+      parentPoolTitle: null,
+      totalFunds: 6384,
+      availableFunds: 3356,
+      imgSrc: '/assets/images/history.jpeg',
+      description: `
+        History is the study of the past.
+        Events before the invention of writing systems are considered prehistory.
+        "History" is an umbrella term comprising past events as well as the memory,
+        discovery, collection, organization, presentation, and interpretation of these events.`,
+    },
+    {
+      id: '5',
+      title: 'Philosophy',
+      votesNumber: 159,
+      parentPoolId: null,
+      parentPoolTitle: null,
+      totalFunds: 4465,
+      availableFunds: 1232,
+      imgSrc: '/assets/images/philosophy.jpg',
+      description: `
+        Philosophy (from Greek: φιλοσοφία, philosophia, 'love of wisdom') is the study of general and fundamental questions,
+        such as those about existence, reason, knowledge, values, mind, and language.
+        Such questions are often posed as problems to be studied or resolved.`,
+    },
   ];
 
   public educationalPoolsMaterials: IEducationalPoolMaterial[] = [
