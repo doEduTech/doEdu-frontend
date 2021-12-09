@@ -1,0 +1,14 @@
+<section class="login">
+  <form [formGroup]="form" class="login__form" (submit)="login()">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="Type your email" autocomplete="off" formControlName="email">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput placeholder="Type password" autocomplete="off" formControlName="password" type="password">
+    </mat-form-field>
+    <p *ngIf="areCredentialsIncorrect" class="error">Credentials incorrect</p>
+    <button type="submit" mat-raised-button color="primary">Log in</button>
+  </form>
+</section>

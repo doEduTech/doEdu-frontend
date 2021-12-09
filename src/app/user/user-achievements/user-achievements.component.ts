@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { SnackBarService } from '@services/shared/snack-bar.service';
 import { IUserAchievement } from '@app/_interfaces/user-achievement.interface';
-import { UserAchievementsService } from '@app/_services/learner/api/user-achievements.service';
+import { UserAchievementsService } from '@app/_services/api/learner/user-achievements.service';
 
 @Component({
   selector: 'app-user-achievements',

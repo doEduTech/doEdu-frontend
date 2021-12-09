@@ -1,29 +1,51 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { RoleSelectionComponent } from './pages/users-shared/role-selection/role-selection.component';
+import { AuthGuard } from './_guards/auth.guard';
+
 const routes: Routes = [
   {
-    path: 'courses',
-    loadChildren: () =>
-      import('./learner/courses/courses.module').then((m) => m.CoursesModule),
+    path: '',
+    redirectTo: 'public',
+    pathMatch: 'full',
   },
   {
-    path: 'user',
-    loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
-  },
-  {
-    path: 'educational-pools',
+    path: 'public',
     loadChildren: () =>
-      import('./learner/educational-pools/educational-pools.module').then(
-        (m) => m.EducationalPoolsModule
+      import('./pages/public/public-pages.module').then(
+        (m) => m.PublicPagesModule
       ),
+    // canLoad: [AuthGuard],
   },
   {
-    path: 'classes',
+    path: 'select-role',
+    component: RoleSelectionComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'learner',
     loadChildren: () =>
-      import('./teacher/classes/teacher-classes.module').then(
-        (m) => m.TeacherClassesModule
+      import('./pages/learner/learner-pages.module').then(
+        (m) => m.LearnerPagesModule
       ),
+    canLoad: [AuthGuard],
+  },
+  {
+    path: 'teacher',
+    loadChildren: () =>
+      import('./pages/teacher/teacher-pages.module').then(
+        (m) => m.TeacherPagesModule
+      ),
+    canLoad: [AuthGuard],
+  },
+  {
+    path: 'market',
+    loadChildren: () =>
+      import('./pages/users-shared/market/market.module').then(
+        (m) => m.MarketModule
+      ),
+    canLoad: [AuthGuard],
   },
 ];
 
