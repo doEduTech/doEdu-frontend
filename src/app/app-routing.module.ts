@@ -16,12 +16,15 @@ const routes: Routes = [
       import('./pages/public/public-pages.module').then(
         (m) => m.PublicPagesModule
       ),
-    // canLoad: [AuthGuard],
+    canLoad: [AuthGuard],
   },
   {
-    path: 'select-role',
-    component: RoleSelectionComponent,
-    canActivate: [AuthGuard],
+    path: 'role-selection',
+    loadChildren: () =>
+      import('./pages/users-shared/role-selection/role-selection.module').then(
+        (m) => m.RoleSelectionModule
+      ),
+    canLoad: [AuthGuard],
   },
   {
     path: 'learner',
