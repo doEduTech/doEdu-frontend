@@ -20,11 +20,6 @@
 
 <mat-menu #menu="matMenu">
   <ng-container *ngIf="isUserAuthenticated; else anonymousUserMenu">
-    <button mat-menu-item [routerLink]="['/user', user.id, 'earnings']">
-      <mat-icon>attach_money</mat-icon>
-      <a>Earnings</a>
-    </button>
-
     <button mat-menu-item [routerLink]="['/user', user.id, 'achievements']">
       <mat-icon>whatshot</mat-icon>
       <a>Achievements</a>
@@ -40,10 +35,6 @@
     <button mat-menu-item [routerLink]="['/account', 'login']">
       <!-- <mat-icon>logout</mat-icon> -->
       <span>Log in</span>
-    </button>
-    <button mat-menu-item [routerLink]="['/account', 'register']">
-      <!-- <mat-icon>logout</mat-icon> -->
-      <span>Register</span>
     </button>
   </ng-template>
 </mat-menu>

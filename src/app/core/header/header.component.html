@@ -1,7 +1,8 @@
 <mat-toolbar class="toolbar">
   <div class="toolbar__links">
     <a class="link toolbar__logo-container" routerLink="/"><img class="toolbar__logo" src="/assets/images/white_logo.png"></a>
-    <a class="link"
+    <div *ngIf="(auth.isAuthenticated$ | async) " style="width: auto">
+      <a class="link"
       routerLink="/dashboard"
       [routerLinkActive]="['link--activated']">
       <button mat-button>Dashboard</button>
@@ -10,6 +11,10 @@
       routerLink="/courses"
       [routerLinkActive]="['link--activated']">
       <button mat-button>Courses</button></a>
+    <a class="link"
+      routerLink="/lessons"
+      [routerLinkActive]="['link--activated']">
+      <button mat-button>Lessons</button></a>
     <a class="link"
       routerLink="/classes"
       [routerLinkActive]="['link--activated']">
@@ -23,12 +28,30 @@
       [routerLinkActive]="['link--activated']">
       <button mat-button>Tests and quizzes</button>
       </a>
-  </div>
-  <div class="toolbar__user">
-    <div class="toolbar__user-tokens-balance" matTooltip="Token balance">
-      <span class="toolbar__user-tokens-balance-value">{{ tokenBalanceService.tokenBalance$ | async }}</span>
-      <mat-icon class="preview-mode__edit-icon">generating_tokens</mat-icon>
     </div>
-    <app-user-menu></app-user-menu>
   </div>
+
+  <div class="toolbar__user">
+    <div
+      class="navbar-nav d-md-none"
+      *ngIf="(auth.isAuthenticated$ | async) === false; "
+      >
+        <button
+              class="pool__vote-btn"
+              mat-stroked-button
+              color="secondary"
+              id="loginBtn"
+              (click)="loginWithRedirect()">Log in</button>
+    </div>
+    <div *ngIf="(auth.isAuthenticated$ | async) " style="width: auto">
+      <div
+          class="toolbar__user-tokens-balance" 
+          matTooltip="Your token balance">
+        <mat-icon class="preview-mode__edit-icon">generating_tokens</mat-icon>
+        <span>131</span>
+      </div>
+      <app-user-menu></app-user-menu>
+    </div>
+  </div>
+
 </mat-toolbar>

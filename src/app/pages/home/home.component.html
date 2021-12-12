@@ -1,0 +1,22 @@
+<div class="container" *ngIf="auth.isLoading$ | async; else loaded">
+  <app-loading></app-loading>
+</div>
+
+<ng-template #loaded>
+  <app-home-content></app-home-content>
+</ng-template>
+
+<div *ngIf="(auth.isAuthenticated$ | async) === false; ">
+  <div class="col-md-5 mb-4">
+    <h4 class="mb-3">
+      To access our system please <a href="#">
+        <fa-icon [icon]="faLink"></fa-icon> login </a> to our platform
+    </h4>
+    <p>
+      To know more about DoEdu, please visit us 
+      <a href="https://www.doedu.me">
+        <fa-icon [icon]="faLink"></fa-icon> www.doedu.me</a> and our <a href="https://doedu.medium.com/doedu-an-edtech-blockchain-based-platform-35941455790a">
+          <fa-icon [icon]="faLink"></fa-icon> blog</a> post
+    </p>
+  </div>
+</div>

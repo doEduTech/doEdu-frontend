@@ -1,5 +1,7 @@
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { AuthService } from '@auth0/auth0-angular';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-user-menu',
@@ -13,9 +15,19 @@ export class UserMenuComponent implements OnInit {
   };
   public isUserAuthenticated = true;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    public auth: AuthService,
+    @Inject(DOCUMENT) private doc: Document
+  ) {}
 
   ngOnInit(): void {}
 
-  logout(): void {}
+  loginWithRedirect() {
+      this.auth.loginWithRedirect();
+  }
+
+  logout(): void {
+    this.auth.logout({ returnTo: this.doc.location.origin });
+  }
 }
