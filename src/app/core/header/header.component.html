@@ -1,7 +1,7 @@
 <mat-toolbar class="toolbar">
   <div class="toolbar__links">
     <a class="link toolbar__logo-container" routerLink="/"><img class="toolbar__logo" src="/assets/images/white_logo.png"></a>
-    <div class="sides-container" *ngIf="authService.decodedAccessToken && authService.decodedAccessToken.role">
+    <div class="sides-container" *ngIf="authService.hasValidAccessToken &&  authService.decodedAccessToken && authService.decodedAccessToken.role">
       <div class="left-side">
         <a
           class="link"
@@ -27,7 +27,7 @@
       </div>
     </div>
 
-    <div class="auth-btns">
+    <div class="auth-btns" *ngIf="!authService.hasValidAccessToken || !authService.decodedAccessToken?.role">
       <ng-container *ngIf="authService.hasValidAccessToken; else anonymousUserButtons">
         <button *ngIf="!authService.decodedAccessToken?.role" mat-button (click)="logOut()">Log out</button>
       </ng-container>
@@ -38,8 +38,10 @@
             [routerLinkActive]="['link--activated']">
             <button mat-button>Market</button>
           </a>
-          <a class="link" routerLink="/public/account/register"><button mat-button>Register</button></a>
-          <a class="link" routerLink="/public/account/login"><button mat-button>Log in</button></a>
+          <div>
+            <a class="link" [routerLinkActive]="['link--activated']" routerLink="/public/account/register"><button mat-button>Register</button></a>
+            <a class="link" [routerLinkActive]="['link--activated']" routerLink="/public/account/login"><button mat-button>Log in</button></a>
+          </div>
         </div>
       </ng-template>
     </div>

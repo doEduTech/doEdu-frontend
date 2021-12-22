@@ -36,6 +36,7 @@
     padding-right: 20px;
     display: flex;
     align-items: center;
+
     .toolbar__user-tokens-balance {
       margin-right: 20px;
       display: flex;
@@ -71,6 +72,11 @@ a:not(:first-of-type) {
   right: 0;
   width: 100%;
   text-align: right;
+
+  .toolbar__anonymous-user-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .sides-container {

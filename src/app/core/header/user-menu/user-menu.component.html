@@ -6,44 +6,25 @@
     <mat-icon matBadge="2" matBadgeColor="warn">mail_outline</mat-icon>
   </div>
   <div class="user-toolbar__menu-trigger" [matMenuTriggerFor]="menu">
-    <ng-container *ngIf="isUserAuthenticated; else welcomeMessage">
-      <span class="user-toolbar__name">{{ user.name }}</span>
-      <img class="user-toolbar__icon" src="assets/images/loggedin_user_avatar.png">
-    </ng-container>
-    <ng-template #welcomeMessage>
-      <span class="user-toolbar_name">Welcome!</span>
-      <mat-icon>account_circle</mat-icon>
-    </ng-template>
+    <span class="user-toolbar__name">{{ authService.decodedAccessToken?.email }}</span>
+    <img class="user-toolbar__icon" src="assets/images/loggedin_user_avatar.png">
     <mat-icon>keyboard_arrow_down</mat-icon>
   </div>
 </section>
 
 <mat-menu #menu="matMenu">
-  <ng-container *ngIf="isUserAuthenticated; else anonymousUserMenu">
-    <button mat-menu-item [routerLink]="['/user', user.id, 'earnings']">
-      <mat-icon>attach_money</mat-icon>
-      <a>Earnings</a>
-    </button>
+  <button mat-menu-item [routerLink]="['earnings']">
+    <mat-icon>attach_money</mat-icon>
+    <a>Earnings</a>
+  </button>
 
-    <button mat-menu-item [routerLink]="['/user', user.id, 'achievements']">
-      <mat-icon>whatshot</mat-icon>
-      <a>Achievements</a>
-    </button>
+  <button mat-menu-item [routerLink]="['achievements']">
+    <mat-icon>whatshot</mat-icon>
+    <a>Achievements</a>
+  </button>
 
-    <button mat-menu-item (click)="logout()">
-      <mat-icon>logout</mat-icon>
-      <span>Logout</span>
-    </button>
-  </ng-container>
-
-  <ng-template #anonymousUserMenu>
-    <button mat-menu-item [routerLink]="['/account', 'login']">
-      <!-- <mat-icon>logout</mat-icon> -->
-      <span>Log in</span>
-    </button>
-    <button mat-menu-item [routerLink]="['/account', 'register']">
-      <!-- <mat-icon>logout</mat-icon> -->
-      <span>Register</span>
-    </button>
-  </ng-template>
+  <button mat-menu-item (click)="logout()">
+    <mat-icon>logout</mat-icon>
+    <span>Logout</span>
+  </button>
 </mat-menu>
