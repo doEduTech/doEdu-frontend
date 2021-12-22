@@ -1,3 +1,4 @@
+import { ERole } from './../_interfaces/auth.interface';
 import { Injectable } from '@angular/core';
 import {
   ActivatedRoute,
@@ -33,37 +34,41 @@ export class AuthGuard implements CanActivate, CanLoad {
   }
 
   private isAllowed(routePath: string): boolean {
-    const value = this.redirecIfRequired(routePath);
-    console.log('value', this.route);
-    return value;
-  }
-
-  private redirecIfRequired(routePath: string): boolean {
     const isUserAuthenticated = this.authService.isLoggedIn();
+    const userRole =
+      this.authService.decodedAccessToken &&
+      this.authService.decodedAccessToken.role;
 
     if (isUserAuthenticated) {
-      console.log('User is Authenticated');
-      const userRole = this.authService.decodedAccessToken?.role;
       if (userRole) {
-        console.log('has role');
         if (
-          !routePath.startsWith(userRole) ||
-          !routePath.startsWith('market')
+          routePath.startsWith('market') ||
+          (routePath.startsWith('teacher') && userRole === 'teacher') ||
+          (routePath.startsWith('learner') && userRole === 'learner')
         ) {
-          console.log('is on wrong route');
+          return true;
+        } else {
+          // redirect to role dashboard
           this.router.navigate([userRole, 'dashboard']);
           return false;
         }
-      } else if (routePath !== 'role-selection') {
-        console.log('has no role');
-        this.router.navigate(['role-selection']);
+      } else {
+        if (routePath.startsWith('role-selection')) {
+          return true;
+        } else {
+          // redirect to role selection
+          this.router.navigate(['role-selection']);
+          return false;
+        }
+      }
+    } else {
+      if (routePath.startsWith('public')) {
+        return true;
+      } else {
+        // redirect to landing page
+        this.router.navigate(['public', 'landing-page']);
         return false;
       }
-    } else if (!routePath.startsWith('public')) {
-      console.log('User is not Authenticated');
-      this.router.navigate(['public', 'landing-page']);
-      return false;
     }
-    return true;
   }
 }

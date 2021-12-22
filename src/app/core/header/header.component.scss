@@ -7,6 +7,7 @@
   .toolbar__links {
     display: flex;
     align-items: center;
+    width: 100%;
 
     .toolbar__logo-container.link {
       margin-right: 10px;
@@ -63,4 +64,17 @@ a:first-of-type {
 }
 a:not(:first-of-type) {
   font-size: 14px;
+}
+
+.auth-btns {
+  position: relative;
+  right: 0;
+  width: 100%;
+  text-align: right;
+}
+
+.sides-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }

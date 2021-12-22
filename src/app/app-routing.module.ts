@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { RoleSelectionComponent } from './pages/users-shared/role-selection/role-selection.component';
 import { AuthGuard } from './_guards/auth.guard';
 
 const routes: Routes = [
@@ -13,8 +12,8 @@ const routes: Routes = [
   {
     path: 'public',
     loadChildren: () =>
-      import('./pages/public/public-pages.module').then(
-        (m) => m.PublicPagesModule
+      import('./pages/unauthenticated/unauthenticated-pages.module').then(
+        (m) => m.UnauthenticatedPagesModule
       ),
     canLoad: [AuthGuard],
   },

@@ -1,87 +1,47 @@
 <mat-toolbar class="toolbar">
   <div class="toolbar__links">
     <a class="link toolbar__logo-container" routerLink="/"><img class="toolbar__logo" src="/assets/images/white_logo.png"></a>
-    <ng-container *ngIf="authService.decodedAccessToken && authService.decodedAccessToken.role">
-      <a
-        *ngIf="authService.decodedAccessToken.role === 'teacher'"
-        class="link"
-        routerLink="/dashboard"
-        [routerLinkActive]="['link--activated']"
-        [matMenuTriggerFor]="teacherMenu">
-        <button mat-button>Dashboard</button>
-      </a>
-      <a
-        *ngIf="authService.decodedAccessToken.role === 'learner'"
-        class="link"
-        routerLink="/dashboard"
-        [routerLinkActive]="['link--activated']"
-        [matMenuTriggerFor]="learnerMenu">
-        <button mat-button>Dashboard</button>
-      </a>
-      <a class="link"
-        routerLink="/market"
-        [matMenuTriggerFor]="marketMenu"
-        [routerLinkActive]="['link--activated']">
-        <button mat-button>Market</button></a>
-      <div class="toolbar__user">
-        <div class="toolbar__user-tokens-balance" matTooltip="Token balance">
-          <span class="toolbar__user-tokens-balance-value">{{ tokenBalanceService.tokenBalance$ | async }}</span>
-          <mat-icon class="preview-mode__edit-icon">generating_tokens</mat-icon>
-        </div>
-        <app-user-menu></app-user-menu>
+    <div class="sides-container" *ngIf="authService.decodedAccessToken && authService.decodedAccessToken.role">
+      <div class="left-side">
+        <a
+          class="link"
+          [routerLink]="[authService.decodedAccessToken.role, 'dashboard']"
+          [routerLinkActive]="['link--activated']">
+          <button mat-button>Dashboard</button>
+        </a>
+        <a class="link"
+          routerLink="/market"
+          [routerLinkActive]="['link--activated']">
+          <button mat-button>Market</button>
+        </a>
       </div>
-    </ng-container>
+      <div class="right-side">
+        <div class="toolbar__user">
+          <div class="toolbar__user-tokens-balance" matTooltip="Token balance">
+            <span class="toolbar__user-tokens-balance-value">{{ tokenBalanceService.tokenBalance$ | async }}</span>
+            <mat-icon class="preview-mode__edit-icon">generating_tokens</mat-icon>
+          </div>
 
-    <ng-container *ngIf="authService.hasValidAccessToken; else anonymousUserButtons">
-      <button *ngIf="!authService.decodedAccessToken?.role" mat-button (click)="logOut()">Log out</button>
-    </ng-container>
-    <ng-template #anonymousUserButtons>
-      <a routerLink="/public/account/register"><button mat-button>Register</button></a>
-      <a routerLink="/public/account/login"><button mat-button>Log in</button></a>
-    </ng-template>
+          <app-user-menu></app-user-menu>
+        </div>
+      </div>
+    </div>
+
+    <div class="auth-btns">
+      <ng-container *ngIf="authService.hasValidAccessToken; else anonymousUserButtons">
+        <button *ngIf="!authService.decodedAccessToken?.role" mat-button (click)="logOut()">Log out</button>
+      </ng-container>
+      <ng-template #anonymousUserButtons>
+        <div class="toolbar__anonymous-user-buttons">
+          <a class="link"
+            routerLink="/market"
+            [routerLinkActive]="['link--activated']">
+            <button mat-button>Market</button>
+          </a>
+          <a class="link" routerLink="/public/account/register"><button mat-button>Register</button></a>
+          <a class="link" routerLink="/public/account/login"><button mat-button>Log in</button></a>
+        </div>
+      </ng-template>
+    </div>
   </div>
 </mat-toolbar>
-
-<mat-menu #teacherMenu="matMenu" [hasBackdrop]="false">
-    <button mat-menu-item [routerLink]="['/teacher/classes']">
-      <mat-icon>attach_money</mat-icon>
-      <a>My classes</a>
-    </button>
-    <button mat-menu-item>
-      <mat-icon>attach_money</mat-icon>
-      <a>My lessons</a>
-    </button>
-</mat-menu>
-
-<mat-menu #learnerMenu="matMenu" [hasBackdrop]="false">
-    <button mat-menu-item>
-      <mat-icon>attach_money</mat-icon>
-      <a>My classes</a>
-    </button>
-    <button mat-menu-item>
-      <mat-icon>attach_money</mat-icon>
-      <a>My lessons</a>
-    </button>
-</mat-menu>
-
-<mat-menu #marketMenu="matMenu" [hasBackdrop]="false">
-    <button mat-menu-item>
-      <a class="link"
-        routerLink="/classes"
-        [routerLinkActive]="['link--activated']">
-        <button mat-button>Classes</button></a>
-    </button>
-    <button mat-menu-item>
-      <a class="link"
-        routerLink="/educational-pools"
-        [routerLinkActive]="['link--activated']">
-        <button mat-button>Educational pools</button></a>
-    </button>
-    <button mat-menu-item>
-      <a class="link"
-        routerLink="/tests-and-quizzes"
-        [routerLinkActive]="['link--activated']">
-        <button mat-button>Tests and quizzes</button>
-      </a>
-    </button>
-</mat-menu>

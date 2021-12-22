@@ -5,6 +5,16 @@
   font-size: 18px;
   padding-top: 10%;
 
+  .role-selection__card {
+    background: #fff;
+    min-width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    flex-direction: column;
+  }
+
   .role-selection__title {
     font-weight: 400;
   }

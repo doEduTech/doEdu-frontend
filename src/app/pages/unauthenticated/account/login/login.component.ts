@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
     } else if (userRole === 'admin') {
       this.router.navigate(['admin', 'dashboard']);
     } else {
-      this.router.navigate(['select-role']);
+      this.router.navigate(['role-selection']);
     }
   }
 }

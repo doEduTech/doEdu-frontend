@@ -1,20 +1,22 @@
 <section class="role-selection">
-  <h2 class="role-selection__title">Please choose your role</h2>
-  <form [formGroup]="form" class="role-selection__form" (submit)="login()">
-    <label>
-      <input type="radio" [value]="'learner'" formControlName="role">
-      <span class="font-bolder">Student</span>
-    </label>
-    <label>
-      <input type="radio" [value]="'teacher'" formControlName="role">
-      <span class="font-bolder">Teacher</span>
-    </label>
+  <div class="role-selection__card mat-elevation-z2">
+    <h2 class="role-selection__title">Please choose your role</h2>
+    <form [formGroup]="form" class="role-selection__form" (submit)="setRole()">
+      <label>
+        <input type="radio" [value]="'learner'" formControlName="role">
+        <span class="font-bolder">Student</span>
+      </label>
+      <label>
+        <input type="radio" [value]="'teacher'" formControlName="role">
+        <span class="font-bolder">Teacher</span>
+      </label>
 
-    <p *ngIf="formValidated && form.controls.role.errors?.required" class="error">Selecting a role is necessary</p>
+      <p *ngIf="formValidated && form.controls.role.errors?.required" class="error">Selecting a role is necessary</p>
 
-    <button type="submit" mat-raised-button color="primary">Join now</button>
+      <button type="submit" mat-raised-button color="primary">Join now</button>
 
-    <mat-checkbox class="role-selection__conditions-checkbox" formControlName="areConditionsAndTermsAccepted">I agree on terms and conditions</mat-checkbox>
-    <p *ngIf="formValidated && form.controls.areConditionsAndTermsAccepted.errors?.required" class="error">Consent is required</p>
-  </form>
+      <mat-checkbox class="role-selection__conditions-checkbox" formControlName="areConditionsAndTermsAccepted">I agree on terms and conditions</mat-checkbox>
+      <p *ngIf="formValidated && form.controls.areConditionsAndTermsAccepted.errors?.required" class="error">Consent is required</p>
+    </form>
+  </div>
 </section>

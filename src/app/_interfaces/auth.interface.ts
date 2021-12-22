@@ -5,5 +5,7 @@ export interface IDecodedToken {
   username?: string;
   email: string;
   id?: string; // user id
-  role: 'teacher' | 'learner' | 'admin';
+  role: ERole;
 }
+
+export type ERole = 'teacher' | 'learner' | 'admin';

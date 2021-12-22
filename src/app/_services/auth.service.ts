@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 import jwt_decode from 'jwt-decode';
 import * as moment from 'moment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { IDecodedToken } from '@interfaces/auth.interface';
+import { ERole, IDecodedToken } from '@interfaces/auth.interface';
 import { environment } from '@env/environment';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -44,7 +44,7 @@ export class AuthService {
     this.isAuthenticatedSubject$.next(this.isLoggedIn());
   }
 
-  login(username: string, password: string): Observable<any> {
+  public login(username: string, password: string): Observable<any> {
     return this.http
       .post<any>(`${environment.apiUrl}/auth/login`, { username, password })
       .pipe(
@@ -54,28 +54,40 @@ export class AuthService {
       );
   }
 
-  register(email: string, password: string): Observable<any> {
+  public register(email: string, password: string): Observable<any> {
     return this.http.post<any>(`${environment.apiUrl}/auth/register`, {
       email,
       password,
     });
   }
 
-  logout(): void {
+  public setRole(role: ERole): Observable<any> {
+    return this.http
+      .post<any>(`${environment.apiUrl}/auth/set-role`, {
+        role,
+      })
+      .pipe(
+        tap((res) => {
+          this.setSession(res);
+        })
+      );
+  }
+
+  public logout(): void {
     localStorage.removeItem('access_token');
     this.router.navigate(['/public', 'landing-page']);
   }
 
-  isLoggedIn(): boolean {
+  public isLoggedIn(): boolean {
     return this.hasValidAccessToken;
   }
 
-  isLoggedOut(): boolean {
+  public isLoggedOut(): boolean {
     const token = this.getToken();
     return !token || !this.isLoggedIn();
   }
 
-  getExpiration(): any {
+  public getExpiration(): any {
     const encodedToken = this.getToken();
     if (!encodedToken) {
       return null;
@@ -87,7 +99,7 @@ export class AuthService {
     return null;
   }
 
-  getToken(): string | null {
+  public getToken(): string | null {
     return localStorage.getItem('access_token');
   }
 
