@@ -1,15 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-learner-dashboard',
   templateUrl: './learner-dashboard.component.html',
-  styleUrls: ['./learner-dashboard.component.scss']
+  styleUrls: ['./learner-dashboard.component.scss'],
 })
-export class LearnerDashboardComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class LearnerDashboardComponent {}

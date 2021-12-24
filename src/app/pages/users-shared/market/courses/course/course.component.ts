@@ -4,15 +4,15 @@ import { ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 import { PurchaseForSelfDialogService } from '@services/shared/purchase-for-self-dialog.service';
-import { ICourse } from '@app/_interfaces/learner/course.interface';
-import { CoursesService } from '@app/_services/api/learner/courses.service';
+import { ICourse } from '@interfaces/learner/course.interface';
+import { CoursesService } from '@services/api/learner/courses.service';
 import { GroupLockedPrizeService } from '@services/shared/group-locked-prize-dialog.service';
 import { PersonalLockedPrizeService } from '@services/shared/personal-locked-prize-dialog.service';
 import { TippingModalService } from '@services/shared/tipping-dialog.service';
 import { SnackBarService } from '@services/shared/snack-bar.service';
 import { PurchaseForPersonDialogService } from '@services/shared/purchase-for-person-dialog.service';
 import { PurchaseForGroupDialogService } from '@services/shared/purchase-for-group-dialog.service';
-import { TokenBalanceService } from '@app/_services/token-balance.service';
+import { TokenBalanceService } from '@services/token-balance.service';
 
 @Component({
   selector: 'app-course',

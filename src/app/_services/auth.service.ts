@@ -16,11 +16,13 @@ import { environment } from '@env/environment';
 export class AuthService {
   public isAuthenticatedSubject$ = new BehaviorSubject<boolean>(false);
 
-  get hasValidAccessToken(): boolean {
+  public get hasValidAccessToken(): boolean {
     const encodedToken = this.getToken();
+    if (!encodedToken) {
+      return false;
+    }
 
     const accessTokenExpiration = this.getExpiration();
-
     const whetherAccessTokenExistedAndExpired =
       (encodedToken && !accessTokenExpiration) ||
       moment().isBefore(accessTokenExpiration);
@@ -28,23 +30,22 @@ export class AuthService {
     return whetherAccessTokenExistedAndExpired;
   }
 
-  get decodedAccessToken(): IDecodedToken | null {
-    try {
-      const token = this.getToken();
-      if (token) {
-        return jwt_decode(token);
-      }
-      return null;
-    } catch (Error) {
-      return null;
+  public get decodedAccessToken(): IDecodedToken | null {
+    const token = this.getToken();
+    if (token) {
+      return jwt_decode(token);
     }
+    return null;
   }
 
   constructor(private http: HttpClient, private router: Router) {
     this.isAuthenticatedSubject$.next(this.isLoggedIn());
   }
 
-  public login(username: string, password: string): Observable<any> {
+  public login(
+    username: string,
+    password: string
+  ): Observable<{ access_token: string }> {
     return this.http
       .post<any>(`${environment.apiUrl}/auth/login`, { username, password })
       .pipe(
@@ -54,14 +55,14 @@ export class AuthService {
       );
   }
 
-  public register(email: string, password: string): Observable<any> {
+  public register(email: string, password: string): Observable<void> {
     return this.http.post<any>(`${environment.apiUrl}/auth/register`, {
       email,
       password,
     });
   }
 
-  public setRole(role: ERole): Observable<any> {
+  public setRole(role: ERole): Observable<{ access_token: string }> {
     return this.http
       .post<any>(`${environment.apiUrl}/auth/set-role`, {
         role,

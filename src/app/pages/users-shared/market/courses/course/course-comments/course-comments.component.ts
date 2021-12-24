@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CoursesService } from '@app/_services/api/learner/courses.service';
 
-import { ICourseComment } from '@app/_interfaces/learner/course.interface';
+import { CoursesService } from '@services/api/learner/courses.service';
+import { ICourseComment } from '@interfaces/learner/course.interface';
 
 @Component({
   selector: 'app-course-comments',

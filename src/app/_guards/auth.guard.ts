@@ -1,4 +1,3 @@
-import { ERole } from './../_interfaces/auth.interface';
 import { Injectable } from '@angular/core';
 import {
   ActivatedRoute,
@@ -16,12 +15,7 @@ import { AuthService } from '@services/auth.service';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate, CanLoad {
-  constructor(
-    private router: Router,
-    private authService: AuthService,
-    private route: ActivatedRoute,
-    private location: Location
-  ) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   public canActivate(route: ActivatedRouteSnapshot): boolean {
     const path = route.url[0].path;

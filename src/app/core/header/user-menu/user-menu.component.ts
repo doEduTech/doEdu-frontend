@@ -10,7 +10,7 @@ import { AuthService } from '@services/auth.service';
 export class UserMenuComponent {
   constructor(public authService: AuthService) {}
 
-  logout(): void {
+  public logout(): void {
     this.authService.logout();
   }
 }

@@ -25,7 +25,6 @@ export class RoleSelectionComponent {
     if (this.form.valid) {
       const chosenRole = this.form.value.role;
       this.authService.setRole(chosenRole).subscribe(() => {
-        console.log('navigate');
         this.router.navigate([chosenRole, 'dashboard']);
       });
     }

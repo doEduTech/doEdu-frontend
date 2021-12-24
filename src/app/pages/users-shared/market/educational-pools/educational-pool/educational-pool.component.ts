@@ -4,12 +4,12 @@ import { ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 import { ConfirmationDialogService } from '@services/shared/confirmation-dialog.service';
-import { EducationalPoolsService } from '@app/_services/api/learner/educational-pools.service';
+import { EducationalPoolsService } from '@services/api/learner/educational-pools.service';
 import {
   IEducationalPool,
   IEducationalPoolMaterial,
-} from '@app/_interfaces/learner/educational-pool.interface';
-import { EducationalPoolFundsService } from '@app/_services/educational-pool-funds.service';
+} from '@interfaces/learner/educational-pool.interface';
+import { EducationalPoolFundsService } from '@services/educational-pool-funds.service';
 import { SnackBarService } from '@services/shared/snack-bar.service';
 import { TokenBalanceService } from '@services/token-balance.service';
 

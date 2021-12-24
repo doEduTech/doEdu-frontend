@@ -6,7 +6,7 @@
     <mat-icon matBadge="2" matBadgeColor="warn">mail_outline</mat-icon>
   </div>
   <div class="user-toolbar__menu-trigger" [matMenuTriggerFor]="menu">
-    <span class="user-toolbar__name">{{ authService.decodedAccessToken?.email }}</span>
+    <span class="user-toolbar__name">{{ authService.decodedAccessToken?.role }}: {{ authService.decodedAccessToken?.email }}</span>
     <img class="user-toolbar__icon" src="assets/images/loggedin_user_avatar.png">
     <mat-icon>keyboard_arrow_down</mat-icon>
   </div>
