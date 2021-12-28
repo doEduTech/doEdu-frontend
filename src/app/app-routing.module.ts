@@ -6,25 +6,26 @@ import { AuthGuard } from './_guards/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'public',
+    redirectTo: 'market',
     pathMatch: 'full',
   },
+  // MARKET: public, available for unauthenticated and authenticated users
   {
-    path: 'public',
+    path: 'market',
     loadChildren: () =>
-      import('./pages/unauthenticated/unauthenticated-pages.module').then(
-        (m) => m.UnauthenticatedPagesModule
-      ),
+      import('./pages/market/market.module').then((m) => m.MarketModule),
     canLoad: [AuthGuard],
   },
+  // ROLE SELECTION: first logging in
   {
     path: 'role-selection',
     loadChildren: () =>
-      import('./pages/users-shared/role-selection/role-selection.module').then(
+      import('./pages/roles-shared/role-selection/role-selection.module').then(
         (m) => m.RoleSelectionModule
       ),
     canLoad: [AuthGuard],
   },
+  // LEARNER-role-only routes and modules
   {
     path: 'learner',
     loadChildren: () =>
@@ -33,6 +34,7 @@ const routes: Routes = [
       ),
     canLoad: [AuthGuard],
   },
+  // TEACHER-role-only routes and modules
   {
     path: 'teacher',
     loadChildren: () =>
@@ -41,12 +43,11 @@ const routes: Routes = [
       ),
     canLoad: [AuthGuard],
   },
+  // ACCOUNT creation and authentication
   {
-    path: 'market',
+    path: 'account',
     loadChildren: () =>
-      import('./pages/users-shared/market/market.module').then(
-        (m) => m.MarketModule
-      ),
+      import('./pages/account/account.module').then((m) => m.AccountModule),
     canLoad: [AuthGuard],
   },
 ];

@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { EarningPipe } from './earning.pipe';
-
 @NgModule({
-  declarations: [EarningPipe],
+  declarations: [],
   imports: [CommonModule],
-  exports: [EarningPipe],
+  exports: [],
 })
 export class PipesModule {}
