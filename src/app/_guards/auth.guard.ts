@@ -56,11 +56,13 @@ export class AuthGuard implements CanActivate, CanLoad {
         }
       }
     } else {
-      if (routePath.startsWith('public')) {
+      const isOnUnauthenticatedOnlyRoute =
+        routePath.startsWith('account') || routePath.startsWith('market');
+      if (isOnUnauthenticatedOnlyRoute) {
         return true;
       } else {
-        // redirect to landing page
-        this.router.navigate(['public', 'landing-page']);
+        // redirect to market page
+        this.router.navigate(['market']);
         return false;
       }
     }

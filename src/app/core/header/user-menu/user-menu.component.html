@@ -1,28 +1,11 @@
 <section class="user-toolbar">
-  <div class="user-toolbar__notifications" matTooltip="Notifications">
-    <mat-icon matBadge="7" matBadgeColor="warn">notifications</mat-icon>
-  </div>
-  <div class="user-toolbar__messages" matTooltip="Messages">
-    <mat-icon matBadge="2" matBadgeColor="warn">mail_outline</mat-icon>
-  </div>
   <div class="user-toolbar__menu-trigger" [matMenuTriggerFor]="menu">
     <span class="user-toolbar__name">{{ authService.decodedAccessToken?.role }}: {{ authService.decodedAccessToken?.email }}</span>
-    <img class="user-toolbar__icon" src="assets/images/loggedin_user_avatar.png">
     <mat-icon>keyboard_arrow_down</mat-icon>
   </div>
 </section>
 
 <mat-menu #menu="matMenu">
-  <button mat-menu-item [routerLink]="['earnings']">
-    <mat-icon>attach_money</mat-icon>
-    <a>Earnings</a>
-  </button>
-
-  <button mat-menu-item [routerLink]="['achievements']">
-    <mat-icon>whatshot</mat-icon>
-    <a>Achievements</a>
-  </button>
-
   <button mat-menu-item (click)="logout()">
     <mat-icon>logout</mat-icon>
     <span>Logout</span>
