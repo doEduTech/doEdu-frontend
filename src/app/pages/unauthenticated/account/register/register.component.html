@@ -1,0 +1,19 @@
+<section class="register">
+  <h3>Registration</h3>
+  <form [formGroup]="form" class="register__form" (submit)="register()">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="Set email" autocomplete="off" formControlName="email">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput placeholder="Set password" autocomplete="off" formControlName="password" type="password">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Repeat password</mat-label>
+      <input matInput placeholder="Repeat password" autocomplete="off" formControlName="confirmPassword" type="password">
+    </mat-form-field>
+    <p *ngIf="form.dirty && form.errors?.passwordsDontMatch" class="error">Passwords do not match</p>
+    <button type="submit" mat-raised-button color="primary">Register</button>
+  </form>
+</section>

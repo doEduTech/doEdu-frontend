@@ -7,6 +7,7 @@
   .toolbar__links {
     display: flex;
     align-items: center;
+    width: 100%;
 
     .toolbar__logo-container.link {
       margin-right: 10px;
@@ -35,6 +36,7 @@
     padding-right: 20px;
     display: flex;
     align-items: center;
+
     .toolbar__user-tokens-balance {
       margin-right: 20px;
       display: flex;
@@ -63,4 +65,22 @@ a:first-of-type {
 }
 a:not(:first-of-type) {
   font-size: 14px;
+}
+
+.auth-btns {
+  position: relative;
+  right: 0;
+  width: 100%;
+  text-align: right;
+
+  .toolbar__anonymous-user-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.sides-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }

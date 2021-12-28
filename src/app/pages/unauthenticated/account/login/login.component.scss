@@ -1,0 +1,11 @@
+.login {
+  display: flex;
+  justify-content: center;
+  padding-top: 10%;
+
+  .login__form {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+  }
+}

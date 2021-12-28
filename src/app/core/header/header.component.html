@@ -1,34 +1,49 @@
 <mat-toolbar class="toolbar">
   <div class="toolbar__links">
     <a class="link toolbar__logo-container" routerLink="/"><img class="toolbar__logo" src="/assets/images/white_logo.png"></a>
-    <a class="link"
-      routerLink="/dashboard"
-      [routerLinkActive]="['link--activated']">
-      <button mat-button>Dashboard</button>
-    </a>
-    <a class="link"
-      routerLink="/courses"
-      [routerLinkActive]="['link--activated']">
-      <button mat-button>Courses</button></a>
-    <a class="link"
-      routerLink="/classes"
-      [routerLinkActive]="['link--activated']">
-      <button mat-button>Classes</button></a>
-    <a class="link"
-      routerLink="/educational-pools"
-      [routerLinkActive]="['link--activated']">
-      <button mat-button>Educational pools</button></a>
-    <a class="link"
-      routerLink="/tests-and-quizzes"
-      [routerLinkActive]="['link--activated']">
-      <button mat-button>Tests and quizzes</button>
-      </a>
-  </div>
-  <div class="toolbar__user">
-    <div class="toolbar__user-tokens-balance" matTooltip="Token balance">
-      <span class="toolbar__user-tokens-balance-value">{{ tokenBalanceService.tokenBalance$ | async }}</span>
-      <mat-icon class="preview-mode__edit-icon">generating_tokens</mat-icon>
+    <div class="sides-container" *ngIf="authService.hasValidAccessToken &&  authService.decodedAccessToken && authService.decodedAccessToken.role">
+      <div class="left-side">
+        <a
+          class="link"
+          [routerLink]="[authService.decodedAccessToken.role, 'dashboard']"
+          [routerLinkActive]="['link--activated']">
+          <button mat-button>Dashboard</button>
+        </a>
+        <a class="link"
+          routerLink="/market"
+          [routerLinkActive]="['link--activated']">
+          <button mat-button>Market</button>
+        </a>
+      </div>
+      <div class="right-side">
+        <div class="toolbar__user">
+          <div class="toolbar__user-tokens-balance" matTooltip="Token balance">
+            <span class="toolbar__user-tokens-balance-value">{{ tokenBalanceService.tokenBalance$ | async }}</span>
+            <mat-icon class="preview-mode__edit-icon">generating_tokens</mat-icon>
+          </div>
+
+          <app-user-menu></app-user-menu>
+        </div>
+      </div>
     </div>
-    <app-user-menu></app-user-menu>
+
+    <div class="auth-btns" *ngIf="!authService.hasValidAccessToken || !authService.decodedAccessToken?.role">
+      <ng-container *ngIf="authService.hasValidAccessToken; else anonymousUserButtons">
+        <button *ngIf="!authService.decodedAccessToken?.role" mat-button (click)="logOut()">Log out</button>
+      </ng-container>
+      <ng-template #anonymousUserButtons>
+        <div class="toolbar__anonymous-user-buttons">
+          <a class="link"
+            routerLink="/market"
+            [routerLinkActive]="['link--activated']">
+            <button mat-button>Market</button>
+          </a>
+          <div>
+            <a class="link" [routerLinkActive]="['link--activated']" routerLink="/public/account/register"><button mat-button>Register</button></a>
+            <a class="link" [routerLinkActive]="['link--activated']" routerLink="/public/account/login"><button mat-button>Log in</button></a>
+          </div>
+        </div>
+      </ng-template>
+    </div>
   </div>
 </mat-toolbar>
