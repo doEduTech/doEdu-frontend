@@ -6,6 +6,7 @@ export interface IDecodedToken {
   email: string;
   id?: string; // user id
   role: ERole;
+  blockchainAddress?: string;
 }
 
 export type ERole = 'teacher' | 'learner' | 'admin';

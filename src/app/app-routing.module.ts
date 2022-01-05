@@ -50,6 +50,13 @@ const routes: Routes = [
       import('./pages/account/account.module').then((m) => m.AccountModule),
     canLoad: [AuthGuard],
   },
+  // USER related mechanisms, like profile, blockchain config, etc.
+  {
+    path: 'user',
+    loadChildren: () =>
+      import('./pages/roles-shared/user/user.module').then((m) => m.UserModule),
+    canLoad: [AuthGuard],
+  },
 ];
 
 @NgModule({

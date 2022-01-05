@@ -25,8 +25,12 @@ export class RoleSelectionComponent {
     if (this.form.valid) {
       const chosenRole = this.form.value.role;
       this.authService.setRole(chosenRole).subscribe(() => {
-        this.router.navigate([chosenRole, 'dashboard']);
+        this.navigateToBlockchainAccountConfig();
       });
     }
+  }
+
+  private navigateToBlockchainAccountConfig(): void {
+    this.router.navigate(['user', 'blockchain']);
   }
 }

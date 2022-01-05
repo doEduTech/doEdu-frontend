@@ -1,0 +1,70 @@
+<section class="view mat-elevation-z2">
+  <ng-container *ngIf="!showCredentials && authService.decodedAccessToken && authService.decodedAccessToken.blockchainAddress; else accountForm">
+    <h3>Your blockchain credentials was already initialized</h3>
+    <p>Your blockchain public address: {{ authService.decodedAccessToken.blockchainAddress }}</p>
+  </ng-container>
+  <ng-template #accountForm>
+    <h2>Initialize blockchain account</h2>
+    <p>To enable tokens' balance and NFT-related transactions the blockchain account is required</p>
+    <form [formGroup]="form" (submit)="initializeBlockchainAccount()">
+      <mat-form-field>
+        <input type="text" matInput autocomplete="off" formControlName="word0">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="text" matInput autocomplete="off" formControlName="word1">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="text" matInput autocomplete="off" formControlName="word2">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="text" matInput autocomplete="off" formControlName="word3">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="text" matInput autocomplete="off" formControlName="word4">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="text" matInput autocomplete="off" formControlName="word5">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="text" matInput autocomplete="off" formControlName="word6">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="text" matInput autocomplete="off" formControlName="word7">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="text" matInput autocomplete="off" formControlName="word8">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="text" matInput autocomplete="off" formControlName="word9">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="text" matInput autocomplete="off" formControlName="word10">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="text" matInput autocomplete="off" formControlName="word11">
+      </mat-form-field>
+    </form>
+    <div class="action-buttons" *ngIf="!account">
+      <button mat-button mat-stroked-button color="primary" (click)="clearForm()">Clear all</button>
+      <button mat-button mat-stroked-button color="primary" (click)="generatePassphrases()">Generate random passphrases</button>
+      <button mat-button mat-raised-button color="primary" (click)="initializeBlockchainAccount()">Initialize blockchain account</button>
+    </div>
+    <div *ngIf="account" class="account-credentials">
+      <p>Address: <span class="account-credentials__value">{{ account.address }}</span></p>
+      <p>Human-readable address: <span class="account-credentials__value">{{ account.humanReadableAddress }}</span></p>
+      <p>Public key: <span class="account-credentials__value">{{ account.publicKey }}</span></p>
+      <p>Private key: <span class="account-credentials__value">{{ account.privateKey }}</span></p>
+    </div>
+  </ng-template>
+</section>
