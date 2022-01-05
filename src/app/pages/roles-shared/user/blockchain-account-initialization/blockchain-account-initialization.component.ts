@@ -1,18 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { AuthService } from '@services/auth.service';
 import { SnackBarService } from '@services/shared/snack-bar.service';
 import { BlockchainService } from '@services/api/blockchain.service';
 import { IBlockchainAccount } from '@interfaces/blockchain-account.interface';
-import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-blockchain-account-initialization',
   templateUrl: './blockchain-account-initialization.component.html',
   styleUrls: ['./blockchain-account-initialization.component.scss'],
 })
-export class BlockchainAccountInitializationComponent implements OnInit {
+export class BlockchainAccountInitializationComponent {
   public showCredentials = false;
   public account: IBlockchainAccount | undefined;
   public form = new FormGroup({
@@ -33,21 +32,8 @@ export class BlockchainAccountInitializationComponent implements OnInit {
   constructor(
     public authService: AuthService,
     private blockchainService: BlockchainService,
-    private snackBarService: SnackBarService // private router: Router
+    private snackBarService: SnackBarService
   ) {}
-
-  ngOnInit() {
-    if (
-      this.authService.decodedAccessToken &&
-      !this.authService.decodedAccessToken.blockchainAddress
-    ) {
-      // const routerSub = this.router.events.subscribe((event) => {
-      //   if (event instanceof NavigationEnd) {
-      //     routerSub.unsubscribe();
-      //   }
-      // });
-    }
-  }
 
   public generatePassphrases(): void {
     this.blockchainService
@@ -81,7 +67,7 @@ export class BlockchainAccountInitializationComponent implements OnInit {
     });
   }
 
-  private getUserPassphrase(): any {
+  private getUserPassphrase(): string {
     return Object.values(this.form.controls)
       .map((formControl) => formControl.value)
       .join(' ');

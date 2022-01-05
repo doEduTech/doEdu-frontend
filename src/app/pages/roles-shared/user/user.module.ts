@@ -7,12 +7,12 @@ import { BlockchainAccountInitializationComponent } from './blockchain-account-i
 import { UserRoutingModule } from './user-routing.module';
 
 @NgModule({
-  declarations: [BlockchainAccountInitializationComponent],
   imports: [
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
     UserRoutingModule,
   ],
+  declarations: [BlockchainAccountInitializationComponent],
 })
 export class UserModule {}
