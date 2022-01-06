@@ -64,7 +64,7 @@ export class AuthService {
 
   public setRole(role: ERole): Observable<{ access_token: string }> {
     return this.http
-      .post<any>(`${environment.apiUrl}/auth/set-role`, {
+      .put<any>(`${environment.apiUrl}/auth/set-role`, {
         role,
       })
       .pipe(
@@ -104,7 +104,7 @@ export class AuthService {
     return localStorage.getItem('access_token');
   }
 
-  private setSession(tokens: { access_token: string }): void {
+  public setSession(tokens: { access_token: string }): void {
     localStorage.setItem('access_token', tokens.access_token);
   }
 }

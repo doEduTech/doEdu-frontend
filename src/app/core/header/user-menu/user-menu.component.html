@@ -6,6 +6,10 @@
 </section>
 
 <mat-menu #menu="matMenu">
+  <button mat-menu-item routerLink="/user/blockchain">
+    <mat-icon>vpn_key</mat-icon>
+    <span>Blockchain</span>
+  </button>
   <button mat-menu-item (click)="logout()">
     <mat-icon>logout</mat-icon>
     <span>Logout</span>

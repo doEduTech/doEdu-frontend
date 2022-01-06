@@ -36,6 +36,7 @@ export class AuthGuard implements CanActivate, CanLoad {
     if (isUserAuthenticated) {
       if (userRole) {
         if (
+          routePath.startsWith('user') ||
           routePath.startsWith('market') ||
           (routePath.startsWith('teacher') && userRole === 'teacher') ||
           (routePath.startsWith('learner') && userRole === 'learner')
