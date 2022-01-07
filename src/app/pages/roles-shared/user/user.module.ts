@@ -3,8 +3,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MaterialModule } from '@app/material.module';
-import { BlockchainAccountInitializationComponent } from './blockchain-account-initialization/blockchain-account-initialization.component';
+import { BlockchainAccountComponent } from './blockchain-account/blockchain-account.component';
 import { UserRoutingModule } from './user-routing.module';
+import { BlockchainFaucetComponent } from './blockchain-account/blockchain-faucet/blockchain-faucet.component';
 
 @NgModule({
   imports: [
@@ -13,6 +14,6 @@ import { UserRoutingModule } from './user-routing.module';
     ReactiveFormsModule,
     UserRoutingModule,
   ],
-  declarations: [BlockchainAccountInitializationComponent],
+  declarations: [BlockchainAccountComponent, BlockchainFaucetComponent],
 })
 export class UserModule {}

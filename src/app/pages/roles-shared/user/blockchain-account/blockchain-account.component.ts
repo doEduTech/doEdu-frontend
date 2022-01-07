@@ -7,11 +7,11 @@ import { BlockchainService } from '@services/api/blockchain.service';
 import { IBlockchainAccount } from '@interfaces/blockchain-account.interface';
 
 @Component({
-  selector: 'app-blockchain-account-initialization',
-  templateUrl: './blockchain-account-initialization.component.html',
-  styleUrls: ['./blockchain-account-initialization.component.scss'],
+  selector: 'app-blockchain-account',
+  templateUrl: './blockchain-account.component.html',
+  styleUrls: ['./blockchain-account.component.scss'],
 })
-export class BlockchainAccountInitializationComponent {
+export class BlockchainAccountComponent {
   public showCredentials = false;
   public account: IBlockchainAccount | undefined;
   public form = new FormGroup({
