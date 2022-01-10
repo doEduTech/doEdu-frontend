@@ -68,4 +68,4 @@
     </div>
   </ng-template>
 </section>
-<app-blockchain-faucet></app-blockchain-faucet>
+<app-blockchain-faucet *ngIf="authService.decodedAccessToken?.blockchainAddress;"></app-blockchain-faucet>
