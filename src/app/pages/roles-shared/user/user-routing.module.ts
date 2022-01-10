@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { BlockchainAccountInitializationComponent } from './blockchain-account-initialization/blockchain-account-initialization.component';
+import { BlockchainAccountComponent } from './blockchain-account/blockchain-account.component';
 
 const routes: Routes = [
   {
@@ -10,7 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'blockchain',
-    component: BlockchainAccountInitializationComponent,
+    component: BlockchainAccountComponent,
   },
 ];
 

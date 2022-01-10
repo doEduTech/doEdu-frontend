@@ -28,4 +28,9 @@ export class BlockchainService {
       { passphrase }
     );
   }
+
+  public purchaseFaucetTokens(): Observable<void> {
+    const endpoint = `${this.baseEndpoint}/get-faucet-tokens`;
+    return this.http.get<void>(endpoint);
+  }
 }

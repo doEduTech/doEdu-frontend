@@ -1,6 +1,6 @@
 <section class="view mat-elevation-z2">
   <ng-container *ngIf="!showCredentials && authService.decodedAccessToken && authService.decodedAccessToken.blockchainAddress; else accountForm">
-    <h3>Your blockchain credentials was already initialized</h3>
+    <h3>Your blockchain credentials were already initialized</h3>
     <p>Your blockchain public address: {{ authService.decodedAccessToken.blockchainAddress }}</p>
   </ng-container>
   <ng-template #accountForm>
@@ -68,3 +68,4 @@
     </div>
   </ng-template>
 </section>
+<app-blockchain-faucet *ngIf="authService.decodedAccessToken?.blockchainAddress;"></app-blockchain-faucet>
