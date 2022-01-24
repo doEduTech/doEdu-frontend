@@ -1,22 +1,48 @@
 import { Injectable } from '@angular/core';
 
 import { BehaviorSubject } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
-// TODO: this is a temporary service to handle token balance for mockups purposes
+import { IBlockchainAccountStructure } from '@interfaces/blockchain-account.interface';
+import { AuthService } from './auth.service';
+import { BlockchainTransactionsGatewayService } from './blockchain-transactions.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TokenBalanceService {
-  public tokenBalance$ = new BehaviorSubject<number>(512);
-
-  public add(value: number): void {
-    const newBalance = this.tokenBalance$.value + value;
-    this.tokenBalance$.next(newBalance);
+  constructor(
+    private blockchainTransactionsGatewayService: BlockchainTransactionsGatewayService,
+    private authService: AuthService
+  ) {
+    this.subscribeAccountBalance();
+    this.clearDataAfterUnautenthicatin();
   }
 
-  public subtract(value: number): void {
-    const newBalance = this.tokenBalance$.value - value;
-    this.tokenBalance$.next(newBalance);
+  public tokenBalance$ = new BehaviorSubject<number>(0);
+
+  private clearDataAfterUnautenthicatin(): void {
+    this.authService.isAuthenticatedSubject$
+      .pipe(filter((val) => !val))
+      .subscribe(() => this.tokenBalance$.next(0));
+  }
+
+  private subscribeAccountBalance(): void {
+    this.authService.isAuthenticatedSubject$
+      .pipe(filter((val) => !!val))
+      .subscribe(() => {
+        this.blockchainTransactionsGatewayService.connect();
+        this.subcribeBlochainAccountChange();
+      });
+  }
+
+  private subcribeBlochainAccountChange(): void {
+    this.blockchainTransactionsGatewayService.currentAccountData.subscribe(
+      (val: IBlockchainAccountStructure | undefined) => {
+        if (val !== undefined) {
+          this.tokenBalance$.next(val.token.balance);
+        }
+      }
+    );
   }
 }

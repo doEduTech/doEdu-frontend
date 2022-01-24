@@ -49,7 +49,8 @@ export class CourseComponent implements OnInit {
       .openDialog({ recipient })
       .pipe(filter((val) => val.confirmed && !!val.amount))
       .subscribe((val) => {
-        this.tokenBalanceService.subtract(<number>val.amount);
+        // this.tokenBalanceService.subtract(<number>val.amount);
+        // TODO: use blockchain acitions
         this.snackBarService.openSnackBar('Tip given', 'success');
       });
   }
@@ -63,7 +64,8 @@ export class CourseComponent implements OnInit {
       })
       .pipe(filter((val) => val.confirmed && !!val.amount))
       .subscribe((val) => {
-        this.tokenBalanceService.subtract(<number>val.amount);
+        // this.tokenBalanceService.subtract(<number>val.amount);
+        // TODO: use blockchain acitions
         this.snackBarService.openSnackBar('Personal prize locked', 'success');
       });
   }
@@ -77,7 +79,8 @@ export class CourseComponent implements OnInit {
       })
       .pipe(filter((val) => val.confirmed && !!val.amount))
       .subscribe((val) => {
-        this.tokenBalanceService.subtract(<number>val.amount);
+        // this.tokenBalanceService.subtract(<number>val.amount);
+        // TODO: use blockchain acitions
         this.snackBarService.openSnackBar('Group prize locked', 'success');
       });
   }
@@ -125,7 +128,8 @@ export class CourseComponent implements OnInit {
   }
 
   private handlePurchaseSuccess(price: number): void {
-    this.tokenBalanceService.subtract(price);
+    // this.tokenBalanceService.subtract(price);
+    // TODO: use blockchain acitions
     this.snackBarService.openSnackBar('Course purchased', 'success');
   }
 

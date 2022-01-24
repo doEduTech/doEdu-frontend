@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { environment } from '@env/environment';
-import { IBlockchainAccount } from '@interfaces/blockchain-account.interface';
+import { IBlockchainAccountForm } from '@interfaces/blockchain-account.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -21,9 +21,9 @@ export class BlockchainService {
 
   public initializeAccount(
     passphrase: string
-  ): Observable<IBlockchainAccount & { access_token: string }> {
+  ): Observable<IBlockchainAccountForm & { access_token: string }> {
     const endpoint = `${this.baseEndpoint}/initialize-account`;
-    return this.http.post<IBlockchainAccount & { access_token: string }>(
+    return this.http.post<IBlockchainAccountForm & { access_token: string }>(
       endpoint,
       { passphrase }
     );
