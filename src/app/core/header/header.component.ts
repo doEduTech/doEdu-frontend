@@ -11,9 +11,8 @@ import { TokenBalanceService } from '@services/token-balance.service';
   styleUrls: ['header.component.scss'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  secondsToNextUpdate: number | undefined;
-  balance: number | undefined;
-  balanceSub: Subscription | undefined;
+  public balance: number | undefined;
+  private balanceSub: Subscription | undefined;
 
   constructor(
     public tokenBalanceService: TokenBalanceService,

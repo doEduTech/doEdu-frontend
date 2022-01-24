@@ -10,26 +10,6 @@ export interface IBlockchainAccountStructure {
   token: {
     balance: number;
   };
-  sequence: {
-    nonce: number;
-  };
-  keys: {
-    numberOfSignatures: number;
-    mandatoryKeys: [];
-    optionalKeys: [];
-  };
-  dpos: {
-    delegate: {
-      username: string;
-      pomHeights: [];
-      consecutiveMissedBlocks: number;
-      lastForgedHeight: number;
-      isBanned: boolean;
-      totalVotesReceived: number;
-    };
-    sentVotes: [];
-    unlocking: [];
-  };
   nft: {
     ownNFTs: [];
     mintedNFTs: [];

@@ -6,15 +6,18 @@ import { BehaviorSubject } from 'rxjs';
 import { AuthService } from './auth.service';
 import { environment } from '@env/environment';
 import { IBlockchainAccountStructure } from '@interfaces/blockchain-account.interface';
+import { filter } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class BlockchainTransactionsGatewayService {
-  connection: Socket | undefined;
-  currentAccountData = new BehaviorSubject<
+  public currentAccountData = new BehaviorSubject<
     IBlockchainAccountStructure | undefined
   >(undefined);
+  private connection: Socket | undefined;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) {
+    this.disconnectOnLogout();
+  }
 
   // connection is initialized by the BalanceService if User has blochain address initialized
   // otherwise it waits for the blockachn account initialization action
@@ -32,6 +35,17 @@ export class BlockchainTransactionsGatewayService {
       this.subAccountChanges();
       this.subDisconnection();
     }
+  }
+
+  private disconnectOnLogout(): void {
+    this.authService.isAuthenticatedSubject$
+      .pipe(filter((val) => !val))
+      .subscribe(() => {
+        if (this.connection) {
+          this.currentAccountData.next(undefined);
+          this.connection.disconnect();
+        }
+      });
   }
 
   private subDisconnection(): void {
