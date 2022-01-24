@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 
 import { io, Socket } from 'socket.io-client';
 import { BehaviorSubject } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 import { AuthService } from './auth.service';
 import { environment } from '@env/environment';
 import { IBlockchainAccountStructure } from '@interfaces/blockchain-account.interface';
-import { filter } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class BlockchainTransactionsGatewayService {

@@ -18,7 +18,8 @@
       <div class="right-side">
         <div class="toolbar__user">
           <div class="toolbar__user-tokens-balance" matTooltip="Token balance">
-            <span class="toolbar__user-tokens-balance-value">{{ balance !== undefined && balance }}</span>
+            <span *ngIf="balance !== undefined; else loadingBalance" class="toolbar__user-tokens-balance-value">{{ balance }}</span>
+            <ng-template #loadingBalance><span class="loading-balance">Loading balance...</span></ng-template>
             <mat-icon class="preview-mode__edit-icon">generating_tokens</mat-icon>
           </div>
 

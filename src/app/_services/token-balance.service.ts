@@ -18,16 +18,16 @@ export class TokenBalanceService {
     private authService: AuthService
   ) {
     this.subscribeAccountBalance();
-    this.clearDataAfterUnautenthication();
+    this.clearDataAfterLogout();
   }
 
-  public tokenBalance$ = new BehaviorSubject<number>(0);
+  public tokenBalance$ = new BehaviorSubject<number | undefined>(undefined);
 
-  private clearDataAfterUnautenthication(): void {
+  private clearDataAfterLogout(): void {
     this.authService.isAuthenticatedSubject$
       .pipe(filter((val) => !val))
       .subscribe(() => {
-        this.tokenBalance$.next(0);
+        this.tokenBalance$.next(undefined);
         if (this.accountSub) {
           this.accountSub.unsubscribe();
         }
