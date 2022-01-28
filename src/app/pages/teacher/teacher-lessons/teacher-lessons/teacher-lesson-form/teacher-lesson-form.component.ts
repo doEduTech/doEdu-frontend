@@ -35,7 +35,6 @@ export class TeacherLessonFormComponent implements OnInit {
   ngOnInit(): void {}
 
   public createLesson(): void {
-    // wait for upload finish and send the rest data
     const formData = this.form.value;
 
     if (this.lessonContentFile) {

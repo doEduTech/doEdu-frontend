@@ -9,7 +9,8 @@ import { TeacherLessonsService } from '@services/api/teacher/teacher-lessons.ser
   styleUrls: ['./teacher-lessons.component.scss'],
 })
 export class TeacherLessonsComponent implements OnInit {
-  lessons: ITeacherLesson[] | undefined;
+  public lessons: ITeacherLesson[] | undefined;
+
   constructor(private teacherLessonsService: TeacherLessonsService) {}
 
   ngOnInit(): void {
