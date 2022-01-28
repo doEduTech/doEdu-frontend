@@ -1,0 +1,68 @@
+.view {
+  width: 90%;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  margin-top: 20px;
+
+  .view__title {
+    margin-bottom: 20px;
+  }
+}
+
+input[type="file"] {
+  display: none;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.attachement-btn {
+  margin-right: 10px;
+  margin-bottom: 15px;
+}
+
+.form-actions-btns {
+  margin-top: 20px;
+}
+
+.preview {
+  min-height: 200px;
+  min-width: 200px;
+}
+
+.form__basics {
+  display: flex;
+  .form__basics-preview {
+    flex: 1;
+    padding-right: 20px;
+
+    .preview__canvas {
+      background-color: gray;
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+
+    img {
+      height: 200px;
+      display: flex;
+      margin-right: 20px;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+  }
+
+  .form__basics-inputs {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex: 5;
+  }
+}
+

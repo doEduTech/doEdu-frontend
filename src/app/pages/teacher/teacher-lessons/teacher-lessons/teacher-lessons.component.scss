@@ -1,0 +1,40 @@
+.view {
+  padding: 20px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.lessons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  .lessons__create {
+    margin: 15px 0;
+  }
+}
+
+.lesson {
+  cursor: pointer;
+  width: 100%;
+  .lesson__property {
+    padding: 10px;
+  }
+  .lesson__header {
+    display: flex;
+    align-items: center;
+  }
+  .lesson__image {
+    width: 80px;
+    height: 80px;
+  }
+  .lesson__content {
+    // display: flex;
+    font-size: 16px;
+    margin-top: 15px;
+  }
+}
+
+.bolder {
+  font-weight: 500;
+}

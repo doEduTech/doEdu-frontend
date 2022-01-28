@@ -13,6 +13,13 @@ const routes: Routes = [
         (m) => m.TeacherDashboardModule
       ),
   },
+  {
+    path: 'lessons',
+    loadChildren: () =>
+      import('./teacher-lessons/teacher-lessons.module').then(
+        (m) => m.TeacherLessonsModule
+      ),
+  },
 ];
 
 @NgModule({

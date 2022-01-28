@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { SafePipe } from './safe.pipe';
+import { IPFSPipe } from './ipfs.pipe';
+
 @NgModule({
-  declarations: [],
+  declarations: [SafePipe, IPFSPipe],
   imports: [CommonModule],
-  exports: [],
+  exports: [SafePipe, IPFSPipe],
 })
 export class PipesModule {}
