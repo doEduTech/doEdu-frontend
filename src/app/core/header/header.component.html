@@ -1,7 +1,7 @@
 <mat-toolbar class="toolbar">
   <div class="toolbar__links">
     <a class="link toolbar__logo-container" routerLink="/"><img class="toolbar__logo" src="/assets/images/white_logo.png"></a>
-    <div class="sides-container" *ngIf="authService.hasValidAccessToken &&  authService.decodedAccessToken && authService.decodedAccessToken.role">
+    <div class="sides-container" *ngIf="authService.hasValidAccessToken && authService.decodedAccessToken && authService.decodedAccessToken.role">
       <div class="left-side">
         <a
           class="link"
@@ -13,6 +13,13 @@
           routerLink="/market"
           [routerLinkActive]="['link--activated']">
           <button mat-button>Market</button>
+        </a>
+        <a
+          *ngIf="authService.decodedAccessToken.role === 'teacher'"
+          class="link"
+          routerLink="/teacher/lessons"
+          [routerLinkActive]="['link--activated']">
+          <button mat-button>Lessons</button>
         </a>
       </div>
       <div class="right-side">

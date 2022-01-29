@@ -5,6 +5,7 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'courses',
+    pathMatch: 'full',
   },
   {
     path: 'courses',

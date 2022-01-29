@@ -1,0 +1,47 @@
+<section class="view mat-elevation-z2">
+  <h3 class="view__title">Create new educational material</h3>
+  <form [formGroup]="form">
+    <div class="form__basics">
+      <div class="form__basics-preview">
+        <div class="preview-buttons">
+          <button mat-stroked-button (click)="addPreview()" class="attachement-btn">
+            Attach
+            <input type="file" (change)="onUploadPreviewFile($event)" #previewInput />
+          </button>
+          <button *ngIf="previewFile" mat-stroked-button (click)="removePreview()">Remove</button>
+        </div>
+        <div *ngIf="!previewFile" class="preview__canvas">
+          <h4>Lesson preview image</h4>
+        </div>
+        <img *ngIf="previewSrc" [src]="previewSrc | safe">
+      </div>
+      <div class="form__basics-inputs">
+        <mat-form-field>
+          <mat-label>Title</mat-label>
+          <input matInput placeholder="Title" autocomplete="off" formControlName="title">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Description</mat-label>
+          <input matInput placeholder="Description" autocomplete="off" formControlName="description">
+        </mat-form-field>
+
+        <div>
+          <button mat-stroked-button (click)="addAttachment()" class="attachement-btn" matTooltip="A video, an audio, a pdf., so on...">
+            Attach lesson's content file
+            <input type="file" (change)="onUploadAttachmentFile($event)" #attachmentInput />
+          </button>
+          <span>{{ lessonContentFile?.name }}</span>
+          <span *ngIf="showFileError" class="error">File is required</span>
+        </div>
+
+        <mat-checkbox [checked]="true" [disabled]="true">Immediately NFT creation</mat-checkbox>
+
+        <div class="form-actions-btns">
+          <button color="primary" mat-raised-button (click)="createLesson()">Create</button>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</section>
