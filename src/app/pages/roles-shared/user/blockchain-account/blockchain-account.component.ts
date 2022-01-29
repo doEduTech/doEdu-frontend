@@ -4,7 +4,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '@services/auth.service';
 import { SnackBarService } from '@services/shared/snack-bar.service';
 import { BlockchainService } from '@services/api/blockchain.service';
-import { IBlockchainAccount } from '@interfaces/blockchain-account.interface';
+import { IBlockchainAccountForm } from '@interfaces/blockchain-account.interface';
+import { BlockchainTransactionsGatewayService } from '@services/blockchain-transactions.service';
 
 @Component({
   selector: 'app-blockchain-account',
@@ -13,7 +14,7 @@ import { IBlockchainAccount } from '@interfaces/blockchain-account.interface';
 })
 export class BlockchainAccountComponent {
   public showCredentials = false;
-  public account: IBlockchainAccount | undefined;
+  public account: IBlockchainAccountForm | undefined;
   public form = new FormGroup({
     word0: new FormControl('', Validators.required),
     word1: new FormControl('', Validators.required),
@@ -32,7 +33,8 @@ export class BlockchainAccountComponent {
   constructor(
     public authService: AuthService,
     private blockchainService: BlockchainService,
-    private snackBarService: SnackBarService
+    private snackBarService: SnackBarService,
+    private blockchainTransactionsGatewayService: BlockchainTransactionsGatewayService
   ) {}
 
   public generatePassphrases(): void {
@@ -50,6 +52,7 @@ export class BlockchainAccountComponent {
       this.showCredentials = true;
       this.account = val;
       this.form.disable();
+      this.blockchainTransactionsGatewayService.connect();
       this.snackBarService.openSnackBar(
         'Your blockchain account was successfully initialized',
         'success'

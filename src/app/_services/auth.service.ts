@@ -76,6 +76,7 @@ export class AuthService {
 
   public logout(): void {
     localStorage.removeItem('access_token');
+    this.isAuthenticatedSubject$.next(false);
     this.router.navigate(['/market']);
   }
 

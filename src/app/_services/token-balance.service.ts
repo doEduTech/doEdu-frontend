@@ -1,22 +1,57 @@
 import { Injectable } from '@angular/core';
 
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
-// TODO: this is a temporary service to handle token balance for mockups purposes
+import { IBlockchainAccountStructure } from '@interfaces/blockchain-account.interface';
+import { AuthService } from './auth.service';
+import { BlockchainTransactionsGatewayService } from './blockchain-transactions.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TokenBalanceService {
-  public tokenBalance$ = new BehaviorSubject<number>(512);
+  private accountSub: Subscription | undefined;
 
-  public add(value: number): void {
-    const newBalance = this.tokenBalance$.value + value;
-    this.tokenBalance$.next(newBalance);
+  constructor(
+    private blockchainTransactionsGatewayService: BlockchainTransactionsGatewayService,
+    private authService: AuthService
+  ) {
+    this.subscribeAccountBalance();
+    this.clearDataAfterLogout();
   }
 
-  public subtract(value: number): void {
-    const newBalance = this.tokenBalance$.value - value;
-    this.tokenBalance$.next(newBalance);
+  public tokenBalance$ = new BehaviorSubject<number | undefined>(undefined);
+
+  private clearDataAfterLogout(): void {
+    this.authService.isAuthenticatedSubject$
+      .pipe(filter((val) => !val))
+      .subscribe(() => {
+        this.tokenBalance$.next(undefined);
+        if (this.accountSub) {
+          this.accountSub.unsubscribe();
+        }
+      });
+  }
+
+  private subscribeAccountBalance(): void {
+    this.authService.isAuthenticatedSubject$
+      .pipe(filter((val) => !!val))
+      .subscribe(() => {
+        if (this.authService.decodedAccessToken) {
+          this.blockchainTransactionsGatewayService.connect();
+          this.subcribeBlochainAccountChange();
+        }
+      });
+  }
+
+  private subcribeBlochainAccountChange(): void {
+    this.accountSub = this.blockchainTransactionsGatewayService.currentAccountData.subscribe(
+      (val: IBlockchainAccountStructure | undefined) => {
+        if (val !== undefined) {
+          this.tokenBalance$.next(val.token.balance);
+        }
+      }
+    );
   }
 }

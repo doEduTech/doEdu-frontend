@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+
+import { Subscription } from 'rxjs';
 
 import { AuthService } from '@services/auth.service';
 import { TokenBalanceService } from '@services/token-balance.service';
@@ -8,13 +10,34 @@ import { TokenBalanceService } from '@services/token-balance.service';
   templateUrl: 'header.component.html',
   styleUrls: ['header.component.scss'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy {
+  public balance: number | undefined;
+  private balanceSub: Subscription | undefined;
+
   constructor(
     public tokenBalanceService: TokenBalanceService,
     public authService: AuthService
   ) {}
 
+  ngOnInit() {
+    this.subBalance();
+  }
+
+  ngOnDestroy() {
+    if (this.balanceSub) {
+      this.balanceSub.unsubscribe();
+    }
+  }
+
   public logOut(): void {
     this.authService.logout();
+  }
+
+  private subBalance(): void {
+    this.balanceSub = this.tokenBalanceService.tokenBalance$.subscribe(
+      (val) => {
+        this.balance = val;
+      }
+    );
   }
 }
