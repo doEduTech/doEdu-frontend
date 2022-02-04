@@ -1,5 +1,5 @@
 <section class="view mat-elevation-z2">
-  <h3 class="view__title">Create new lesson</h3>
+  <h3 class="view__title">{{ lessonId ? 'Edit lesson' : 'Create new lesson' }}</h3>
   <form [formGroup]="form">
     <div class="form__basics">
       <div class="form__basics-preview">
@@ -8,12 +8,14 @@
             Attach
             <input type="file" (change)="onUploadPreviewFile($event)" #previewInput />
           </button>
-          <button *ngIf="previewFile" mat-stroked-button (click)="removePreview()">Remove</button>
+          <button *ngIf="previewFile || lesson?.previewCID" mat-stroked-button (click)="removePreview()">Remove</button>
         </div>
-        <div *ngIf="!previewFile" class="preview__canvas">
+        <div *ngIf="!previewFile && (!lesson?.previewCID || (lesson?.previewCID && isPreviewFileChanged)); else previewContainer" class="preview__canvas">
           <h4>Lesson preview image</h4>
         </div>
-        <img *ngIf="previewSrc" [src]="previewSrc | safe">
+        <ng-template #previewContainer>
+          <img [src]="(previewSrc && (previewSrc | safe)) || (lesson?.previewCID | ipfs)">
+        </ng-template>
       </div>
       <div class="form__basics-inputs">
         <mat-form-field>
@@ -31,19 +33,27 @@
               formControlName="description"></textarea>
         </mat-form-field>
 
-        <div>
-          <button mat-stroked-button (click)="addAttachment()" class="attachement-btn" matTooltip="A video, an audio, a pdf., so on...">
+        <div *ngIf="!lesson; else contentFile">
+          <button mat-stroked-button (click)="addAttachment()" class="attachement-btn" matTooltip=".mp3 / .mp4 / .pdf">
             Attach lesson's content file
             <input type="file" (change)="onUploadAttachmentFile($event)" #attachmentInput />
           </button>
           <span>{{ lessonContentFile?.name }}</span>
           <span *ngIf="showFileError" class="error">File is required</span>
         </div>
+        <ng-template #contentFile>
+          <audio controls *ngIf="lesson && lesson.type === 'audio'">
+            <source [src]="lesson.cid" type="audio/ogg">
+          </audio>
+        </ng-template>
 
-        <mat-checkbox [checked]="true" [disabled]="true">Immediately NFT creation</mat-checkbox>
+        <mat-checkbox *ngIf="!lesson" [checked]="true" [disabled]="true">Immediately NFT creation</mat-checkbox>
 
         <div class="form-actions-btns">
-          <button color="primary" mat-raised-button (click)="createLesson()">Create</button>
+          <button *ngIf="!lessonId; else editButton" color="primary" mat-raised-button (click)="createLesson()">Create</button>
+          <ng-template #editButton>
+            <button color="primary" mat-raised-button (click)="updateLesson()">Update</button>
+          </ng-template>
         </div>
       </div>
     </div>

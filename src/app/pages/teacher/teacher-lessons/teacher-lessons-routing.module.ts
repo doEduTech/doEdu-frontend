@@ -13,6 +13,10 @@ const routes: Routes = [
     path: 'new',
     component: TeacherLessonFormComponent,
   },
+  {
+    path: ':lessonId',
+    component: TeacherLessonFormComponent,
+  },
 ];
 
 @NgModule({

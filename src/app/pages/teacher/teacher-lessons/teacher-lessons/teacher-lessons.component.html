@@ -5,14 +5,18 @@
       <mat-card
         class="lesson"
         *ngFor="let lesson of lessons"
+        [routerLink]="[lesson.id]"
       >
         <mat-card-header class="lesson__header">
           <mat-card-title>{{ lesson.title }}</mat-card-title>
           <img *ngIf="lesson.previewCID" mat-card-avatar class="lesson__image" [src]="lesson.previewCID | ipfs">
         </mat-card-header>
         <mat-card-content class="lesson__content">
-          <div class="lesson__property">
+          <div *ngIf="lesson.description" class="lesson__property">
             <p>{{ lesson.description }}</p>
+          </div>
+          <div class="lesson__property">
+            <p><span class="bolder">Type:</span> {{ lesson.type }}</p>
           </div>
           <div class="lesson__property">
             <p><span class="bolder">Interplanetary File System (IPFS) content file address:</span> {{ lesson.cid }}</p>
