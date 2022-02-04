@@ -17,43 +17,63 @@
           <img [src]="(previewSrc && (previewSrc | safe)) || (lesson?.previewCID | ipfs)">
         </ng-template>
       </div>
-      <div class="form__basics-inputs">
-        <mat-form-field>
-          <mat-label>Title</mat-label>
-          <input matInput placeholder="Title" autocomplete="off" formControlName="title">
-        </mat-form-field>
+      <div class="form__data">
+        <div class="form__basics-inputs">
+          <mat-form-field>
+            <mat-label>Title</mat-label>
+            <input matInput placeholder="Title" autocomplete="off" formControlName="title">
+          </mat-form-field>
 
-        <mat-form-field>
-          <mat-label>Description</mat-label>
-            <textarea matInput
-              cdkTextareaAutosize
-              #autosize="cdkTextareaAutosize"
-              cdkAutosizeMinRows="1"
-              cdkAutosizeMaxRows="5"
-              formControlName="description"></textarea>
-        </mat-form-field>
+          <mat-form-field>
+            <mat-label>Description</mat-label>
+              <textarea matInput
+                cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="5"
+                formControlName="description"></textarea>
+          </mat-form-field>
 
-        <div *ngIf="!lesson; else contentFile">
-          <button mat-stroked-button (click)="addAttachment()" class="attachement-btn" matTooltip=".mp3 / .mp4 / .pdf">
-            Attach lesson's content file
-            <input type="file" (change)="onUploadAttachmentFile($event)" #attachmentInput />
-          </button>
-          <span>{{ lessonContentFile?.name }}</span>
-          <span *ngIf="showFileError" class="error">File is required</span>
+          <div *ngIf="!lesson">
+            <button mat-stroked-button (click)="addAttachment()" class="attachement-btn" matTooltip=".mp3 / .mp4 / .pdf">
+              Attach lesson's content file
+              <input type="file" (change)="onUploadAttachmentFile($event)" #attachmentInput />
+            </button>
+            <span>{{ lessonContentFile?.name }}</span>
+            <span *ngIf="showFileError" class="error">File is required</span>
+          </div>
+
+          <mat-checkbox *ngIf="!lesson" [checked]="true" [disabled]="true">Immediately NFT creation</mat-checkbox>
+
+          <div class="form-actions-btns">
+            <button *ngIf="!lessonId; else editButton" color="primary" mat-raised-button (click)="createLesson()">Create</button>
+            <ng-template #editButton>
+              <button color="primary" mat-raised-button (click)="updateLesson()">Update</button>
+            </ng-template>
+          </div>
         </div>
-        <ng-template #contentFile>
-          <audio controls *ngIf="lesson && lesson.type === 'audio'">
-            <source [src]="lesson.cid" type="audio/ogg">
-          </audio>
-        </ng-template>
+        <div class="permanent-data" *ngIf="lesson">
+          <mat-divider class="permanent-data__divider"></mat-divider>
+          <h3>Permanent data</h3>
+          <div class="permanent-data__details">
+            <div class="permanent-data__content-preview">
+              <audio controls *ngIf="lesson && lesson.type === 'audio'">
+                <source [src]="lesson.cid | ipfs" type="audio/ogg">
+              </audio>
 
-        <mat-checkbox *ngIf="!lesson" [checked]="true" [disabled]="true">Immediately NFT creation</mat-checkbox>
-
-        <div class="form-actions-btns">
-          <button *ngIf="!lessonId; else editButton" color="primary" mat-raised-button (click)="createLesson()">Create</button>
-          <ng-template #editButton>
-            <button color="primary" mat-raised-button (click)="updateLesson()">Update</button>
-          </ng-template>
+              <video *ngIf="lesson && lesson.type === 'video'" width="320" height="240" controls>
+                <source [src]="lesson.cid | ipfs" type="video/mp4">
+              </video>
+              <embed *ngIf="lesson && lesson.type === 'pdf'" type="application/pdf" [src]="lesson.cid | ipfs | safe" width= "500" height= "375">
+            </div>
+            <div class="lesson__ipfs">
+              <p class="lesson__ipfs-text"><span class="bolder">Type:</span> {{ lesson.type }}</p>
+              <div class="lesson__ipfs-id">
+                <p class="lesson__ipfs-text"><span class="bolder">Interplanetary File System (IPFS) content file address:</span> {{ lesson.cid }}</p>
+                <button mat-stroked-button color="primary" (click)="displayCopyingConfirmation($event)" [cdkCopyToClipboard]="lesson.cid" matTooltip="Copy to clipboard"><mat-icon>file_copy</mat-icon></button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

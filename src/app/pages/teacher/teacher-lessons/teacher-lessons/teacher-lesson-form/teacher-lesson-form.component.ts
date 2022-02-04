@@ -132,6 +132,10 @@ export class TeacherLessonFormComponent implements OnInit {
     }
   }
 
+  public displayCopyingConfirmation(event: Event): void {
+    this.snackBarService.openSnackBar('IPFS file id copied', 'success');
+  }
+
   private getLesson(): void {
     this.teacherLessonsService.get(this.lessonId).subscribe((val) => {
       this.lesson = val;

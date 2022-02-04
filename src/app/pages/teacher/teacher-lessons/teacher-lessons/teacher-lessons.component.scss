@@ -17,6 +17,14 @@
 .lesson {
   cursor: pointer;
   width: 100%;
+
+  .lesson__ipfs {
+    .lesson__ipfs-text {
+      margin: 0 15px 0 0;
+    }
+    display: flex;
+    align-items: center;
+  }
   .lesson__property {
     padding: 10px;
   }

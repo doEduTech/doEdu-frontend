@@ -18,8 +18,9 @@
           <div class="lesson__property">
             <p><span class="bolder">Type:</span> {{ lesson.type }}</p>
           </div>
-          <div class="lesson__property">
-            <p><span class="bolder">Interplanetary File System (IPFS) content file address:</span> {{ lesson.cid }}</p>
+          <div class="lesson__property lesson__ipfs">
+            <p class="lesson__ipfs-text"><span class="bolder">Interplanetary File System (IPFS) content file address:</span> {{ lesson.cid }}</p>
+            <button mat-stroked-button color="primary" (click)="displayCopyingConfirmation($event)" [cdkCopyToClipboard]="lesson.cid" matTooltip="Copy to clipboard"><mat-icon>file_copy</mat-icon></button>
           </div>
         </mat-card-content>
         <mat-card-actions>
