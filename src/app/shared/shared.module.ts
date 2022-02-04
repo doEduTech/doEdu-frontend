@@ -11,6 +11,7 @@ import { PurchaseForSelfDialogComponent } from './purchase-for-self-dialog/purch
 import { SnackBarComponent } from './snack-bar/snack-bar.component';
 import { PurchaseForPersonDialogComponent } from './purchase-for-person-dialog/purchase-for-person-dialog.component';
 import { PurchaseForGroupDialogComponent } from './purchase-for-group-dialog/purchase-for-group-dialog.component';
+import { PassphraseAuthorizationDialogComponent } from './passphrase-authorization-dialog/passphrase-authorization-dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { PurchaseForGroupDialogComponent } from './purchase-for-group-dialog/pur
     SnackBarComponent,
     PurchaseForPersonDialogComponent,
     PurchaseForGroupDialogComponent,
+    PassphraseAuthorizationDialogComponent,
   ],
   exports: [
     TippingDialogComponent,

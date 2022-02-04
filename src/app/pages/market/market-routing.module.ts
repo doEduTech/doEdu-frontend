@@ -4,13 +4,15 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'courses',
+    redirectTo: 'lessons',
     pathMatch: 'full',
   },
   {
-    path: 'courses',
+    path: 'lessons',
     loadChildren: () =>
-      import('./courses/courses.module').then((m) => m.CoursesModule),
+      import('./lessons/market-lessons.module').then(
+        (m) => m.MarketLessonsModule
+      ),
   },
 ];
 

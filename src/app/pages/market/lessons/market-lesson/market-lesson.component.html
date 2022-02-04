@@ -1,0 +1,28 @@
+<section class="view">
+  <div class="lesson mat-elevation-z2">
+    <ng-container *ngIf="lesson">
+      <div *ngIf="lesson.previewCID" class="lesson__image-container">
+        <img class="lesson__image" [src]="lesson.previewCID | ipfs">
+      </div>
+      <div class="lesson__basics">
+        <h1 class="lesson__title">{{ lesson.title }}</h1>
+        <h2 class="lesson__subheader">Author: {{ lesson.author.email }}</h2>
+        <h2 class="lesson__subheader">Price: {{ lesson.price || 'Free' }}</h2>
+        <div *ngIf="authService.hasValidAccessToken" class="action-buttons">
+          <button *ngIf="lesson && !lesson.price; else purchaseButton" mat-stroked-button color="primary" class="tip-btn" (click)="openTippingDialog()">
+            Tip <mat-icon class="tip-icon">favorite</mat-icon>
+          </button>
+          <ng-template #purchaseButton>
+            <button mat-stroked-button color="primary" class="purchase-btn" [matMenuTriggerFor]="purchaseMenu">
+              Purchase <mat-icon class="purchase-icon">shopping_basket</mat-icon>
+              <mat-menu #purchaseMenu="matMenu">
+                <button mat-menu-item (click)="openPurchaseForSelfDialog()">For me</button>
+            </mat-menu>
+            </button>
+          </ng-template>
+        </div>
+        <p>{{ lesson.description }}</p>
+      </div>
+    </ng-container>
+  </div>
+</section>
