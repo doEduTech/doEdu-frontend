@@ -1,0 +1,20 @@
+<section>
+  <h1 mat-dialog-title>Authorize action by passphrase</h1>
+  <mat-divider></mat-divider>
+  <form>
+    <mat-form-field>
+      <mat-label>Passphrase</mat-label>
+      <textarea matInput
+        cdkTextareaAutosize
+        #autosize="cdkTextareaAutosize"
+        cdkAutosizeMinRows="1"
+        cdkAutosizeMaxRows="3"
+        [formControl]="passphraseFormControl"></textarea>
+    </mat-form-field>
+  </form>
+  <mat-divider></mat-divider>
+  <div mat-dialog-actions>
+    <button mat-button (click)="confirm()" color="primary" cdkFocusInitial>Confirm</button>
+    <button mat-button (click)="discard()">Discard</button>
+  </div>
+</section>

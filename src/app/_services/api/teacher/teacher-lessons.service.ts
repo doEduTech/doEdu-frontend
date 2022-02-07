@@ -8,6 +8,7 @@ import {
   ITeacherLesson,
   ITeacherLessonForm,
 } from '@interfaces/teacher/teacher-lesson.interface';
+import { IPaginatedData } from '@interfaces/common';
 
 @Injectable({ providedIn: 'root' })
 export class TeacherLessonsService {
@@ -35,8 +36,11 @@ export class TeacherLessonsService {
     return this.http.post<ITeacherLesson>(this.baseEndpoint, formData);
   }
 
-  public getAll(): Observable<ITeacherLesson[]> {
-    return this.http.get<ITeacherLesson[]>(this.baseEndpoint);
+  public getAll(
+    pagination: { page: number; pageSize: number } = { page: 0, pageSize: 10 }
+  ): Observable<IPaginatedData<ITeacherLesson>> {
+    const endpoint = `${this.baseEndpoint}?page=${pagination.page}&pageSize=${pagination.pageSize}`;
+    return this.http.get<IPaginatedData<ITeacherLesson>>(endpoint);
   }
 
   public get(lessonId: string): Observable<ITeacherLesson> {

@@ -33,4 +33,17 @@ export class BlockchainService {
     const endpoint = `${this.baseEndpoint}/get-faucet-tokens`;
     return this.http.get<void>(endpoint);
   }
+
+  public transferTokens(
+    recipientUserId: string,
+    amount: number,
+    passphrase: string
+  ): Observable<void> {
+    const endpoint = `${this.baseEndpoint}/transfer-tokens`;
+    return this.http.post<void>(endpoint, {
+      recipientUserId,
+      amount,
+      passphrase,
+    });
+  }
 }

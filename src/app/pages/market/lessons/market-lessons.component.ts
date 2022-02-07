@@ -1,25 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 
-import { ITeacherLesson } from '@interfaces/teacher/teacher-lesson.interface';
-import { TeacherLessonsService } from '@services/api/teacher/teacher-lessons.service';
+import { MarketLessonsService } from '@services/api/market/market-lessons.service';
+import { IMarketLesson } from '@interfaces/market/course.interface';
 
 @Component({
-  selector: 'app-teacher-lessons',
-  templateUrl: './teacher-lessons.component.html',
-  styleUrls: ['./teacher-lessons.component.scss'],
+  selector: 'app-market-lessons',
+  templateUrl: './market-lessons.component.html',
+  styleUrls: ['./market-lessons.component.scss'],
 })
-export class TeacherLessonsComponent implements OnInit {
+export class MarketLessonsComponent implements OnInit {
   public pageSize = 10;
   public recordsCount: number | undefined;
   public pageNumber = 0;
 
-  public lessons: ITeacherLesson[] | undefined;
+  public marketLessons: IMarketLesson[] = [];
 
-  constructor(private teacherLessonsService: TeacherLessonsService) {}
+  constructor(private marketLessonsService: MarketLessonsService) {}
 
   ngOnInit(): void {
-    this.loadLessons();
+    this.getMarketLessons();
   }
 
   public loadRecords(paginatorEvent: PageEvent): void {
@@ -29,15 +29,15 @@ export class TeacherLessonsComponent implements OnInit {
       this.pageNumber = paginatorEvent.pageIndex;
     }
     this.pageSize = paginatorEvent.pageSize;
-    this.loadLessons();
+    this.getMarketLessons();
   }
 
-  private loadLessons(): void {
-    this.teacherLessonsService
+  private getMarketLessons(): void {
+    this.marketLessonsService
       .getAll({ page: this.pageNumber, pageSize: this.pageSize })
       .subscribe((val) => {
         this.recordsCount = val.count;
-        this.lessons = val.rows;
+        this.marketLessons = val.rows;
       });
   }
 }

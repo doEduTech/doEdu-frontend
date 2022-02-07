@@ -1,5 +1,8 @@
 export interface ITippingDialogConfig {
-  recipient: string;
+  recipient: {
+    id: string;
+    email: string;
+  };
 }
 
 export interface ILockedPrizeDialogConfig {

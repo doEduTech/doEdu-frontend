@@ -1,16 +1,12 @@
-export interface ICourse {
+export interface IMarketLesson {
   id: string;
   title: string;
   description: string;
-  imgSrc: string;
-  author: string;
+  previewCID: string;
+  author: {
+    id: string;
+    email: string;
+  };
   price: number;
-}
-
-export interface ICourseComment {
-  id: string;
-  courseId: string;
-  created: string;
-  author: string;
-  text: string;
+  cid: string;
 }

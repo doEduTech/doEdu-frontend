@@ -2,21 +2,30 @@
   padding: 20px;
 }
 
-.course {
+.lesson {
   display: flex;
   padding: 20px;
 
-  .course__basics {
+  .lesson__title {
+    font-weight: 500;
+  }
+
+  .lesson__subheader {
+    font-weight: 400;
+  }
+
+  .lesson__basics {
     margin-left: 20px;
     flex: 3;
   }
 
-  .course__image-container {
+  .lesson__image-container {
     width: 45%;
     height: 400px;
     flex: 2;
 
-    .course__image {
+    .lesson__image {
+      object-fit: cover;
       width: 100%;
       max-height: 400px;
     }

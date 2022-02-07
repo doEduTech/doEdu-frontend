@@ -2,8 +2,8 @@
   <h1 mat-dialog-title>Give a tip</h1>
   <mat-divider></mat-divider>
   <form [formGroup]="form" class="tipping-dialog__content">
-    <p>Your current tokens balance: <span class="bolder">131</span></p>
-    <p>Recipient: <span class="bolder">{{ data.recipient }}</span></p>
+    <p>Your current tokens balance: <span class="bolder">{{ tokenBalanceService.tokenBalance$.value }}</span></p>
+    <p>Recipient: <span class="bolder">{{ data.recipient.email }}</span></p>
     <mat-form-field class="form-control">
       <mat-label>Tip amount</mat-label>
       <input type="number" step="1" min="0" matInput autocomplete="off" formControlName="amount">
