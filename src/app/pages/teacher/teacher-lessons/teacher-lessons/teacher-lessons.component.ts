@@ -1,7 +1,7 @@
-import { SnackBarService } from './../../../../_services/shared/snack-bar.service';
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 
+import { SnackBarService } from '@services/shared/snack-bar.service';
 import { ITeacherLesson } from '@interfaces/teacher/teacher-lesson.interface';
 import { TeacherLessonsService } from '@services/api/teacher/teacher-lessons.service';
 
