@@ -3,6 +3,10 @@
   margin: 0 auto;
   display: flex;
   padding-top: 15px;
+
+  .view__content {
+    width: 100%;
+  }
 }
 
 .lessons-list {
@@ -11,6 +15,7 @@
   display: flex;
   gap: 35px;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .lesson-card {
@@ -59,4 +64,30 @@
    ::ng-deep div.mat-paginator-container {
     justify-content: center;
   }
+}
+
+mat-card-header::ng-deep {
+  .mat-card-title {
+    display: flex;
+    align-items: center;
+    mat-icon {
+      margin-right: 10px;
+    }
+  }
+
+  .mat-card-header-text {
+    margin-left: 0;
+  }
+}
+
+.video-icon {
+  color:#f44336;
+}
+
+.audio-icon {
+  color: #66bb6a;
+}
+
+.pdf-icon {
+  color: #03a9f4;
 }

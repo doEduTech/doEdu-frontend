@@ -1,6 +1,6 @@
 <section class="view">
   <app-market-lessons-filters (filtersChange)="filterRecords($event)"></app-market-lessons-filters>
-  <div>
+  <div class="view__content">
     <div class="lessons-list">
       <mat-card
         class="lesson-card mat-elevation-z6"
@@ -8,7 +8,11 @@
         [routerLink]="marketLesson.id"
       >
         <mat-card-header>
-          <mat-card-title>{{ marketLesson.title }}</mat-card-title>
+          <mat-card-title>
+            <mat-icon class="video-icon" *ngIf="marketLesson.type === 'video'">play_circle_outline</mat-icon>
+            <mat-icon class="audio-icon" *ngIf="marketLesson.type === 'audio'">music_video</mat-icon>
+            <mat-icon class="pdf-icon" *ngIf="marketLesson.type === 'pdf'">picture_as_pdf</mat-icon>
+          {{ marketLesson.title }}</mat-card-title>
         </mat-card-header>
         <mat-card-content>
           <div *ngIf="marketLesson.previewCID" class="lesson-card__image-container">

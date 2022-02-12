@@ -2,9 +2,24 @@
   <h3 class="filters__header">FILTERS:</h3>
   <form [formGroup]="form" class="form">
     <div class="form__type">
-      <mat-checkbox class="form-control" formControlName="video">Video</mat-checkbox>
-      <mat-checkbox class="form-control" formControlName="audio">Audio</mat-checkbox>
-      <mat-checkbox class="form-control" formControlName="pdf">PDF</mat-checkbox>
+      <mat-checkbox
+        class="form-control"
+        matTooltip="At least one filter must be active"
+        [matTooltipDisabled]="form.value.audio || form.value.pdf"
+        [disabled]="!form.value.audio && !form.value.pdf"
+        formControlName="video">Video</mat-checkbox>
+      <mat-checkbox
+        class="form-control"
+        matTooltip="At least one filter must be active"
+        [matTooltipDisabled]="form.value.video || form.value.pdf"
+        [disabled]="!form.value.video && !form.value.pdf"
+        formControlName="audio">Audio</mat-checkbox>
+      <mat-checkbox
+        class="form-control"
+        matTooltip="At least one filter must be active"
+        [matTooltipDisabled]="form.value.audio || form.value.video"
+        [disabled]="!form.value.audio && !form.value.video
+        " formControlName="pdf">PDF</mat-checkbox>
     </div>
 
     <div class="form__price">
