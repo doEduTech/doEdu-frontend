@@ -1,13 +1,38 @@
-:host {
-  width: 90%;
-}
-
-.form-container {
+.filters {
   padding: 20px;
   margin-top: 20px;
   background-color: #fff;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .filters__header {
+    margin-right: 25px;
+    margin-bottom: 0;
+  }
 }
 
-.form-control {
-  margin-right: 30px;
+.form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .form__type {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+
+    mat-checkbox {
+      margin: 5px 0;
+    }
+  }
+
+  .form__price {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+  }
 }

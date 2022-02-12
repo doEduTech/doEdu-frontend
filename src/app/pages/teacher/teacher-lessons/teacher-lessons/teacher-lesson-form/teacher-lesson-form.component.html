@@ -64,6 +64,7 @@
               <video *ngIf="lesson && lesson.type === 'video'" width="320" height="240" controls>
                 <source [src]="lesson.cid | ipfs" type="video/mp4">
               </video>
+
               <embed *ngIf="lesson && lesson.type === 'pdf'" type="application/pdf" [src]="lesson.cid | ipfs | safe" width= "500" height= "375">
             </div>
             <div class="lesson__ipfs">

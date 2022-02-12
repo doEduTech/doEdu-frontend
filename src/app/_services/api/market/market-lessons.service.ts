@@ -1,9 +1,12 @@
-import { IMarketLesson } from './../../../_interfaces/market/course.interface';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
+import {
+  IMarketLesson,
+  IMarketLessonsQueryParams,
+} from '@interfaces/market/course.interface';
 import { environment } from '@env/environment';
 import { IPaginatedData } from '@interfaces/common';
 
@@ -14,9 +17,15 @@ export class MarketLessonsService {
   constructor(private http: HttpClient) {}
 
   public getAll(
-    pagination: { page: number; pageSize: number } = { page: 0, pageSize: 10 }
+    queryParams: IMarketLessonsQueryParams = {
+      page: 0,
+      pageSize: 10,
+      video: true,
+      audio: true,
+      pdf: true,
+    }
   ): Observable<IPaginatedData<IMarketLesson>> {
-    const endpoint = `${this.baseEndpoint}?page=${pagination.page}&pageSize=${pagination.pageSize}`;
+    const endpoint = `${this.baseEndpoint}?page=${queryParams.page}&pageSize=${queryParams.pageSize}&video=${queryParams.video}&audio=${queryParams.audio}&pdf=${queryParams.pdf}`;
     return this.http.get<IPaginatedData<IMarketLesson>>(endpoint);
   }
 
