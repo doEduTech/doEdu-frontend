@@ -12,9 +12,6 @@
 
         <embed *ngIf="lesson.type === 'pdf'" type="application/pdf" [src]="lesson.cid | ipfs | safe" width= "500" height= "375">
       </div>
-      <!-- <div *ngIf="lesson.previewCID" class="lesson__image-container">
-        <img class="lesson__image" [src]="lesson.previewCID | ipfs">
-      </div> -->
       <div class="lesson__basics">
 
         <div class="lesson__header">

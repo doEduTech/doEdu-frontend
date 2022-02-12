@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
@@ -10,6 +10,14 @@ import {
 import { environment } from '@env/environment';
 import { IPaginatedData } from '@interfaces/common';
 
+const defaultQueryParams = {
+  page: 0,
+  pageSize: 10,
+  video: true,
+  audio: true,
+  pdf: true,
+};
+
 @Injectable({ providedIn: 'root' })
 export class MarketLessonsService {
   private baseEndpoint = `${environment.apiUrl}/market/lessons`;
@@ -17,16 +25,14 @@ export class MarketLessonsService {
   constructor(private http: HttpClient) {}
 
   public getAll(
-    queryParams: IMarketLessonsQueryParams = {
-      page: 0,
-      pageSize: 10,
-      video: true,
-      audio: true,
-      pdf: true,
-    }
+    queryParams = defaultQueryParams
   ): Observable<IPaginatedData<IMarketLesson>> {
-    const endpoint = `${this.baseEndpoint}?page=${queryParams.page}&pageSize=${queryParams.pageSize}&video=${queryParams.video}&audio=${queryParams.audio}&pdf=${queryParams.pdf}`;
-    return this.http.get<IPaginatedData<IMarketLesson>>(endpoint);
+    const params = new HttpParams({
+      fromObject: queryParams,
+    });
+    return this.http.get<IPaginatedData<IMarketLesson>>(this.baseEndpoint, {
+      params,
+    });
   }
 
   public get(lessonId: string): Observable<IMarketLesson> {
