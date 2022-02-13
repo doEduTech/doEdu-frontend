@@ -1,5 +1,5 @@
 <section class="view mat-elevation-z2">
-  <h3 class="view__title">{{ lessonId ? 'Edit lesson' : 'Create new lesson' }}</h3>
+  <h2 class="view__title">{{ lessonId ? 'Edit lesson' : 'Create new lesson' }}</h2>
   <form [formGroup]="form">
     <div class="form__basics">
       <div class="form__basics-preview">
@@ -22,9 +22,11 @@
           <mat-form-field>
             <mat-label>Title</mat-label>
             <input matInput placeholder="Title" autocomplete="off" formControlName="title">
-            <p *ngIf="form.errors?.required && form.dirty" class="error">This field is required</p>
-            <p class="error">Title can not be longer than 50 characters (currently: {{ form.value?.title.length }} characters)</p>
           </mat-form-field>
+          <ng-container *ngIf="titleFormControl.errors as errors">
+            <p *ngIf="errors.required && form.dirty" class="error">This field is required</p>
+            <p *ngIf="errors.maxlength && form.dirty" class="error">Title can not be longer than 50 characters (currently: {{ titleFormControl.value.length }} characters)</p>
+          </ng-container>
 
           <mat-form-field>
             <mat-label>Description</mat-label>
@@ -35,6 +37,7 @@
                 cdkAutosizeMaxRows="5"
                 formControlName="description"></textarea>
           </mat-form-field>
+          <p *ngIf="descriptionFormControl.errors?.maxlength && form.dirty" class="error">Description can not be longer than 500 characters (currently: {{ descriptionFormControl.value.length }} characters)</p>
 
           <div *ngIf="!lesson">
             <button mat-stroked-button (click)="addAttachment()" class="attachement-btn" matTooltip=".mp3 / .mp4 / .pdf">
@@ -73,7 +76,7 @@
               <p class="lesson__ipfs-text"><span class="bolder">Type:</span> {{ lesson.type }}</p>
               <div class="lesson__ipfs-id">
                 <p class="lesson__ipfs-text"><span class="bolder">Interplanetary File System (IPFS) content file address:</span> {{ lesson.cid }}</p>
-                <button mat-stroked-button color="primary" (click)="displayCopyingConfirmation($event)" [cdkCopyToClipboard]="lesson.cid" matTooltip="Copy to clipboard"><mat-icon>file_copy</mat-icon></button>
+                <button mat-stroked-button color="primary" (click)="displayCopyingConfirmation()" [cdkCopyToClipboard]="lesson.cid" matTooltip="Copy to clipboard"><mat-icon>file_copy</mat-icon></button>
               </div>
             </div>
           </div>

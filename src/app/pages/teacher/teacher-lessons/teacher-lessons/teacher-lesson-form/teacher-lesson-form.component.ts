@@ -1,6 +1,11 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 import {
   ITeacherLesson,
@@ -29,8 +34,16 @@ export class TeacherLessonFormComponent implements OnInit {
 
   public form = new FormGroup({
     title: new FormControl('', [Validators.required, Validators.maxLength(50)]),
-    description: new FormControl(),
+    description: new FormControl('', Validators.maxLength(500)),
   });
+
+  public get titleFormControl(): AbstractControl {
+    return <AbstractControl>this.form.get('title');
+  }
+
+  public get descriptionFormControl(): AbstractControl {
+    return <AbstractControl>this.form.get('description');
+  }
 
   public get lessonId(): string {
     return this.activatedRoute.snapshot.params.lessonId;
@@ -51,14 +64,19 @@ export class TeacherLessonFormComponent implements OnInit {
 
   public createLesson(): void {
     const formData = this.form.value;
+    this.form.markAsDirty();
 
-    if (this.form.valid && this.lessonContentFile) {
-      this.teacherLessonsService
-        .create(this.lessonContentFile, this.previewFile, formData)
-        .subscribe(() => {
-          this.proceedSuccess();
-        });
-    } else {
+    if (this.form.valid) {
+      if (this.lessonContentFile) {
+        this.teacherLessonsService
+          .create(this.lessonContentFile, this.previewFile, formData)
+          .subscribe(() => {
+            this.proceedSuccess();
+          });
+      } else {
+        this.showFileError = true;
+      }
+    } else if (!this.lessonContentFile) {
       this.showFileError = true;
     }
   }
@@ -133,7 +151,7 @@ export class TeacherLessonFormComponent implements OnInit {
     }
   }
 
-  public displayCopyingConfirmation(event: Event): void {
+  public displayCopyingConfirmation(): void {
     this.snackBarService.openSnackBar('IPFS file id copied', 'success');
   }
 

@@ -30,7 +30,7 @@
         </a>
       </mat-card>
     </div>
-    <div class="pagination">
+    <div *ngIf="recordsCount; else welcomeMessage" class="pagination">
       <mat-paginator
         [length]="recordsCount"
         [pageSize]="pageSize"
@@ -40,5 +40,8 @@
         aria-label="Select page">
       </mat-paginator>
     </div>
+    <ng-template #welcomeMessage>
+      <h1 class="welcome-message">Let's do it!</h1>
+    </ng-template>
   </div>
 </section>
