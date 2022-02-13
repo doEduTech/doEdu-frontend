@@ -1,12 +1,25 @@
 <section class="view">
   <div class="lesson mat-elevation-z2">
     <ng-container *ngIf="lesson">
-      <div *ngIf="lesson.previewCID" class="lesson__image-container">
-        <img class="lesson__image" [src]="lesson.previewCID | ipfs">
+      <div class="lesson__content-preview">
+        <audio controls *ngIf="lesson.type === 'audio'">
+          <source [src]="lesson.cid | ipfs" type="audio/ogg">
+        </audio>
+
+        <video *ngIf="lesson.type === 'video'" width="320" height="240" controls>
+          <source [src]="lesson.cid | ipfs" type="video/mp4">
+        </video>
+
+        <embed *ngIf="lesson.type === 'pdf'" type="application/pdf" [src]="lesson.cid | ipfs | safe" width= "500" height= "375">
       </div>
       <div class="lesson__basics">
-        <h1 class="lesson__title">{{ lesson.title }}</h1>
+
+        <div class="lesson__header">
+          <img *ngIf="lesson.previewCID" mat-card-avatar class="lesson__image" [src]="lesson.previewCID | ipfs">
+          <h1>{{ lesson.title }}</h1>
+        </div>
         <h2 class="lesson__subheader">Author: {{ lesson.author.email }}</h2>
+        <h2 class="lesson__subheader">Type: {{ lesson.type }}</h2>
         <h2 class="lesson__subheader">Price: {{ lesson.price || 'Free' }}</h2>
         <div *ngIf="authService.hasValidAccessToken" class="action-buttons">
           <button *ngIf="lesson && !lesson.price; else purchaseButton" mat-stroked-button color="primary" class="tip-btn" (click)="openTippingDialog()">
@@ -23,6 +36,7 @@
         </div>
         <p>{{ lesson.description }}</p>
       </div>
+
     </ng-container>
   </div>
 </section>

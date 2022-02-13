@@ -1,18 +1,16 @@
 .view {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   width: 90%;
   margin: 0 auto;
+  display: flex;
+  padding-top: 15px;
 }
 
 .lessons-list {
+  justify-content: center;
   padding: 20px;
   display: flex;
   gap: 35px;
   flex-wrap: wrap;
-  justify-content: center;
 }
 
 .lesson-card {
@@ -57,4 +55,8 @@
 
 .pagination {
   margin-bottom: 20px;
+
+   ::ng-deep div.mat-paginator-container {
+    justify-content: center;
+  }
 }

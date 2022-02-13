@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 
+import { SnackBarService } from '@services/shared/snack-bar.service';
 import { ITeacherLesson } from '@interfaces/teacher/teacher-lesson.interface';
 import { TeacherLessonsService } from '@services/api/teacher/teacher-lessons.service';
 
@@ -16,7 +17,10 @@ export class TeacherLessonsComponent implements OnInit {
 
   public lessons: ITeacherLesson[] | undefined;
 
-  constructor(private teacherLessonsService: TeacherLessonsService) {}
+  constructor(
+    private teacherLessonsService: TeacherLessonsService,
+    private snackBarService: SnackBarService
+  ) {}
 
   ngOnInit(): void {
     this.loadLessons();
@@ -30,6 +34,12 @@ export class TeacherLessonsComponent implements OnInit {
     }
     this.pageSize = paginatorEvent.pageSize;
     this.loadLessons();
+  }
+
+  public displayCopyingConfirmation(event: Event): void {
+    event.preventDefault();
+    event.stopPropagation();
+    this.snackBarService.openSnackBar('IPFS file id copied', 'success');
   }
 
   private loadLessons(): void {

@@ -58,7 +58,7 @@ form {
     }
   }
 
-  .form__basics-inputs {
+  .form__basics-inputs, .form__data {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -66,3 +66,37 @@ form {
   }
 }
 
+.permanent-data {
+  margin-top: 20px;
+
+  .permanent-data__details {
+    display: flex;
+  }
+
+  .permanent-data__divider {
+    margin-bottom: 20px;
+  }
+
+  .permanent-data__content-preview {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.lesson__ipfs {
+  flex-direction: column;
+  padding: 10px;
+  display: flex;
+
+  .lesson__ipfs-text {
+    margin: 10px 15px 0 0;
+  }
+
+  .lesson__ipfs-id {
+    display: flex;
+  }
+}
+
+.bolder {
+  font-weight: 500;
+}

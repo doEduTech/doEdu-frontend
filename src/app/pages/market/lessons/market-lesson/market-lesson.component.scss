@@ -6,8 +6,20 @@
   display: flex;
   padding: 20px;
 
-  .lesson__title {
+  .lesson__image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    object-fit: cover;
+    margin-right: 20px;
+  }
+
+  .lesson__header {
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
   }
 
   .lesson__subheader {
@@ -29,6 +41,11 @@
       width: 100%;
       max-height: 400px;
     }
+  }
+
+  .lesson__content-preview {
+    display: flex;
+    align-items: center;
   }
 }
 

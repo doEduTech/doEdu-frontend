@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
 import { environment } from '@env/environment';
 import {
   ITeacherLesson,
-  ITeacherLessonForm,
+  ITeacherLessonCreationForm,
+  ITeacherLessonUpdateForm,
 } from '@interfaces/teacher/teacher-lesson.interface';
 import { IPaginatedData } from '@interfaces/common';
 
@@ -19,7 +20,7 @@ export class TeacherLessonsService {
   public create(
     contentFile: File,
     previewFile: File | null = null,
-    restData: ITeacherLessonForm
+    restData: ITeacherLessonCreationForm
   ): Observable<ITeacherLesson> {
     const formData = new FormData();
     formData.append('content', contentFile, contentFile.name);
@@ -34,6 +35,31 @@ export class TeacherLessonsService {
     }
 
     return this.http.post<ITeacherLesson>(this.baseEndpoint, formData);
+  }
+
+  public update(
+    lessonId: string,
+    data: ITeacherLessonUpdateForm
+  ): Observable<ITeacherLesson> {
+    const formData = new FormData();
+    if (data.hasOwnProperty('title')) {
+      formData.append('title', <string>data.title);
+    }
+
+    if (data.hasOwnProperty('previewFile')) {
+      if (data.previewFile) {
+        formData.append('preview', data.previewFile, data.previewFile.name);
+      } else {
+        formData.append('preview', '');
+      }
+    }
+
+    if (data.hasOwnProperty('description')) {
+      formData.append('description', <string>data.description);
+    }
+
+    const endpoint = `${this.baseEndpoint}/${lessonId}`;
+    return this.http.put<ITeacherLesson>(endpoint, formData);
   }
 
   public getAll(
