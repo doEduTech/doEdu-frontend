@@ -8,7 +8,6 @@ import {
 } from '@interfaces/teacher/teacher-lesson.interface';
 import { SnackBarService } from '@services/shared/snack-bar.service';
 import { TeacherLessonsService } from '@services/api/teacher/teacher-lessons.service';
-import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-teacher-lesson-form',
@@ -29,7 +28,7 @@ export class TeacherLessonFormComponent implements OnInit {
   public isPreviewFileChanged = false;
 
   public form = new FormGroup({
-    title: new FormControl('', Validators.required),
+    title: new FormControl('', [Validators.required, Validators.maxLength(50)]),
     description: new FormControl(),
   });
 
@@ -109,6 +108,8 @@ export class TeacherLessonFormComponent implements OnInit {
 
   public updateLesson(): void {
     const formData = this.form.value;
+
+    this.form.markAsDirty();
 
     if (this.lesson && this.form.valid) {
       const formTitle = formData.title;

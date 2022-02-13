@@ -4,13 +4,12 @@ import { ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 import { BlockchainService } from '@services/api/blockchain.service';
-import { AuthService } from '@services/auth.service';
 import { IMarketLesson } from '@interfaces/market/course.interface';
 import { PurchaseForSelfDialogService } from '@services/shared/purchase-for-self-dialog.service';
 import { TippingModalService } from '@services/shared/tipping-dialog.service';
 import { SnackBarService } from '@services/shared/snack-bar.service';
 import { MarketLessonsService } from '@services/api/market/market-lessons.service';
-import { PassphraseAuthorizationDialogService } from '@app/_services/shared/passphrase-authoization-dialog.service';
+import { PassphraseAuthorizationDialogService } from '@services/shared/passphrase-authoization-dialog.service';
 
 @Component({
   selector: 'app-market-lesson',
@@ -25,7 +24,6 @@ export class MarketLessonComponent implements OnInit {
   }
 
   constructor(
-    public authService: AuthService,
     private activatedRoute: ActivatedRoute,
     private marketLessonsService: MarketLessonsService,
     private tippingModalService: TippingModalService,
@@ -62,7 +60,7 @@ export class MarketLessonComponent implements OnInit {
     }
   }
 
-  public openPurchaseForSelfDialog() {
+  public openPurchaseDialog() {
     this.purchaseForSelfDialogService
       .openDialog({
         type: 'course',

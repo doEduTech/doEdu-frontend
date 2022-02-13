@@ -1,0 +1,47 @@
+.lesson__title {
+  display: flex;
+  align-items: center;
+
+  .lesson__type-icon {
+    margin-right: 10px;
+    color: #03a9f4;
+  }
+}
+
+.lesson__content {
+  display: flex;
+
+
+  .lesson__video {
+    flex: 1;
+    min-height: 70vh;
+  }
+
+  .lesson__type-icon {
+    color:#f44336;
+  }
+
+  .lesson__details {
+    flex: 1;
+    padding: 0 20px;
+  }
+
+  .lesson__description {
+    font-size: 16px;
+  }
+
+  .lesson__metadata {
+    display: flex;
+
+    h3 {
+      margin-right: 20px;
+    }
+  }
+}
+
+.action-buttons {
+  margin-bottom: 20px;
+  .tip-icon {
+    color: #ff3d3d
+  }
+}

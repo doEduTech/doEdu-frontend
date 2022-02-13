@@ -3,7 +3,6 @@
 }
 
 .lesson {
-  display: flex;
   padding: 20px;
 
   .lesson__image {
@@ -13,17 +12,6 @@
     flex-shrink: 0;
     object-fit: cover;
     margin-right: 20px;
-  }
-
-  .lesson__header {
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-
-  .lesson__subheader {
-    font-weight: 400;
   }
 
   .lesson__basics {
@@ -42,11 +30,6 @@
       max-height: 400px;
     }
   }
-
-  .lesson__content-preview {
-    display: flex;
-    align-items: center;
-  }
 }
 
 .rating {
@@ -64,10 +47,6 @@
 .purchase-btn,
 .tip-btn {
   margin-right: 20px;
-}
-
-.tip-icon {
-  color: #ff3d3d
 }
 
 .purchase-btn {

@@ -1,0 +1,27 @@
+<div *ngIf="lesson" class="lesson">
+  <div class="lesson__content">
+    <embed class="lesson__pdf" type="application/pdf" [src]="lesson.cid | ipfs | safe">
+    <div class="lesson__details">
+      <h1 class="lesson__title"><mat-icon class="lesson__type-icon">picture_as_pdf</mat-icon>{{ lesson.title }}</h1>
+      <div class="lesson__metadata">
+        <h3>Author: {{ lesson.author.email }}</h3>
+        <h3>Type: {{ lesson.type }}</h3>
+        <h3>Price: {{ lesson.price || 'Free' }}</h3>
+      </div>
+      <div *ngIf="authService.hasValidAccessToken" class="action-buttons">
+        <button *ngIf="lesson && !lesson.price; else purchaseButton" mat-stroked-button color="primary" class="tip-btn" (click)="emitOpenTippingDialog()">
+          Tip <mat-icon class="tip-icon">favorite</mat-icon>
+        </button>
+        <ng-template #purchaseButton>
+          <button mat-stroked-button color="primary" class="purchase-btn" [matMenuTriggerFor]="purchaseMenu">
+            Purchase <mat-icon class="purchase-icon">shopping_basket</mat-icon>
+            <mat-menu #purchaseMenu="matMenu">
+              <button mat-menu-item (click)="emitOpenPurchaseDialog()">For me</button>
+            </mat-menu>
+        </button>
+        </ng-template>
+      </div>
+      <p class="lesson__description">{{ lesson.description }}</p>
+    </div>
+  </div>
+</div>

@@ -22,6 +22,8 @@
           <mat-form-field>
             <mat-label>Title</mat-label>
             <input matInput placeholder="Title" autocomplete="off" formControlName="title">
+            <p *ngIf="form.errors?.required && form.dirty" class="error">This field is required</p>
+            <p class="error">Title can not be longer than 50 characters (currently: {{ form.value?.title.length }} characters)</p>
           </mat-form-field>
 
           <mat-form-field>
