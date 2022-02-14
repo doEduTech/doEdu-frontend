@@ -56,7 +56,7 @@ export class MarketLessonsComponent implements OnInit {
         pdf: this.filters.pdf,
       })
       .subscribe((val) => {
-        this.recordsCount = val.count;
+        this.recordsCount = Number(val.count);
         this.marketLessons = val.rows;
       });
   }

@@ -1,0 +1,56 @@
+.lesson__title {
+  display: flex;
+  align-items: center;
+
+  .lesson__type-icon {
+    margin-right: 10px;
+    color: #03a9f4;
+  }
+}
+
+.lesson__content {
+  .lesson__description {
+    font-size: 16px;
+  }
+
+  .lesson__basics {
+    display: flex;
+    margin: 15px 0;
+  }
+
+  .lesson__metadata {
+    display: flex;
+
+    h3 {
+      margin-right: 20px;
+    }
+  }
+
+  .lesson__esence {
+    flex: 1;
+  }
+
+  .lesson__details {
+    flex: 4;
+    padding-left: 20px;
+  }
+
+  .lesson__audio {
+    width: 100%;
+  }
+
+  .lesson__audio-icon {
+    color: #66bb6a;
+  }
+}
+
+.action-buttons {
+  padding-top: 15px;
+  .tip-icon {
+    color: #ff3d3d
+  }
+
+  .tip-btn, .putchase-btn {
+    width: 100%;
+  }
+}

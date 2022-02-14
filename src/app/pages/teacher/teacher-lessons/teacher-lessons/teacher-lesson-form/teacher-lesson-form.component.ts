@@ -1,6 +1,11 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 import {
   ITeacherLesson,
@@ -8,7 +13,6 @@ import {
 } from '@interfaces/teacher/teacher-lesson.interface';
 import { SnackBarService } from '@services/shared/snack-bar.service';
 import { TeacherLessonsService } from '@services/api/teacher/teacher-lessons.service';
-import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-teacher-lesson-form',
@@ -29,9 +33,17 @@ export class TeacherLessonFormComponent implements OnInit {
   public isPreviewFileChanged = false;
 
   public form = new FormGroup({
-    title: new FormControl('', Validators.required),
-    description: new FormControl(),
+    title: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+    description: new FormControl('', Validators.maxLength(500)),
   });
+
+  public get titleFormControl(): AbstractControl {
+    return <AbstractControl>this.form.get('title');
+  }
+
+  public get descriptionFormControl(): AbstractControl {
+    return <AbstractControl>this.form.get('description');
+  }
 
   public get lessonId(): string {
     return this.activatedRoute.snapshot.params.lessonId;
@@ -52,14 +64,19 @@ export class TeacherLessonFormComponent implements OnInit {
 
   public createLesson(): void {
     const formData = this.form.value;
+    this.form.markAsDirty();
 
-    if (this.form.valid && this.lessonContentFile) {
-      this.teacherLessonsService
-        .create(this.lessonContentFile, this.previewFile, formData)
-        .subscribe(() => {
-          this.proceedSuccess();
-        });
-    } else {
+    if (this.form.valid) {
+      if (this.lessonContentFile) {
+        this.teacherLessonsService
+          .create(this.lessonContentFile, this.previewFile, formData)
+          .subscribe(() => {
+            this.proceedSuccess();
+          });
+      } else {
+        this.showFileError = true;
+      }
+    } else if (!this.lessonContentFile) {
       this.showFileError = true;
     }
   }
@@ -110,6 +127,8 @@ export class TeacherLessonFormComponent implements OnInit {
   public updateLesson(): void {
     const formData = this.form.value;
 
+    this.form.markAsDirty();
+
     if (this.lesson && this.form.valid) {
       const formTitle = formData.title;
       const formDescription = formData.description;
@@ -132,7 +151,7 @@ export class TeacherLessonFormComponent implements OnInit {
     }
   }
 
-  public displayCopyingConfirmation(event: Event): void {
+  public displayCopyingConfirmation(): void {
     this.snackBarService.openSnackBar('IPFS file id copied', 'success');
   }
 

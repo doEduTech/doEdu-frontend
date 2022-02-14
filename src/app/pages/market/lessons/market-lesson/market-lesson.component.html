@@ -1,42 +1,9 @@
 <section class="view">
   <div class="lesson mat-elevation-z2">
     <ng-container *ngIf="lesson">
-      <div class="lesson__content-preview">
-        <audio controls *ngIf="lesson.type === 'audio'">
-          <source [src]="lesson.cid | ipfs" type="audio/ogg">
-        </audio>
-
-        <video *ngIf="lesson.type === 'video'" width="320" height="240" controls>
-          <source [src]="lesson.cid | ipfs" type="video/mp4">
-        </video>
-
-        <embed *ngIf="lesson.type === 'pdf'" type="application/pdf" [src]="lesson.cid | ipfs | safe" width= "500" height= "375">
-      </div>
-      <div class="lesson__basics">
-
-        <div class="lesson__header">
-          <img *ngIf="lesson.previewCID" mat-card-avatar class="lesson__image" [src]="lesson.previewCID | ipfs">
-          <h1>{{ lesson.title }}</h1>
-        </div>
-        <h2 class="lesson__subheader">Author: {{ lesson.author.email }}</h2>
-        <h2 class="lesson__subheader">Type: {{ lesson.type }}</h2>
-        <h2 class="lesson__subheader">Price: {{ lesson.price || 'Free' }}</h2>
-        <div *ngIf="authService.hasValidAccessToken" class="action-buttons">
-          <button *ngIf="lesson && !lesson.price; else purchaseButton" mat-stroked-button color="primary" class="tip-btn" (click)="openTippingDialog()">
-            Tip <mat-icon class="tip-icon">favorite</mat-icon>
-          </button>
-          <ng-template #purchaseButton>
-            <button mat-stroked-button color="primary" class="purchase-btn" [matMenuTriggerFor]="purchaseMenu">
-              Purchase <mat-icon class="purchase-icon">shopping_basket</mat-icon>
-              <mat-menu #purchaseMenu="matMenu">
-                <button mat-menu-item (click)="openPurchaseForSelfDialog()">For me</button>
-            </mat-menu>
-            </button>
-          </ng-template>
-        </div>
-        <p>{{ lesson.description }}</p>
-      </div>
-
+      <app-market-audio-lesson (openTippingDialog)="openTippingDialog()" *ngIf="lesson.type === 'audio'" [lesson]="lesson"></app-market-audio-lesson>
+      <app-market-pdf-lesson (openTippingDialog)="openTippingDialog()" *ngIf="lesson.type === 'pdf'" [lesson]="lesson"></app-market-pdf-lesson>
+      <app-market-video-lesson (openTippingDialog)="openTippingDialog()" *ngIf="lesson.type === 'video'" [lesson]="lesson"></app-market-video-lesson>
     </ng-container>
   </div>
 </section>

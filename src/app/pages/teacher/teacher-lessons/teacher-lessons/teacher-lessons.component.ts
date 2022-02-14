@@ -46,7 +46,7 @@ export class TeacherLessonsComponent implements OnInit {
     this.teacherLessonsService
       .getAll({ page: this.pageNumber, pageSize: this.pageSize })
       .subscribe((val) => {
-        this.recordsCount = val.count;
+        this.recordsCount = Number(val.count);
         this.lessons = val.rows;
       });
   }
