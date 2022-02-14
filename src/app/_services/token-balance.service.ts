@@ -48,7 +48,7 @@ export class TokenBalanceService {
   private subcribeBlochainAccountChange(): void {
     this.accountSub = this.blockchainTransactionsGatewayService.currentAccountData.subscribe(
       (val: IBlockchainAccountStructure | undefined) => {
-        if (val !== undefined) {
+        if (val !== undefined && val !== null) {
           this.tokenBalance$.next(val.token.balance);
         }
       }

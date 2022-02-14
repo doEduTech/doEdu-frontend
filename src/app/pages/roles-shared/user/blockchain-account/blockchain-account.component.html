@@ -61,6 +61,15 @@
       <button mat-button mat-raised-button color="primary" (click)="initializeBlockchainAccount()">Initialize blockchain account</button>
     </div>
     <div *ngIf="account" class="account-credentials">
+      <button
+        class="copy-button"
+        [disabled]="!showCredentials"
+        mat-stroked-button
+        color="primary"
+        [cdkCopyToClipboard]="formPassphrase"
+        matTooltip="Copy passphrase"
+        (click)="displayCopyingConfirmation($event)"
+        ><mat-icon>file_copy</mat-icon></button>
       <p>Address: <span class="account-credentials__value">{{ account.address }}</span></p>
       <p>Human-readable address: <span class="account-credentials__value">{{ account.humanReadableAddress }}</span></p>
       <p>Public key: <span class="account-credentials__value">{{ account.publicKey }}</span></p>

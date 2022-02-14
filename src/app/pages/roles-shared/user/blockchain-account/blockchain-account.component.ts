@@ -30,6 +30,10 @@ export class BlockchainAccountComponent {
     word11: new FormControl('', Validators.required),
   });
 
+  public get formPassphrase(): string {
+    return Object.values(this.form.value).join(' ');
+  }
+
   constructor(
     public authService: AuthService,
     private blockchainService: BlockchainService,
@@ -62,6 +66,15 @@ export class BlockchainAccountComponent {
 
   public clearForm(): void {
     this.form.reset();
+  }
+
+  public displayCopyingConfirmation(event: Event): void {
+    event.preventDefault();
+    event.stopPropagation();
+    this.snackBarService.openSnackBar(
+      'Passphrase copied to the clipboard',
+      'success'
+    );
   }
 
   private setPassphrases(mnemonic: string): void {
