@@ -43,24 +43,12 @@ export class MarketLessonComponent implements OnInit {
         .openDialog({ recipient: this.lesson.author })
         .pipe(filter((val) => val.confirmed && !!val.amount))
         .subscribe((val) => {
-          this.passphraseAuthorizationDialogService
-            .openDialog()
-            .subscribe((passphrase) => {
-              this.blockchainService
-                .transferTokens(
-                  (<IMarketLesson>this.lesson).author.id,
-                  <number>val.amount,
-                  passphrase
-                )
-                .subscribe(() => {
-                  this.snackBarService.openSnackBar('Tip given', 'success');
-                });
-            });
+          this.openAuthorizationDialog(<number>val.amount);
         });
     }
   }
 
-  public openPurchaseDialog() {
+  public openPurchaseDialog(): void {
     this.purchaseForSelfDialogService
       .openDialog({
         type: 'course',
@@ -74,9 +62,27 @@ export class MarketLessonComponent implements OnInit {
       });
   }
 
+  private openAuthorizationDialog(amount: number): void {
+    this.passphraseAuthorizationDialogService
+      .openDialog()
+      .subscribe((passphrase) => {
+        this.transferTokens(amount, passphrase);
+      });
+  }
+
+  private transferTokens(amount: number, passphrase: string): void {
+    this.blockchainService
+      .transferTokens(
+        (<IMarketLesson>this.lesson).author.id,
+        amount,
+        passphrase
+      )
+      .subscribe(() => {
+        this.snackBarService.openSnackBar('Tip given', 'success');
+      });
+  }
+
   private handlePurchaseSuccess(price: number): void {
-    // this.tokenBalanceService.subtract(price);
-    // TODO: use blockchain acitions
     this.snackBarService.openSnackBar('Course purchased', 'success');
   }
 

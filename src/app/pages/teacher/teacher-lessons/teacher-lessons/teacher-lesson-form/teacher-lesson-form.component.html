@@ -48,7 +48,7 @@
             <span *ngIf="showFileError" class="error">File is required</span>
           </div>
 
-          <mat-checkbox *ngIf="!lesson" [checked]="true" [disabled]="true">Immediately NFT creation</mat-checkbox>
+          <mat-checkbox *ngIf="!lesson" formControlName="createNFT" [checked]="true" [disabled]="true">Immediately NFT creation</mat-checkbox>
 
           <div class="form-actions-btns">
             <button *ngIf="!lessonId; else editButton" color="primary" mat-raised-button (click)="createLesson()">Create</button>

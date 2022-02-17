@@ -35,6 +35,7 @@ export class TeacherLessonFormComponent implements OnInit {
   public form = new FormGroup({
     title: new FormControl('', [Validators.required, Validators.maxLength(50)]),
     description: new FormControl('', Validators.maxLength(500)),
+    createNFT: new FormControl(true),
   });
 
   public get titleFormControl(): AbstractControl {
@@ -63,22 +64,25 @@ export class TeacherLessonFormComponent implements OnInit {
   }
 
   public createLesson(): void {
-    const formData = this.form.value;
     this.form.markAsDirty();
 
-    if (this.form.valid) {
-      if (this.lessonContentFile) {
-        this.teacherLessonsService
-          .create(this.lessonContentFile, this.previewFile, formData)
-          .subscribe(() => {
-            this.proceedSuccess();
-          });
-      } else {
-        this.showFileError = true;
-      }
+    if (this.form.valid && this.lessonContentFile) {
+      this.saveLesson();
     } else if (!this.lessonContentFile) {
       this.showFileError = true;
     }
+  }
+
+  private saveLesson(): void {
+    this.teacherLessonsService
+      .create(<File>this.lessonContentFile, this.previewFile, {
+        title: this.form.value.title,
+        description: this.form.value.description,
+        createNFT: this.form.value.createNFT,
+      })
+      .subscribe(() => {
+        this.proceedSuccess();
+      });
   }
 
   private proceedSuccess(): void {

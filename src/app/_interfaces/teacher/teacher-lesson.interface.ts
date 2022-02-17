@@ -11,6 +11,7 @@ export interface ITeacherLesson {
 export interface ITeacherLessonCreationForm {
   title: string;
   description?: string;
+  createNFT: boolean;
 }
 
 export interface ITeacherLessonUpdateForm {
