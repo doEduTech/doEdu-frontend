@@ -6,6 +6,7 @@ export interface ITeacherLesson {
   description?: string;
   previewCID?: string;
   type?: TeacherLessonType;
+  nft?: string;
 }
 
 export interface ITeacherLessonCreationForm {
