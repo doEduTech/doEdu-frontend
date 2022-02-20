@@ -3,10 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import {
-  IMarketLesson,
-  IMarketLessonsQueryParams,
-} from '@app/_interfaces/market/market-lesson.interface';
+import { IMarketLesson } from '@interfaces/market/market-lesson.interface';
 import { environment } from '@env/environment';
 import { IPaginatedData } from '@interfaces/common';
 

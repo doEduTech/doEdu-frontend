@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 import { BlockchainService } from '@services/api/blockchain.service';
-import { IMarketLesson } from '@app/_interfaces/market/market-lesson.interface';
+import { IMarketLesson } from '@interfaces/market/market-lesson.interface';
 import { PurchaseForSelfDialogService } from '@services/shared/purchase-for-self-dialog.service';
 import { TippingModalService } from '@services/shared/tipping-dialog.service';
 import { SnackBarService } from '@services/shared/snack-bar.service';
