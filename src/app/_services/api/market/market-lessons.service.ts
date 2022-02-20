@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import {
   IMarketLesson,
   IMarketLessonsQueryParams,
-} from '@interfaces/market/course.interface';
+} from '@app/_interfaces/market/market-lesson.interface';
 import { environment } from '@env/environment';
 import { IPaginatedData } from '@interfaces/common';
 
@@ -38,5 +38,15 @@ export class MarketLessonsService {
   public get(lessonId: string): Observable<IMarketLesson> {
     const endpoint = `${this.baseEndpoint}/${lessonId}`;
     return this.http.get<IMarketLesson>(endpoint);
+  }
+
+  public like(lessonId: string): Observable<IMarketLesson> {
+    const endpoint = `${this.baseEndpoint}/${lessonId}/like`;
+    return this.http.post<IMarketLesson>(endpoint, null);
+  }
+
+  public unlike(lessonId: string): Observable<IMarketLesson> {
+    const endpoint = `${this.baseEndpoint}/${lessonId}/like`;
+    return this.http.delete<IMarketLesson>(endpoint);
   }
 }

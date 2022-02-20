@@ -10,6 +10,7 @@ export interface IMarketLesson {
   };
   price: number;
   cid: string;
+  liked?: boolean;
 }
 
 export interface IMarketLessonsQueryParams {

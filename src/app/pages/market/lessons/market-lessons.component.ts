@@ -5,7 +5,7 @@ import { MarketLessonsService } from '@services/api/market/market-lessons.servic
 import {
   IMarketLesson,
   IMarketLessonFilters,
-} from '@interfaces/market/course.interface';
+} from '@app/_interfaces/market/market-lesson.interface';
 
 @Component({
   selector: 'app-market-lessons',
