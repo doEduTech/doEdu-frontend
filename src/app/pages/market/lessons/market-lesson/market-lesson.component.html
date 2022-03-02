@@ -1,9 +1,9 @@
 <section class="view">
   <div class="lesson mat-elevation-z2">
     <ng-container *ngIf="lesson">
-      <app-market-audio-lesson (openTippingDialog)="openTippingDialog()" *ngIf="lesson.type === 'audio'" [lesson]="lesson"></app-market-audio-lesson>
-      <app-market-pdf-lesson (openTippingDialog)="openTippingDialog()" *ngIf="lesson.type === 'pdf'" [lesson]="lesson"></app-market-pdf-lesson>
-      <app-market-video-lesson (openTippingDialog)="openTippingDialog()" *ngIf="lesson.type === 'video'" [lesson]="lesson"></app-market-video-lesson>
+      <app-market-audio-lesson (openTippingDialog)="openTippingDialog()" (like)="handleLikeLessonEvent()" *ngIf="lesson.type === 'audio'" [lesson]="lesson"></app-market-audio-lesson>
+      <app-market-pdf-lesson (openTippingDialog)="openTippingDialog()" (like)="handleLikeLessonEvent()" *ngIf="lesson.type === 'pdf'" [lesson]="lesson"></app-market-pdf-lesson>
+      <app-market-video-lesson (openTippingDialog)="openTippingDialog()" (like)="handleLikeLessonEvent()" *ngIf="lesson.type === 'video'" [lesson]="lesson"></app-market-video-lesson>
     </ng-container>
   </div>
 </section>

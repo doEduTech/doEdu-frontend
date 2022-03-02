@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { AuthService } from '@services/auth.service';
-import { IMarketLesson } from '@interfaces/market/course.interface';
+import { IMarketLesson } from '@interfaces/market/market-lesson.interface';
 
 @Component({
   selector: 'app-market-audio-lesson',
@@ -15,6 +15,9 @@ export class MarketAudioLessonComponent {
   @Output()
   public openPurchaseDialog: EventEmitter<string> = new EventEmitter();
 
+  @Output()
+  public like: EventEmitter<string> = new EventEmitter();
+
   @Input() public lesson: IMarketLesson | undefined;
 
   constructor(public authService: AuthService) {}
@@ -25,5 +28,11 @@ export class MarketAudioLessonComponent {
 
   public emitOpenPurchaseDialog() {
     this.openPurchaseDialog.emit();
+  }
+
+  public emitLike() {
+    if (this.authService.hasValidAccessToken) {
+      this.like.emit();
+    }
   }
 }

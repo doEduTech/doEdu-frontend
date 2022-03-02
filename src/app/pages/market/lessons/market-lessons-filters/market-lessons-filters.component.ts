@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
 
-import { IMarketLessonFilters } from '@interfaces/market/course.interface';
+import { IMarketLessonFilters } from '@interfaces/market/market-lesson.interface';
 
 @Component({
   selector: 'app-market-lessons-filters',

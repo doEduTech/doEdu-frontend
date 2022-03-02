@@ -6,18 +6,38 @@
         <audio class="lesson__audio" controls controlsList="nodownload">
           <source [src]="lesson.cid | ipfs" type="audio/ogg">
         </audio>
-        <div *ngIf="authService.hasValidAccessToken" class="action-buttons">
-          <button *ngIf="lesson && !lesson.price; else purchaseButton" mat-stroked-button color="primary" class="tip-btn" (click)="emitOpenTippingDialog()">
-            Tip <mat-icon class="tip-icon">favorite</mat-icon>
+        <div class="action-buttons">
+          <button
+            mat-stroked-button
+            color="primary"
+            class="like-btn"
+            [matTooltip]="authService.hasValidAccessToken ? 'Like this' : 'To like this lesson you have to sign in'"
+            (click)="emitLike()">
+            {{ lesson.liked ? 'Liked' : 'Like' }} <mat-icon>thumb_up</mat-icon></button>
+          <button
+            *ngIf="lesson && !lesson.price; else purchaseButton"
+            mat-stroked-button
+            color="primary"
+            class="tip-btn"
+            [matTooltip]="authService.hasValidAccessToken ? 'Give a tip' : 'To give a tip you have to sign in'"
+            (click)="emitOpenTippingDialog()">
+              Tip <mat-icon class="tip-icon">favorite</mat-icon>
           </button>
           <ng-template #purchaseButton>
-            <button mat-stroked-button color="primary" class="purchase-btn" [matMenuTriggerFor]="purchaseMenu">
+            <button
+              mat-stroked-button
+              color="primary"
+              class="purchase-btn"
+              [matMenuTriggerFor]="purchaseMenu"
+              [matTooltip]="authService.hasValidAccessToken ? 'Purchase' : 'To purchase a lesson you have to sign in'"
+              [matTooltipDisabled]="authService.hasValidAccessToken"
+              >
               Purchase <mat-icon class="purchase-icon">shopping_basket</mat-icon>
               <mat-menu #purchaseMenu="matMenu">
                 <button mat-menu-item (click)="emitOpenPurchaseDialog()">For me</button>
               </mat-menu>
-          </button>
-        </ng-template>
+            </button>
+          </ng-template>
         </div>
       </div>
       <div class="lesson__details">

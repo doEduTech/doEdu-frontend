@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 import { BlockchainService } from '@services/api/blockchain.service';
-import { IMarketLesson } from '@interfaces/market/course.interface';
+import { IMarketLesson } from '@interfaces/market/market-lesson.interface';
 import { PurchaseForSelfDialogService } from '@services/shared/purchase-for-self-dialog.service';
 import { TippingModalService } from '@services/shared/tipping-dialog.service';
 import { SnackBarService } from '@services/shared/snack-bar.service';
@@ -60,6 +60,14 @@ export class MarketLessonComponent implements OnInit {
     }
   }
 
+  public handleLikeLessonEvent(): void {
+    if (this.lesson?.liked) {
+      this.unlikeLesson();
+    } else {
+      this.likeLesson();
+    }
+  }
+
   public openPurchaseDialog() {
     this.purchaseForSelfDialogService
       .openDialog({
@@ -71,6 +79,30 @@ export class MarketLessonComponent implements OnInit {
       .pipe(filter((val) => val.confirmed && !!val.amount))
       .subscribe((val) => {
         this.handlePurchaseSuccess(<number>val.amount);
+      });
+  }
+
+  private likeLesson(): void {
+    this.marketLessonsService
+      .like((<IMarketLesson>this.lesson).id)
+      .subscribe(() => {
+        this.lesson = {
+          ...(<IMarketLesson>this.lesson),
+          liked: true,
+        };
+        this.snackBarService.openSnackBar('Lesson liked', 'success');
+      });
+  }
+
+  private unlikeLesson(): void {
+    this.marketLessonsService
+      .unlike((<IMarketLesson>this.lesson).id)
+      .subscribe(() => {
+        this.lesson = {
+          ...(<IMarketLesson>this.lesson),
+          liked: false,
+        };
+        this.snackBarService.openSnackBar('Lesson unliked', 'success');
       });
   }
 
