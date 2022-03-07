@@ -1,0 +1,17 @@
+<section>
+   <mat-card *ngFor="let lesson of lessons" class="lesson" (click)="redirectToLesson(lesson.lessonId)">
+     <img *ngIf="lesson.previewCID" mat-card-avatar class="lesson__image" [src]="lesson.previewCID | ipfs">
+     <div class="lesson__description">
+       <div mat-line>{{ lesson.title }}</div>
+       <div mat-line> {{lesson.created | date}} </div>
+     </div>
+   </mat-card>
+    <mat-paginator
+      [length]="recordsCount"
+      [pageSize]="pageSize"
+      [pageIndex]="pageNumber"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      (page)="loadRecords($event)"
+      aria-label="Select page">
+    </mat-paginator>
+</section>

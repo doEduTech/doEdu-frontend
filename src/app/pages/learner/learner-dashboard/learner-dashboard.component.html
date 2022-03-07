@@ -1,1 +1,13 @@
-<p>learner-dashboard works!</p>
+<section class="view">
+  <h2>Lessons</h2>
+  <mat-tab-group mat-align-tabs="start">
+    <mat-tab label="Liked">
+        <app-learner-liked-lessons></app-learner-liked-lessons>
+    </mat-tab>
+    <mat-tab label="Tipped" [disabled]="true">
+        <app-learner-tipped-lessons></app-learner-tipped-lessons>
+    </mat-tab>
+    <mat-tab label="Bought" [disabled]="true">Bought</mat-tab>
+    <mat-tab label="Done" [disabled]="true">Done</mat-tab>
+  </mat-tab-group>
+</section>
