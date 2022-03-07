@@ -1,8 +1,10 @@
 export interface ILearnerLesson {
-  type: 'audio' | 'video' | 'pdf';
+  type: ILearnerLessonType;
   lessonId: string;
   like_author: string;
   previewCID: string;
   title: string;
   created: string;
 }
+
+export type ILearnerLessonType = 'audio' | 'video' | 'pdf';

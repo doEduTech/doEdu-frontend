@@ -26,7 +26,6 @@ export class LeadnerLikedLessonsComponent implements OnInit {
   }
 
   public redirectToLesson(lessonId: string) {
-    console.log('lessonId', lessonId);
     this.router.navigate(['/market', 'lessons', lessonId]);
   }
 
