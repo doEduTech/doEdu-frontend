@@ -1,0 +1,17 @@
+.lesson {
+  display: flex;
+  cursor: pointer;
+
+  .lesson__image {
+    width: 80px;
+    height: 80px;
+  }
+
+  .lesson__description {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
