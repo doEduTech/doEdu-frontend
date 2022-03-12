@@ -7,6 +7,7 @@ export interface ITeacherLesson {
   previewCID?: string;
   type?: TeacherLessonType;
   nft?: string;
+  nftStatus?: ENFTMintingStatus;
 }
 
 export interface ITeacherLessonCreationForm {
@@ -22,3 +23,9 @@ export interface ITeacherLessonUpdateForm {
 }
 
 export type TeacherLessonType = 'pdf' | 'video' | 'audio';
+
+export enum ENFTMintingStatus {
+  PENDING = 'pending',
+  CONFIRMED = 'confirmed',
+  FAILED = 'failed',
+}

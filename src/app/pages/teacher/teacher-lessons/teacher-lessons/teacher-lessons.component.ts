@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 
 import { SnackBarService } from '@services/shared/snack-bar.service';
-import { ITeacherLesson } from '@interfaces/teacher/teacher-lesson.interface';
+import {
+  ENFTMintingStatus,
+  ITeacherLesson,
+} from '@interfaces/teacher/teacher-lesson.interface';
 import { TeacherLessonsService } from '@services/api/teacher/teacher-lessons.service';
 
 @Component({
@@ -14,6 +17,7 @@ export class TeacherLessonsComponent implements OnInit {
   public pageSize = 10;
   public recordsCount: number | undefined;
   public pageNumber = 0;
+  public ENFTMintingStatus = ENFTMintingStatus;
 
   public lessons: ITeacherLesson[] | undefined;
 
@@ -36,7 +40,13 @@ export class TeacherLessonsComponent implements OnInit {
     this.loadLessons();
   }
 
-  public displayCopyingConfirmation(event: Event): void {
+  public displayNFTCopyingConfirmation(event: Event): void {
+    event.preventDefault();
+    event.stopPropagation();
+    this.snackBarService.openSnackBar('NFT id file id copied', 'success');
+  }
+
+  public displayIPFSCopyingConfirmation(event: Event): void {
     event.preventDefault();
     event.stopPropagation();
     this.snackBarService.openSnackBar('IPFS file id copied', 'success');

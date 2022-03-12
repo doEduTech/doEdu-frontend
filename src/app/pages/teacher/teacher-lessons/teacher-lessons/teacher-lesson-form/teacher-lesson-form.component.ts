@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 
 import {
+  ENFTMintingStatus,
   ITeacherLesson,
   ITeacherLessonUpdateForm,
 } from '@interfaces/teacher/teacher-lesson.interface';
@@ -31,6 +32,7 @@ export class TeacherLessonFormComponent implements OnInit {
   public previewFile: File | undefined;
   public previewSrc: string | undefined;
   public isPreviewFileChanged = false;
+  public ENFTMintingStatus = ENFTMintingStatus;
 
   public form = new FormGroup({
     title: new FormControl('', [Validators.required, Validators.maxLength(50)]),
@@ -155,7 +157,11 @@ export class TeacherLessonFormComponent implements OnInit {
     }
   }
 
-  public displayCopyingConfirmation(): void {
+  public displayNFTCopyingConfirmation(): void {
+    this.snackBarService.openSnackBar('NFT id file id copied', 'success');
+  }
+
+  public displayIPFSCopyingConfirmation(): void {
     this.snackBarService.openSnackBar('IPFS file id copied', 'success');
   }
 

@@ -72,11 +72,32 @@
 
               <embed *ngIf="lesson && lesson.type === 'pdf'" type="application/pdf" [src]="lesson.cid | ipfs | safe" width= "500" height= "375">
             </div>
-            <div class="lesson__ipfs">
-              <p class="lesson__ipfs-text"><span class="bolder">Type:</span> {{ lesson.type }}</p>
-              <div class="lesson__ipfs-id">
-                <p class="lesson__ipfs-text"><span class="bolder">Interplanetary File System (IPFS) content file address:</span> {{ lesson.cid }}</p>
-                <button mat-stroked-button color="primary" (click)="displayCopyingConfirmation()" [cdkCopyToClipboard]="lesson.cid" matTooltip="Copy to clipboard"><mat-icon>file_copy</mat-icon></button>
+
+            <div class="lesson__consts">
+              <p><span class="bolder">Type:</span> {{ lesson.type }}</p>
+              <div class="lesson__nft">
+                <div class="lesson__nft-text">
+                  <span class="bolder">NFT: </span>
+                  <span *ngIf="lesson.nftStatus === ENFTMintingStatus.PENDING" matTooltip="Refresh page after few seconds to see NFT id">PENDING</span>
+                  <span *ngIf="lesson.nftStatus === ENFTMintingStatus.CONFIRMED">{{ lesson.nft }}</span>
+                  <span *ngIf="lesson.nftStatus === ENFTMintingStatus.FAILED">FAILED</span>
+                </div>
+                <button
+                  *ngIf="lesson.nft"
+                  mat-stroked-button
+                  color="primary"
+                  (click)="displayNFTCopyingConfirmation()"
+                  [cdkCopyToClipboard]="lesson.nft"
+                  matTooltip="Copy to clipboard"><mat-icon>file_copy</mat-icon></button>
+              </div>
+              <div class="lesson__ipfs">
+                <div class="lesson__ipfs-text"><span class="bolder">Interplanetary File System (IPFS) content file address:</span> {{ lesson.cid }}</div>
+                <button
+                  mat-stroked-button
+                  color="primary"
+                  (click)="displayIPFSCopyingConfirmation()"
+                  [cdkCopyToClipboard]="lesson.cid"
+                  matTooltip="Copy to clipboard"><mat-icon>file_copy</mat-icon></button>
               </div>
             </div>
           </div>
