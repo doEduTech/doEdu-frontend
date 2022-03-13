@@ -25,6 +25,7 @@ export class TeacherLessonsService {
     const formData = new FormData();
     formData.append('content', contentFile, contentFile.name);
     formData.append('title', restData.title);
+    formData.append('createNFT', restData.createNFT.toString());
 
     if (previewFile) {
       formData.append('preview', previewFile, previewFile.name);

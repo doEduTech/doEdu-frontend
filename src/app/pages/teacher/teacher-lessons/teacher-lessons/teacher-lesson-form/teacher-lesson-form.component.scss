@@ -83,17 +83,18 @@ form {
   }
 }
 
-.lesson__ipfs {
+.lesson__consts {
   flex-direction: column;
   padding: 10px;
   display: flex;
+}
 
-  .lesson__ipfs-text {
-    margin: 10px 15px 0 0;
-  }
-
-  .lesson__ipfs-id {
-    display: flex;
+.lesson__nft, .lesson__ipfs {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  button {
+    margin-left: 15px;
   }
 }
 

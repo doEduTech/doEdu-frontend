@@ -18,14 +18,22 @@
           <div class="lesson__property">
             <p><span class="bolder">Type:</span> {{ lesson.type }}</p>
           </div>
+          <div *ngIf="lesson.nftStatus" class="lesson__property lesson__nft">
+            <p class="lessson__nft-text">
+              <span class="bolder">NFT: </span>
+              <span *ngIf="lesson.nftStatus === EnftMintingStatus.PENDING" matTooltip="Refresh page after few seconds to see NFT id">PENDING</span>
+              <span *ngIf="lesson.nftStatus === EnftMintingStatus.CONFIRMED">{{ lesson.nft }}</span>
+              <span *ngIf="lesson.nftStatus === EnftMintingStatus.FAILED">FAILED</span>
+              <button *ngIf="lesson.nft" mat-stroked-button color="primary" (click)="displayNFTCopyingConfirmation($event)" [cdkCopyToClipboard]="lesson.nft" matTooltip="Copy to clipboard"><mat-icon>file_copy</mat-icon></button>
+            </p>
+          </div>
           <div class="lesson__property lesson__ipfs">
             <p class="lesson__ipfs-text"><span class="bolder">Interplanetary File System (IPFS) content file address:</span> {{ lesson.cid }}</p>
-            <button mat-stroked-button color="primary" (click)="displayCopyingConfirmation($event)" [cdkCopyToClipboard]="lesson.cid" matTooltip="Copy to clipboard"><mat-icon>file_copy</mat-icon></button>
+            <button mat-stroked-button color="primary" (click)="displayIPFSCopyingConfirmation($event)" [cdkCopyToClipboard]="lesson.cid" matTooltip="Copy to clipboard"><mat-icon>file_copy</mat-icon></button>
           </div>
         </mat-card-content>
-        <mat-card-actions>
-        </mat-card-actions>
       </mat-card>
+
       <mat-paginator
         [length]="recordsCount"
         [pageSize]="pageSize"
