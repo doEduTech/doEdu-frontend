@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 
 import {
-  ENFTMintingStatus,
+  EnftMintingStatus,
   ITeacherLesson,
   ITeacherLessonUpdateForm,
 } from '@interfaces/teacher/teacher-lesson.interface';
@@ -32,7 +32,7 @@ export class TeacherLessonFormComponent implements OnInit {
   public previewFile: File | undefined;
   public previewSrc: string | undefined;
   public isPreviewFileChanged = false;
-  public ENFTMintingStatus = ENFTMintingStatus;
+  public EnftMintingStatus = EnftMintingStatus;
 
   public form = new FormGroup({
     title: new FormControl('', [Validators.required, Validators.maxLength(50)]),

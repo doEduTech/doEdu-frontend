@@ -3,7 +3,7 @@ import { PageEvent } from '@angular/material/paginator';
 
 import { SnackBarService } from '@services/shared/snack-bar.service';
 import {
-  ENFTMintingStatus,
+  EnftMintingStatus,
   ITeacherLesson,
 } from '@interfaces/teacher/teacher-lesson.interface';
 import { TeacherLessonsService } from '@services/api/teacher/teacher-lessons.service';
@@ -17,7 +17,7 @@ export class TeacherLessonsComponent implements OnInit {
   public pageSize = 10;
   public recordsCount: number | undefined;
   public pageNumber = 0;
-  public ENFTMintingStatus = ENFTMintingStatus;
+  public EnftMintingStatus = EnftMintingStatus;
 
   public lessons: ITeacherLesson[] | undefined;
 

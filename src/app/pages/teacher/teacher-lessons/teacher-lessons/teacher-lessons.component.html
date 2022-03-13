@@ -21,9 +21,9 @@
           <div *ngIf="lesson.nftStatus" class="lesson__property lesson__nft">
             <p class="lessson__nft-text">
               <span class="bolder">NFT: </span>
-              <span *ngIf="lesson.nftStatus === ENFTMintingStatus.PENDING" matTooltip="Refresh page after few seconds to see NFT id">PENDING</span>
-              <span *ngIf="lesson.nftStatus === ENFTMintingStatus.CONFIRMED">{{ lesson.nft }}</span>
-              <span *ngIf="lesson.nftStatus === ENFTMintingStatus.FAILED">FAILED</span>
+              <span *ngIf="lesson.nftStatus === EnftMintingStatus.PENDING" matTooltip="Refresh page after few seconds to see NFT id">PENDING</span>
+              <span *ngIf="lesson.nftStatus === EnftMintingStatus.CONFIRMED">{{ lesson.nft }}</span>
+              <span *ngIf="lesson.nftStatus === EnftMintingStatus.FAILED">FAILED</span>
               <button *ngIf="lesson.nft" mat-stroked-button color="primary" (click)="displayNFTCopyingConfirmation($event)" [cdkCopyToClipboard]="lesson.nft" matTooltip="Copy to clipboard"><mat-icon>file_copy</mat-icon></button>
             </p>
           </div>
