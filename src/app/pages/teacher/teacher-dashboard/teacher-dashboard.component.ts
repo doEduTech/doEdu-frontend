@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { IHistoryTransaction } from '@app/shared/transactions-history/transactions-history.component';
+import { IHistoryTransaction } from '@interfaces/history-transaction.interface';
 import { TeacherTransactionsHistoryService } from '@services/api/teacher/teacher-transactions-history.service';
 
 @Component({

@@ -8,8 +8,8 @@ import { environment } from '@env/environment';
 import { IHistoryTransaction } from '@interfaces/history-transaction.interface';
 
 @Injectable({ providedIn: 'root' })
-export class TeacherTransactionsHistoryService {
-  private baseEndpoint = `${environment.apiUrl}/teacher/transactions-history`;
+export class LearnerTransactionsHistoryService {
+  private baseEndpoint = `${environment.apiUrl}/learner/transactions-history`;
 
   constructor(private http: HttpClient) {}
 

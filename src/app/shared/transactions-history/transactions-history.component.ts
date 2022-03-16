@@ -2,20 +2,10 @@ import { Component, Input } from '@angular/core';
 
 import { EChartsOption } from 'echarts';
 
-export interface IHistoryTransaction {
-  id: string;
-  timestamp: string;
-  amount: number;
-  type: 'tip' | 'faucet';
-}
-
-export interface IHistoryTransactionWithBalance {
-  id: string;
-  timestamp: Date;
-  amount: number;
-  value: number;
-  type: 'tip' | 'faucet';
-}
+import {
+  IHistoryTransaction,
+  IHistoryTransactionWithBalance,
+} from '@interfaces/history-transaction.interface';
 
 @Component({
   selector: 'app-transactions-history',
@@ -44,7 +34,6 @@ export class TransactionsHistoryComponent {
         type: 'category',
         data: chronologicalBalance.map((el) => el.timestamp),
         axisLabel: {
-          interval: 2,
           formatter: (label: string): string => {
             return new Date(label).toLocaleDateString();
           },
