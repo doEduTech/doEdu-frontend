@@ -158,7 +158,7 @@ export class TeacherLessonFormComponent implements OnInit {
   }
 
   public displayNFTCopyingConfirmation(): void {
-    this.snackBarService.openSnackBar('NFT id file id copied', 'success');
+    this.snackBarService.openSnackBar('NFT id copied', 'success');
   }
 
   public displayIPFSCopyingConfirmation(): void {

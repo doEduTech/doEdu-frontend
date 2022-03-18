@@ -7,6 +7,7 @@ import { LearnerDashboardRoutingModule } from './learner-dashboard-routing.modul
 import { LeadnerLikedLessonsComponent } from './learner-liked-lessons/learner-liked-lessons.component';
 import { LearnerTippedLessonsComponent } from './learner-tipped-lessons/learner-tipped-lessons.component';
 import { PipesModule } from '@pipes/pipes.module';
+import { TransactionsHistoryModule } from '@app/shared/transactions-history/transactions-history.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { PipesModule } from '@pipes/pipes.module';
     CommonModule,
     MaterialModule,
     LearnerDashboardRoutingModule,
+    TransactionsHistoryModule,
   ],
 })
 export class LearnerDashboardModule {}

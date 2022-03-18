@@ -43,7 +43,7 @@ export class TeacherLessonsComponent implements OnInit {
   public displayNFTCopyingConfirmation(event: Event): void {
     event.preventDefault();
     event.stopPropagation();
-    this.snackBarService.openSnackBar('NFT id file id copied', 'success');
+    this.snackBarService.openSnackBar('NFT id copied', 'success');
   }
 
   public displayIPFSCopyingConfirmation(event: Event): void {
