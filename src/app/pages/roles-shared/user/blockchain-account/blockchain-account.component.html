@@ -58,7 +58,7 @@
     <div class="action-buttons" *ngIf="!account">
       <button mat-button mat-stroked-button color="primary" (click)="clearForm()">Clear all</button>
       <button mat-button mat-stroked-button color="primary" (click)="generatePassphrases()">Generate random passphrases</button>
-      <button mat-button mat-raised-button color="primary" (click)="initializeBlockchainAccount()">Initialize blockchain account</button>
+      <button mat-button mat-raised-button color="primary" (click)="initializeBlockchainAccount()" [disabled]="form.invalid">Initialize blockchain account</button>
     </div>
     <div *ngIf="account" class="account-credentials">
       <button
