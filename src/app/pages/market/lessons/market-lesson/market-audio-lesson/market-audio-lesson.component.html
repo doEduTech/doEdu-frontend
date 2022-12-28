@@ -7,11 +7,12 @@
           <source [src]="lesson.cid | ipfs" type="audio/ogg">
         </audio>
         <div class="action-buttons">
+        <ng-container *ngIf="authService.hasValidAccessToken">
           <button
             mat-stroked-button
             color="primary"
             class="like-btn"
-            [matTooltip]="authService.hasValidAccessToken ? 'Like this' : 'To like this lesson you have to sign in'"
+            [matTooltip]="'Like this'"
             (click)="emitLike()">
             {{ lesson.liked ? 'Liked' : 'Like' }} <mat-icon>thumb_up</mat-icon></button>
           <button
@@ -19,9 +20,8 @@
             mat-stroked-button
             color="primary"
             class="tip-btn"
-            [matTooltip]="authService.hasValidAccessToken ? 'Give a tip' : 'To give a tip you have to sign in'"
-            (click)="emitOpenTippingDialog()">
-              Tip <mat-icon class="tip-icon">favorite</mat-icon>
+            [matTooltip]="'Give a tip'"
+            (click)="emitOpenTippingDialog()">Tip <mat-icon class="tip-icon">favorite</mat-icon>
           </button>
           <ng-template #purchaseButton>
             <button
@@ -29,15 +29,47 @@
               color="primary"
               class="purchase-btn"
               [matMenuTriggerFor]="purchaseMenu"
-              [matTooltip]="authService.hasValidAccessToken ? 'Purchase' : 'To purchase a lesson you have to sign in'"
-              [matTooltipDisabled]="authService.hasValidAccessToken"
-              >
+              [matTooltip]="'Purchase'"
+            >
               Purchase <mat-icon class="purchase-icon">shopping_basket</mat-icon>
               <mat-menu #purchaseMenu="matMenu">
                 <button mat-menu-item (click)="emitOpenPurchaseDialog()">For me</button>
               </mat-menu>
             </button>
           </ng-template>
+        </ng-container>
+        <ng-container *ngIf="!authService.hasValidAccessToken">
+          <button
+            mat-stroked-button
+            color="primary"
+            class="like-btn"
+            [matTooltip]="'To like this lesson you have to sign in'"
+            routerLink="/account/login">
+            Like <mat-icon>thumb_up</mat-icon></button>
+          <button
+            *ngIf="lesson && !lesson.price; else purchaseButton"
+            mat-stroked-button
+            color="primary"
+            class="tip-btn"
+            [matTooltip]="'To give a tip you have to sign in'"
+            routerLink="/account/login"
+          >Tip <mat-icon class="tip-icon">favorite</mat-icon>
+          </button>
+          <ng-template #purchaseButton>
+            <button
+              mat-stroked-button
+              color="primary"
+              class="purchase-btn"
+              [matMenuTriggerFor]="purchaseMenu"
+              [matTooltip]="'To purchase a lesson you have to sign in'"
+              routerLink="/account/login"
+              >Purchase <mat-icon class="purchase-icon">shopping_basket</mat-icon>
+              <mat-menu #purchaseMenu="matMenu">
+                <button mat-menu-item (click)="emitOpenPurchaseDialog()">For me</button>
+              </mat-menu>
+            </button>
+          </ng-template>
+        </ng-container>
         </div>
       </div>
       <div class="lesson__details">
