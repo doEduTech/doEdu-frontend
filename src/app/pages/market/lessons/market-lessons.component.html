@@ -5,8 +5,8 @@
       <mat-card
         class="lesson-card mat-elevation-z6"
         *ngFor="let marketLesson of marketLessons"
+        [routerLink]="marketLesson.id"
       >
-        <a class="lesson-card__link" [routerLink]="marketLesson.id">
           <mat-card-header>
             <mat-card-title>
               <mat-icon class="video-icon" *ngIf="marketLesson.type === 'video'">play_circle_outline</mat-icon>
@@ -27,7 +27,6 @@
             <button mat-button>Type: {{ marketLesson.type }}</button>
             <button mat-button>Price: {{ marketLesson.price || 'Free' }}</button>
           </mat-card-actions>
-        </a>
       </mat-card>
     </div>
     <div *ngIf="recordsCount; else welcomeMessage" class="pagination">
