@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { AuthService } from '@services/auth.service';
 import { SnackBarService } from '@services/shared/snack-bar.service';
@@ -15,19 +15,19 @@ import { BlockchainTransactionsGatewayService } from '@services/blockchain-trans
 export class BlockchainAccountComponent {
   public showCredentials = false;
   public account: IBlockchainAccountForm | undefined;
-  public form = new FormGroup({
-    word0: new FormControl('', Validators.required),
-    word1: new FormControl('', Validators.required),
-    word2: new FormControl('', Validators.required),
-    word3: new FormControl('', Validators.required),
-    word4: new FormControl('', Validators.required),
-    word5: new FormControl('', Validators.required),
-    word6: new FormControl('', Validators.required),
-    word7: new FormControl('', Validators.required),
-    word8: new FormControl('', Validators.required),
-    word9: new FormControl('', Validators.required),
-    word10: new FormControl('', Validators.required),
-    word11: new FormControl('', Validators.required),
+  public form = new UntypedFormGroup({
+    word0: new UntypedFormControl('', Validators.required),
+    word1: new UntypedFormControl('', Validators.required),
+    word2: new UntypedFormControl('', Validators.required),
+    word3: new UntypedFormControl('', Validators.required),
+    word4: new UntypedFormControl('', Validators.required),
+    word5: new UntypedFormControl('', Validators.required),
+    word6: new UntypedFormControl('', Validators.required),
+    word7: new UntypedFormControl('', Validators.required),
+    word8: new UntypedFormControl('', Validators.required),
+    word9: new UntypedFormControl('', Validators.required),
+    word10: new UntypedFormControl('', Validators.required),
+    word11: new UntypedFormControl('', Validators.required),
   });
 
   public get formPassphrase(): string {

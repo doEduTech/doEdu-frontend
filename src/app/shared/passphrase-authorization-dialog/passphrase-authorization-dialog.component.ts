@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -10,7 +10,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class PassphraseAuthorizationDialogComponent implements OnInit {
   @Output()
   public confirmAction: EventEmitter<string> = new EventEmitter();
-  public passphraseFormControl = new FormControl();
+  public passphraseFormControl = new UntypedFormControl();
 
   constructor(
     public dialogRef: MatDialogRef<PassphraseAuthorizationDialogComponent>

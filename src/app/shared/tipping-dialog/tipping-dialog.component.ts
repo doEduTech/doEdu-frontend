@@ -1,6 +1,6 @@
 import { EventEmitter } from '@angular/core';
 import { Component, Inject, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { TokenBalanceService } from '@services/token-balance.service';
@@ -18,8 +18,8 @@ export class TippingDialogComponent {
   @Output()
   confirmAction: EventEmitter<IBalanceSubtractEvent> = new EventEmitter();
 
-  public form = new FormGroup({
-    amount: new FormControl('', Validators.required),
+  public form = new UntypedFormGroup({
+    amount: new UntypedFormControl('', Validators.required),
   });
 
   constructor(

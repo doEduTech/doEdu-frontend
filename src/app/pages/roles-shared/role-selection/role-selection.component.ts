@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { AuthService } from '@services/auth.service';
 
@@ -11,9 +11,9 @@ import { AuthService } from '@services/auth.service';
 })
 export class RoleSelectionComponent {
   public formValidated = false;
-  public form = new FormGroup({
-    role: new FormControl(null, Validators.required),
-    areConditionsAndTermsAccepted: new FormControl(null, [
+  public form = new UntypedFormGroup({
+    role: new UntypedFormControl(null, Validators.required),
+    areConditionsAndTermsAccepted: new UntypedFormControl(null, [
       Validators.requiredTrue,
     ]),
   });

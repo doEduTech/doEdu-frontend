@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 import { AuthService } from '@services/auth.service';
 import { checkPasswords } from './utils';
@@ -14,11 +14,11 @@ import { SnackBarService } from '@services/shared/snack-bar.service';
 export class RegisterComponent {
   public showEmailError = false;
   public showPasswordsDontMatchError = false;
-  public form = new FormGroup(
+  public form = new UntypedFormGroup(
     {
-      email: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
-      repeatedPassword: new FormControl('', Validators.required),
+      email: new UntypedFormControl('', Validators.required),
+      password: new UntypedFormControl('', Validators.required),
+      repeatedPassword: new UntypedFormControl('', Validators.required),
     },
     checkPasswords()
   );
