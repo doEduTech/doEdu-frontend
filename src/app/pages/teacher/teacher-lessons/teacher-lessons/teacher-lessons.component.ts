@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
+import { LegacyPageEvent as PageEvent } from '@angular/material/legacy-paginator';
 
 import { SnackBarService } from '@services/shared/snack-bar.service';
 import {
