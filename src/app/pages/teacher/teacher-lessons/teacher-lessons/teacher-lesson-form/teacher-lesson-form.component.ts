@@ -2,8 +2,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {
   AbstractControl,
-  FormControl,
-  FormGroup,
+  UntypedFormControl,
+  UntypedFormGroup,
   Validators,
 } from '@angular/forms';
 
@@ -34,10 +34,10 @@ export class TeacherLessonFormComponent implements OnInit {
   public isPreviewFileChanged = false;
   public EnftMintingStatus = EnftMintingStatus;
 
-  public form = new FormGroup({
-    title: new FormControl('', [Validators.required, Validators.maxLength(50)]),
-    description: new FormControl('', Validators.maxLength(500)),
-    createNFT: new FormControl(true),
+  public form = new UntypedFormGroup({
+    title: new UntypedFormControl('', [Validators.required, Validators.maxLength(50)]),
+    description: new UntypedFormControl('', Validators.maxLength(500)),
+    createNFT: new UntypedFormControl(true),
   });
 
   public get titleFormControl(): AbstractControl {

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
 
@@ -14,12 +14,12 @@ export class MarketLessonsFiltersComponent implements OnInit {
   @Output()
   public filtersChange: EventEmitter<IMarketLessonFilters> = new EventEmitter();
 
-  public form = new FormGroup({
-    video: new FormControl(true),
-    audio: new FormControl(true),
-    pdf: new FormControl(true),
-    minPrice: new FormControl(null),
-    maxPrice: new FormControl(null),
+  public form = new UntypedFormGroup({
+    video: new UntypedFormControl(true),
+    audio: new UntypedFormControl(true),
+    pdf: new UntypedFormControl(true),
+    minPrice: new UntypedFormControl(null),
+    maxPrice: new UntypedFormControl(null),
   });
   private formSub$: Subscription | undefined;
 
